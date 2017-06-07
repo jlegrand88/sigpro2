@@ -1,0 +1,19 @@
+* {
+	font-family: Arial, sans-serif;
+}
+a {
+	color: #009900;
+	text-decoration: none;
+}
+
+div#header, section.inner div#cont_gral ul.migas,
+section.inner div#cont_gral div.iconos, div#footer,
+div.filtro, div#newsletter, a.ver_proyecto,
+div.compartir_redes, a.boton, div.map,  div#una_col ul.tabs,
+.mascara, div.menu_sec ul.menu {
+	display: none;
+}
+
+div.genericoSep > p {
+	text-align: justify;
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Pagina no encontrada</title>
+        <link rel='stylesheet' id='contact-form-7-css'  href='http://rimisp.org/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=3.4.1' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-pagenavi-css'  href='http://rimisp.org/wp-content/plugins/wp-pagenavi/pagenavi-css.css?ver=2.70' type='text/css' media='all' />
+<script type='text/javascript' src='http://rimisp.org/wp-includes/js/jquery/jquery.js?ver=1.11.1'></script>
+<script type='text/javascript' src='http://rimisp.org/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://rimisp.org/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://rimisp.org/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 4.0" />
+        <link href="http://rimisp.org/wp-content/themes/rimisp/css/404.css" rel="stylesheet" type="text/css" />
+        <meta name="robots" content="noindex,nofollow" />
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-7737430-1']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+
+            <div class="content_404">
+                <h1>Página no encontrada</h1>
+                <h2>El contenido que buscas no existe, lo sentimos.</h2>
+
+                <form id="buscador_404" action="http://rimisp.org">
+                    <input type="text" placeholder="Buscar en RIMISP" name="s">
+                    <button>Buscar</button>
+                </form>
+            </div>
+
+            <ul class="categorias_404">
+                <li><a href="http://rimisp.org/noticias-generales" title="Ir a Noticias">&raquo; Noticias</a></li>
+                <li><a href="http://rimisp.org/temas" title="Ir a Temas">&raquo; Temas</a></li>
+                <li><a href="http://rimisp.org/proyectos" title="Ir a Proyectos">&raquo; Proyectos</a></li>
+                <li><a href="http://rimisp.org/publicaciones-documentos" title="Ir a Publicaciones y Documentos">&raquo; Publicaciones y Documentos</a></li>
+                <li><a href="http://rimisp.org/sobre-rimisp" title="Ir a Sobre RIMISP">&raquo; Sobre RIMISP</a></li>
+            </ul>
+
+        </div>
+        <script type='text/javascript' src='http://rimisp.org/wp-content/plugins/contact-form-7/includes/js/jquery.form.min.js?ver=3.32.0-2013.04.03'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var _wpcf7 = {"loaderUrl":"http:\/\/rimisp.org\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif","sending":"Enviando..."};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://rimisp.org/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=3.4.1'></script>
+    </body>
+</html>

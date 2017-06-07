@@ -1,0 +1,4 @@
+.divTable { display: table; border-style: solid; border-width: 1px; width: 100%; }
+.divRow { display: table-row; height:30px; border-style: solid; border-width: 1px; }
+.divRowTitle { display: table-row; height:30px; border-style: solid; border-width: 1px; background-color: blanchedalmond;}
+.divCol { display: table-cell; text-align: center; vertical-align: middle; border-style: solid; border-width: 1px; }

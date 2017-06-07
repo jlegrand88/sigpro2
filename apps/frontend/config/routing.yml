@@ -1,0 +1,60 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+# default rules
+homepage:
+  url:   /
+  param: { module: usuario, action: login }
+
+# generic rules
+# please, remove them by adding more specific rules
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*
+
+user_login:
+  url:   /:module/:action/*
+  param: { module: usuario, action: login }
+
+user_logout:
+  url:   /:module/:action/*
+  param: { module: usuario, action: logout }
+
+bandeja_entrada:
+  url:   /:module/:action/*
+  param: { module: usuario, action: bandejaEntrada }
+
+bandeja_salida:
+  url:   /:module/:action/*
+  param: { module: usuario, action: bandejaSalida }
+
+ingreso_proyecto:
+  url:   /:module/:action/*
+  param: { module: proyecto, action: ingresoProyecto }
+
+orden_pago:
+  url:   /:module/:action/*
+  param: { module: proyecto, action: ordenPago }
+
+reporte_informes:
+  url:   /:module/:action/*
+  param: { module: proyecto, action: reporteInformes }
+
+reporte_informe_detalle:
+  url:   /:module/:action/*
+  param: { module: proyecto, action: reporteInformeDetalle }
+
+reporte_informe_detalle_total:
+  url:   /:module/:action/*
+  param: { module: proyecto, action: reporteInformeDetalleTotal }
+
+gasto_pais:
+  url:   /:module/:action/*
+  param: { module: proyecto, action: gastoPais }
+
+descargar_formato:
+  url:   /:module/:action/*
+  param: { module: proyecto, action: descargarFormato }

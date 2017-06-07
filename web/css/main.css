@@ -1,0 +1,40 @@
+.disabled-select {
+    background-color:#d5d5d5;
+    opacity:0.5;
+    border-radius:3px;
+    cursor:not-allowed;
+    position:absolute;
+    top:0;
+    bottom:0;
+    right:0;
+    left:0;
+}
+
+.error_list{
+    color: red;
+    font-weight: bold;
+}
+
+#grillaMovimientos{
+    font-size: x-small
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
