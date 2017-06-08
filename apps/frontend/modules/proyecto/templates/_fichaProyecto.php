@@ -3,9 +3,11 @@
     <?php if($permiso == false && $editable == true): ?>
         </br>
         <div class="container">
-            <div class="alert alert-danger col-lg-12">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <?php  echo "<strong>".$alerta."</strong>"; ?>
+            <div class="row">
+                <div class="alert alert-danger col-lg-12">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <?php  echo "<strong>".$alerta."</strong>"; ?>
+                </div>
             </div>
         </div>
         <?php $ocultaFicha = true; ?>

@@ -842,45 +842,38 @@ class proyectoActions extends sfActions
         $bbdd2 = "ONG2016";
         $con = Doctrine_Manager::getInstance()->getConnection('mssql');
 
-        $query = "SELECT cw_vsnpmovcpbtsitinicnoconc.PCTCOD AS [Codigo Cuenta], cwpctas.PCDESC AS [Nombre Cuenta], 
-                    cw_vsnpmovcpbtsitinicnoconc.CPBNUM AS [Numero Comprobante], cw_vsnpmovcpbtsitinicnoconc.CPBFEC AS fecha, Month([CPBFEC]) AS Mes, 
-                    Year([CPBFEC]) AS Año, cw_vsnpmovcpbtsitinicnoconc.GLOSAMOV, cw_vsnpmovcpbtsitinicnoconc.MONTOMA AS Dolares, 
-                    cw_vsnpmovcpbtsitinicnoconc.MONTOMB AS Pesos, 236 AS proyecto, 1 AS Expr1, 2 AS Expr2, 
-                    IIf((Left([Codigo Cuenta],1))='4','1','2') AS [Tipo Cuenta]
-                    FROM $bbdd.softland.cw_vsnpmovcpbtsitinicnoconc INNER JOIN $bbdd.softland.cwpctas ON cw_vsnpmovcpbtsitinicnoconc.PCTCOD = cwpctas.PCCODI
-                  WHERE (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '4-1-') AND ((Year([CPBFEC])) = 2017)) OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '5-1-') 
-                  AND ((Year([CPBFEC]))=2017)) OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '5-2-') AND ((Year([CPBFEC])) = 2017)) 
-                  OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '5-3-') AND ((Year([CPBFEC]))=2017)) OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '6-1-') 
-                  AND ((Year([CPBFEC]))=2017)) OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '4-2-') AND ((Year([CPBFEC]))=2017))
-                  ORDER BY cw_vsnpmovcpbtsitinicnoconc.CPBFEC";
+        $query = "SELECT cw_vsnpmovcpbtsitinicnoconc.PCTCOD AS codigo_cuenta, cwpctas.PCDESC AS nombre_cuenta, 
+                    cw_vsnpmovcpbtsitinicnoconc.CPBNUM AS numero_comprobante, cw_vsnpmovcpbtsitinicnoconc.CPBFEC AS fecha, Month([CPBFEC]) AS mes, 
+                    Year([CPBFEC]) AS ano, cw_vsnpmovcpbtsitinicnoconc.GLOSAMOV as glosa, cw_vsnpmovcpbtsitinicnoconc.MONTOMA AS dolares, 
+                    cw_vsnpmovcpbtsitinicnoconc.MONTOMB AS pesos, 236 AS proyecto, 1 AS Expr1, 2 AS Expr2, 
+                    CASE 
+                        WHEN Left(cw_vsnpmovcpbtsitinicnoconc.PCTCOD,1) = '4' THEN '1' ELSE '2' 
+                    END AS tipo_cuenta 
+                  FROM FONDECYT.softland.cw_vsnpmovcpbtsitinicnoconc INNER JOIN FONDECYT.softland.cwpctas ON cw_vsnpmovcpbtsitinicnoconc.PCTCOD = cwpctas.PCCODI 
+                    WHERE 
+                    (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '4-1-') AND ((Year([CPBFEC])) = 2017)) 
+                    OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '5-1-') AND ((Year([CPBFEC])) = 2017)) 
+                    OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '5-2-') AND ((Year([CPBFEC])) = 2017)) 
+                    OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '5-3-') AND ((Year([CPBFEC])) = 2017)) 
+                    OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '6-1-') AND ((Year([CPBFEC])) = 2017)) 
+                    OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '4-2-') AND ((Year([CPBFEC])) = 2017)) 
+                    ORDER BY cw_vsnpmovcpbtsitinicnoconc.CPBFEC";
         $this->response = $con->fetchAssoc($query);
 
-        $query2 ="SELECT cw_vsnpmovcpbtsitinicnoconc.PCTCOD AS [Codigo Cuenta], cwpctas.PCDESC AS [Nombre Cuenta], cw_vsnpmovcpbtsitinicnoconc.CPBNUM AS [Numero Comprobante], 
-                    cw_vsnpmovcpbtsitinicnoconc.CPBFEC AS fecha, Month([CPBFEC]) AS Mes, Year([CPBFEC]) AS Año, cw_vsnpmovcpbtsitinicnoconc.GLOSAMOV, 
-                    cw_vsnpmovcpbtsitinicnoconc.MONTOMA AS Dolares, cw_vsnpmovcpbtsitinicnoconc.MONTOMB AS Pesos, (Right(Left([Codigo Cuenta],7),3)) AS proyecto, 
-                    IIf(InStr(1,[Nombre Cuenta], '(c/P') > 0, '3','') AS compromiso, 
-                    IIf((Right([Codigo Cuenta],2)) = '01', '1', '2') AS ingresos, 
-                    IIf([compromiso]>[ingresos],[compromiso], [ingresos]) AS [tipo de cuenta]
-                FROM $bbdd.softland.cw_vsnpmovcpbtsitinicnoconc INNER JOIN $bbdd.softland.cwpctas ON cw_vsnpmovcpbtsitinicnoconc.PCTCOD = cwpctas.PCCODI
-                WHERE (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '2-2-1*') AND ((Year([CPBFEC]))>2015)) OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '4-2-')) 
-                OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '5-6-')) OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '2-2-2*'))
-                ORDER BY cw_vsnpmovcpbtsitinicnoconc.CPBFEC;";
-        $query3 = "SELECT cw_vsnpmovcpbtsitinicnoconc.PCTCOD AS [Codigo Cuenta], cwpctas.PCDESC AS [Nombre Cuenta], cw_vsnpmovcpbtsitinicnoconc.CPBNUM AS [Numero Comprobante], 
-    cw_vsnpmovcpbtsitinicnoconc.CPBFEC AS fecha, Month([CPBFEC]) AS Mes, Year([CPBFEC]) AS Año, cw_vsnpmovcpbtsitinicnoconc.GLOSAMOV, 
-    cw_vsnpmovcpbtsitinicnoconc.MONTOMA AS Dolares, cw_vsnpmovcpbtsitinicnoconc.MONTOMB AS Pesos, (Right(Left(PCTCOD,7),3)) AS proyecto, 
-    CASE
-		WHEN CHARINDEX(PCDESC, '(c/P', 0) > 0 THEN '3' ELSE '' 
-	END AS compromiso, 
-	CASE
-		WHEN Right(PCTCOD,2) = '01' THEN '1' ELSE '2'
-	END AS ingresos, 
-    IIf (((CHARINDEX(0,PCDESC, '(c/P') > 0, '3','') > (Right(PCTCOD,2)) = '01', '1', '2'),
-    ((CHARINDEX(PCDESC, '(c/P') > 0, '3',''), 
-	((Right(PCTCOD,2)) = '01', '1', '2') ) AS [tipo de cuenta]
-FROM ONG2016.softland.cw_vsnpmovcpbtsitinicnoconc INNER JOIN ONG2016.softland.cwpctas ON cw_vsnpmovcpbtsitinicnoconc.PCTCOD = cwpctas.PCCODI
-WHERE (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '2-2-1*') AND ((Year([CPBFEC]))>2015)) OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '4-2-')) 
-OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '5-6-')) OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '2-2-2*'))
-ORDER BY cw_vsnpmovcpbtsitinicnoconc.CPBFEC;";
+        $query2 ="SELECT cw_vsnpmovcpbtsitinicnoconc.PCTCOD AS codigo_cuenta, cwpctas.PCDESC AS nombre_cuenta, (Right(Left(cw_vsnpmovcpbtsitinicnoconc.PCTCOD,7),3)) AS proyecto, 
+                    cw_vsnpmovcpbtsitinicnoconc.CPBNUM AS numero_comprobante, 
+                    cw_vsnpmovcpbtsitinicnoconc.CPBFEC AS fecha, Month(CPBFEC) AS mes, Year(CPBFEC) AS ano, cw_vsnpmovcpbtsitinicnoconc.GLOSAMOV as glosa, 
+                    cw_vsnpmovcpbtsitinicnoconc.MONTOMA AS dolares, cw_vsnpmovcpbtsitinicnoconc.MONTOMB AS pesos, 
+                    CASE 
+                      WHEN CHARINDEX(cwpctas.PCDESC,'(c/P',1) > 0 THEN '3' ELSE '' 
+                    END AS compromiso, 
+                    CASE 
+                      WHEN Right(cw_vsnpmovcpbtsitinicnoconc.PCTCOD,2) = '01' THEN '1' ELSE '2' 
+                    END AS ingresos 
+                  FROM FONDECYT.softland.cw_vsnpmovcpbtsitinicnoconc INNER JOIN FONDECYT.softland.cwpctas ON cw_vsnpmovcpbtsitinicnoconc.PCTCOD = cwpctas.PCCODI 
+                  WHERE (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '2-2-1*') AND ((Year([CPBFEC]))>2015)) OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '4-2-')) 
+                    OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '5-6-')) OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '2-2-2*')) 
+                  ORDER BY cw_vsnpmovcpbtsitinicnoconc.CPBFEC";
         $this->response2 = $con->fetchAssoc($query2);
     }
 

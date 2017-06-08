@@ -1,10 +1,9 @@
 <?php use_helper('Date'); ?>
 <ul class="nav nav-tabs col-lg-12" id="nav-tabs-ficha">
     <li class="active"><a href="#fichaProyecto" data-toggle="tab">Ficha de Proyectos</a></li>
-    <?php // if(isset($proyecto->idProyecto) && $proyecto->idProyecto != ""): ?>
-    <li><a href="#presupuesto" data-toggle="tab">Ingreso de Cuentas</a></li>
-    <?php // endif ?>
-    <li><a href="#despachar" data-toggle="tab">Despachar</a></li>
+    <?php $disabled = ($permiso) ? "" : "disabled";?>
+    <li class="<?php echo $disabled;?>"><a href="#presupuesto" data-toggle="tab" >Ingreso de Cuentas</a></li>
+    <li class="<?php echo $disabled;?>"><a href="#despachar" data-toggle="tab" >Despachar</a></li>
 </ul>
 <div class="tab-content col-lg-12">
     <?php
