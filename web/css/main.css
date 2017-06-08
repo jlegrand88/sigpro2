@@ -16,7 +16,7 @@
 }
 
 #grillaMovimientos{
-    font-size: x-small
+    font-size: medium;
 }
 
 .btn-file {
@@ -37,4 +37,11 @@
     background: white;
     cursor: inherit;
     display: block;
+}
+
+.dataTable td{
+    text-align: right;
+}
+.dataTable th{
+    text-align: right;
 }

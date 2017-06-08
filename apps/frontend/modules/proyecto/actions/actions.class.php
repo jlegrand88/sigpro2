@@ -775,21 +775,22 @@ class proyectoActions extends sfActions
                             $gastoPais = new GastoPais();
                             $gastoPais->setIdProyecto($idProyecto);
                             $gastoPais->setIdArchivoGastoPais($archivoGastoPais->getIdArchivoGastoPais());
-                            $gastoPais->setIdTipoMovimiento($data[0]);
-                            $gastoPais->setNombreCuenta($data[1]);
-                            $gastoPais->setPeriodo($data[2]);
-                            $gastoPais->setEnero($data[3]);
-                            $gastoPais->setFebrero($data[4]);
-                            $gastoPais->setMarzo($data[5]);
-                            $gastoPais->setAbril($data[6]);
-                            $gastoPais->setMayo($data[7]);
-                            $gastoPais->setJunio($data[8]);
-                            $gastoPais->setJulio($data[9]);
-                            $gastoPais->setAgosto($data[10]);
-                            $gastoPais->setSeptiembre($data[11]);
-                            $gastoPais->setOctubre($data[12]);
-                            $gastoPais->setNoviembre($data[13]);
-                            $gastoPais->setDiciembre($data[14]);
+                            $gastoPais->setCuenta($data[0]);
+                            $gastoPais->setIdTipoMovimiento($data[1]);
+                            $gastoPais->setNombreCuenta($data[2]);
+                            $gastoPais->setPeriodo($data[3]);
+                            $gastoPais->setEnero($data[4]);
+                            $gastoPais->setFebrero($data[5]);
+                            $gastoPais->setMarzo($data[6]);
+                            $gastoPais->setAbril($data[7]);
+                            $gastoPais->setMayo($data[8]);
+                            $gastoPais->setJunio($data[9]);
+                            $gastoPais->setJulio($data[10]);
+                            $gastoPais->setAgosto($data[11]);
+                            $gastoPais->setSeptiembre($data[12]);
+                            $gastoPais->setOctubre($data[13]);
+                            $gastoPais->setNoviembre($data[14]);
+                            $gastoPais->setDiciembre($data[15]);
                             $gastoPais->save();
                         }
                     }

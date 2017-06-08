@@ -56,27 +56,25 @@
 										<td><?php echo $dettotproy['fec_inicio_proy_ord']; ?></td>
 										<td><?php echo $dettotproy['fec_termino_proy_ord']; ?></td>
 										<td><?php echo $dettotproy['porc_overhead']; ?></td>
-										<td><?php echo number_format($dettotproy['monto_total']); ?></td>
-										<td><?php echo number_format($dettotproy['sum_monto_ing']); ?></td>
-										<td><?php echo number_format($dettotproy['sum_monto_egre']); ?></td>
+										<td><?php echo number_format($dettotproy['monto_total'],'0',',','.'); ?></td>
+										<td><?php echo number_format($dettotproy['sum_monto_ing'],'0',',','.'); ?></td>
+										<td><?php echo number_format($dettotproy['sum_monto_egre'],'0',',','.'); ?></td>
 										<?php if ( $dettotproy['id_moneda'] == Moneda::CLP ): ?>
-											<td><?php echo number_format($dettotproy['ingresos_reales']); ?></td>
-											<td><?php echo number_format($dettotproy['gastos_reales']); ?></td>
-											<td><?php echo number_format($dettotproy['compromisos']); ?></td>
-											<td><?php echo number_format($dettotproy['monto_total']-$dettotproy['gastos_reales']); ?></td>
-											<td><?php echo number_format($dettotproy['ingresos_reales']-$dettotproy['gastos_reales']); ?></td>
+											<td><?php echo number_format($dettotproy['ingresos_reales'],'0',',','.'); ?></td>
+											<td><?php echo number_format($dettotproy['gastos_reales'],'0',',','.'); ?></td>
+											<td><?php echo number_format($dettotproy['compromisos'],'0',',','.'); ?></td>
+											<td><?php echo number_format($dettotproy['monto_total']-$dettotproy['gastos_reales'],'0',',','.'); ?></td>
+											<td><?php echo number_format($dettotproy['ingresos_reales']-$dettotproy['gastos_reales'],'0',',','.'); ?></td>
+                                            <td><?php echo number_format($dettotproy['ppto_ovh'],'0',',','.'); ?></td>
+                                            <td><?php echo number_format($dettotproy['gasto_ovhpesos'],'0',',','.'); ?></td>
 										<?php else: ?>
-											<td><?php echo number_format($dettotproy['ingresos_reales_us']); ?></td>
-											<td><?php echo number_format($dettotproy['gastos_reales_us']); ?></td>
-											<td><?php echo number_format($dettotproy['compromisos_us']); ?></td>
-											<td><?php echo number_format($dettotproy['monto_total']-$dettotproy['gastos_reales_us']); ?></td>
-											<td><?php echo number_format($dettotproy['ingresos_reales_us']-$dettotproy['gastos_reales_us']); ?></td>
-										<?php endif; ?>
-										<td><?php echo number_format($dettotproy['ppto_ovh']); ?></td>
-										<?php if ( $dettotproy['id_moneda'] == Moneda::CLP ): ?>
-											<td><?php echo number_format($dettotproy['gasto_ovhpesos']); ?></td>
-										<?php else: ?>
-											<td><?php echo number_format($dettotproy['gasto_ovhus']); ?></td>
+											<td><?php echo number_format($dettotproy['ingresos_reales_us'],'2','.',','); ?></td>
+											<td><?php echo number_format($dettotproy['gastos_reales_us'],'2','.',','); ?></td>
+											<td><?php echo number_format($dettotproy['compromisos_us'],'2','.',','); ?></td>
+											<td><?php echo number_format($dettotproy['monto_total']-$dettotproy['gastos_reales_us'],'2','.',','); ?></td>
+											<td><?php echo number_format($dettotproy['ingresos_reales_us']-$dettotproy['gastos_reales_us'],'2','.',','); ?></td>
+                                            <td><?php echo number_format($dettotproy['ppto_ovh'],'2','.',','); ?></td>
+                                            <td><?php echo number_format($dettotproy['gasto_ovhus'],'2','.',','); ?></td>
 										<?php endif; ?>
 									</tr>
 								<?php endforeach; ?>
@@ -99,18 +97,14 @@
 			language : spanish,
 			searching: true,
 			paging: false,
+			order: false,
 			scrollX : true,
+            scrollY:     640,
 			fixedColumns: true,
 			fixedHeader: {
-				header: true,
-				footer: true,
+				header: true
 			},
-			deferRender: true,
-			scrollY:     630,
-//			scroller: {
-//				loadingIndicator: true
-//			}
+			deferRender: true
 		});
-
 	});
 </script>

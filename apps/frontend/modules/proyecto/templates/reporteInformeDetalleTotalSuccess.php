@@ -20,10 +20,10 @@
 <!--                            <input id="filter" type="text" class="form-control" placeholder="Escribe squi...">-->
 <!--                        </div>-->
 <!--                        </br>-->
-                        <table width=""  class="table  table-striped table-bordered table-hover" id="grillaInformeDetalleTotal"  data-toggle="table">
+                        <table width=""  class="table table-striped table-bordered table-hover dataTable display compact nowrap table-condensed no-footer dtr-inline" id="grillaInformeDetalleTotal"  data-toggle="table">
                             <thead>
                                 <tr>
-                                    <th width="159" data-field="codigo" data-sortable="true" data-sort-name="_date_data" data-sorter="monthSorter">Codigo de Cuenta</th>
+                                    <th>Codigo de Cuenta</th>
                                     <th>Descripcion</th>
                                     <th >Comprobante<br></th>
                                     <th >Fecha</th>
@@ -45,7 +45,7 @@
                                     <td align=right><?php echo ($dettotproycuenta['anho']); ?></td>
                                     <td align=right><?php echo ($dettotproycuenta['glosa']); ?></td>
                                     <td align=right><?php echo number_format($dettotproycuenta['Dolares']); ?></td>
-                                    <td align=right><?php echo number_format($dettotproycuenta['Pesos']); ?></td>
+                                    <td align=right><?php echo number_format($dettotproycuenta['Pesos'],'0',',','.'); ?></td>
                                 </tr>
                             <?php endforeach; ?>
                             </tbody>
@@ -62,33 +62,12 @@
 </div>
 
 <script type="text/javascript">
-//    $(document).ready(function ()
-//    {
-//        (function ($)
-//        {
-//            $('#filter').keyup(function ()
-//            {
-//                var rex = new RegExp($(this).val(), 'i');
-//                $('.searchable tr').hide();
-//                $('.searchable tr').filter(function () {
-//                    return rex.test($(this).text());
-//                }).show();
-//            })
-//        }(jQuery));
-//    });
-
-    function monthSorter(a, b)
-    {
-        if (a.month < b.month)
-            return -1;
-        if (a.month > b.month)
-            return 1;
-        return 0;
-    }
-
     $('#grillaInformeDetalleTotal').DataTable({
         language : spanish,
         fixedColumns: true,
+        paginate: false,
+        scrollX : true,
+        scrollY: 640,
         fixedHeader: {
             header: true,
             footer: true,
