@@ -95,7 +95,7 @@ class OrdenPagoForm extends BaseOrdenPagoForm
                 {
                     $varEjecucion = ($reporteDetalle[$i]['ejecucion_us']) ? : 0;
                     $varCompromiso = ($reporteDetalle[$i]['compromiso_us']) ? : 0;
-                    $varSaldoefectivo = ($reporteDetalle[$i]['saldoef_ectivo_us']) ? : 0;
+                    $varSaldoefectivo = ($reporteDetalle[$i]['saldo_efectivo_us']) ? : 0;
                 }
                 $detalleOrdenPago->setEjecucion($varEjecucion);
                 $detalleOrdenPago->setCompromiso($varCompromiso);

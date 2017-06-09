@@ -62,16 +62,12 @@ $( document ).ready(function(){
         $('#proyecto_fecha_avance_inf').attr("data-after",minDate);
         $('#proyecto_fecha_fin_inf').attr("data-after",minDate);
         var resta = restaFechas($('#proyecto_fecha_inicio').val(),$('#proyecto_fecha_termino').val());
-        console.log(resta);
-        console.log("fi");
         $('#proyecto_duracion_proyecto').val(resta);
     });
 
     $("#proyecto_fecha_termino").on("change", function (e) {
         $('#proyecto_fecha_inicio').attr("data-before",e.target.value);
         var resta = restaFechas($('#proyecto_fecha_inicio').val(),$('#proyecto_fecha_termino').val());
-        console.log(resta);
-        console.log("ft");
         $('#proyecto_duracion_proyecto').val(resta);
     });
 

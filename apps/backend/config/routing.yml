@@ -1,3 +1,300 @@
+usuario:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Usuario
+    module:               usuario
+    prefix_path:          /usuario
+    column:               id_usuario
+    with_wildcard_routes: true
+
+tipo_movimiento:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TipoMovimiento
+    module:               tipo_movimiento
+    prefix_path:          /tipo_movimiento
+    column:               id_tipo_movimiento
+    with_wildcard_routes: true
+
+tipo_control_proyecto:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TipoControlProyecto
+    module:               tipo_control_proyecto
+    prefix_path:          /tipo_control_proyecto
+    column:               id_tipo_control
+    with_wildcard_routes: true
+
+territorio:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Territorio
+    module:               territorio
+    prefix_path:          /territorio
+    column:               id_territorio
+    with_wildcard_routes: true
+
+rpt_general_proyecto:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                RptGeneralProyecto
+    module:               rpt_general_proyecto
+    prefix_path:          /rpt_general_proyecto
+    column:               Array
+    with_wildcard_routes: true
+
+proyecto_respaldo:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                ProyectoRespaldo
+    module:               proyecto_respaldo
+    prefix_path:          /proyecto_respaldo
+    column:               id_proyecto
+    with_wildcard_routes: true
+
+proyecto_grupo:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                ProyectoGrupo
+    module:               proyecto_grupo
+    prefix_path:          /proyecto_grupo
+    column:               Array
+    with_wildcard_routes: true
+
+proyecto_ambito:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                ProyectoAmbito
+    module:               proyecto_ambito
+    prefix_path:          /proyecto_ambito
+    column:               id
+    with_wildcard_routes: true
+
+proyecto:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Proyecto
+    module:               proyecto
+    prefix_path:          /proyecto
+    column:               id_proyecto
+    with_wildcard_routes: true
+
+proveedor:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Proveedor
+    module:               proveedor
+    prefix_path:          /proveedor
+    column:               id_proveedor
+    with_wildcard_routes: true
+
+presupuesto_respaldo:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                PresupuestoRespaldo
+    module:               presupuesto_respaldo
+    prefix_path:          /presupuesto_respaldo
+    column:               id_presupuesto
+    with_wildcard_routes: true
+
+presupuesto:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Presupuesto
+    module:               presupuesto
+    prefix_path:          /presupuesto
+    column:               id_presupuesto
+    with_wildcard_routes: true
+
+perfil_accion:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                PerfilAccion
+    module:               perfil_accion
+    prefix_path:          /perfil_accion
+    column:               Array
+    with_wildcard_routes: true
+
+perfil:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Perfil
+    module:               perfil
+    prefix_path:          /perfil
+    column:               id_perfil
+    with_wildcard_routes: true
+
+parametro:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Parametro
+    module:               parametro
+    prefix_path:          /parametro
+    column:               id_parametro
+    with_wildcard_routes: true
+
+pais_territorio:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                PaisTerritorio
+    module:               pais_territorio
+    prefix_path:          /pais_territorio
+    column:               id_pais_territorio
+    with_wildcard_routes: true
+
+pais:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Pais
+    module:               pais
+    prefix_path:          /pais
+    column:               id_pais
+    with_wildcard_routes: true
+
+orden_pago:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                OrdenPago
+    module:               orden_pago
+    prefix_path:          /orden_pago
+    column:               id_orden_pago
+    with_wildcard_routes: true
+
+movimientos_contables:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                MovimientosContables
+    module:               movimientos_contables
+    prefix_path:          /movimientos_contables
+    column:               id
+    with_wildcard_routes: true
+
+moneda:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Moneda
+    module:               moneda
+    prefix_path:          /moneda
+    column:               id_moneda
+    with_wildcard_routes: true
+
+informe_proyecto:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                InformeProyecto
+    module:               informe_proyecto
+    prefix_path:          /informe_proyecto
+    column:               Array
+    with_wildcard_routes: true
+
+inbox:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Inbox
+    module:               inbox
+    prefix_path:          /inbox
+    column:               id_inbox
+    with_wildcard_routes: true
+
+grupo_proyecto:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                GrupoProyecto
+    module:               grupo_proyecto
+    prefix_path:          /grupo_proyecto
+    column:               id_grupo_proyecto
+    with_wildcard_routes: true
+
+grupo:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Grupo
+    module:               grupo
+    prefix_path:          /grupo
+    column:               id_grupo
+    with_wildcard_routes: true
+
+gasto_pais:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                GastoPais
+    module:               gasto_pais
+    prefix_path:          /gasto_pais
+    column:               id_gasto_pais
+    with_wildcard_routes: true
+
+folio:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Folio
+    module:               folio
+    prefix_path:          /folio
+    column:               idfolio
+    with_wildcard_routes: true
+
+estado_proyecto:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                EstadoProyecto
+    module:               estado_proyecto
+    prefix_path:          /estado_proyecto
+    column:               id_estado_proyecto
+    with_wildcard_routes: true
+
+detalle_orden_pago:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                DetalleOrdenPago
+    module:               detalle_orden_pago
+    prefix_path:          /detalle_orden_pago
+    column:               id_detalle_orden_pago
+    with_wildcard_routes: true
+
+bitacora:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Bitacora
+    module:               bitacora
+    prefix_path:          /bitacora
+    column:               id_bitacora
+    with_wildcard_routes: true
+
+archivos_adjuntos:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                ArchivosAdjuntos
+    module:               archivos_adjuntos
+    prefix_path:          /archivos_adjuntos
+    column:               id_archivo
+    with_wildcard_routes: true
+
+archivo_orden_pago:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                ArchivoOrdenPago
+    module:               archivo_orden_pago
+    prefix_path:          /archivo_orden_pago
+    column:               id_archivo_orden_pago
+    with_wildcard_routes: true
+
+archivo_gasto_pais:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                ArchivoGastoPais
+    module:               archivo_gasto_pais
+    prefix_path:          /archivo_gasto_pais
+    column:               id_archivo_gasto_pais
+    with_wildcard_routes: true
+
+ambito_tematico:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                AmbitoTematico
+    module:               ambito_tematico
+    prefix_path:          /ambito_tematico
+    column:               id_ambito_tematico
+    with_wildcard_routes: true
+
 accion:
   class: sfDoctrineRouteCollection
   options:

@@ -1,100 +1,106 @@
-<table id="grillaMovimientos" class="table table-striped table-bordered table-hover dataTable display compact nowrap table-condensed" style="width: 100% !important;"></table>
+<table id="grillaMovimientos" class="table table-striped table-bordered table-hover dataTable display compact nowrap table-condensed" style="width: 100% !important;">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Periodo</th>
+            <th >Tipo<br></th>
+            <th >N° Cuenta</th>
+            <th >Nombre Cuenta</th>
+            <th >Enero</th>
+            <th >Febrero</th>
+            <th >Marzo</th>
+            <th >Abril</th>
+            <th >Mayo</th>
+            <th >Junio</th>
+            <th >Julio</th>
+            <th >Agosto</th>
+            <th >Septiembre</th>
+            <th >Octubre</th>
+            <th >Noviembre</th>
+            <th >Diciembre</th>
+            <th >Total</th>
+            <th >OVH</th>
+            <th >esOVH</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($movimientos as $movimiento):
+                $separadorMiles = ".";
+                $separadorDecimales = ",";
+            ?>
+            <tr>
+                <td><?php echo $movimiento->getIdPresupuesto(); ?></td>
+                <td><?php echo $movimiento->getPeriodo(); ?></td>
+                <td><?php echo $movimiento->getIdTipoMovimiento(); ?></td>
+                <td><?php echo $movimiento->getCuenta(); ?></td>
+                <td><?php echo $movimiento->getNombreCuenta(); ?></td>
+                <td><?php echo number_format($movimiento->getEnero(),'0',$separadorDecimales,$separadorMiles); ?></td>
+                <td><?php echo number_format($movimiento->getFebrero(),'0',$separadorDecimales,$separadorMiles); ?></td>
+                <td><?php echo number_format($movimiento->getMarzo(),'0',$separadorDecimales,$separadorMiles); ?></td>
+                <td><?php echo number_format($movimiento->getAbril(),'0',$separadorDecimales,$separadorMiles); ?></td>
+                <td><?php echo number_format($movimiento->getMayo(),'0',$separadorDecimales,$separadorMiles); ?></td>
+                <td><?php echo number_format($movimiento->getJunio(),'0',$separadorDecimales,$separadorMiles); ?></td>
+                <td><?php echo number_format($movimiento->getJulio(),'0',$separadorDecimales,$separadorMiles); ?></td>
+                <td><?php echo number_format($movimiento->getAgosto(),'0',$separadorDecimales,$separadorMiles); ?></td>
+                <td><?php echo number_format($movimiento->getSeptiembre(),'0',$separadorDecimales,$separadorMiles); ?></td>
+                <td><?php echo number_format($movimiento->getOctubre(),'0',$separadorDecimales,$separadorMiles); ?></td>
+                <td><?php echo number_format($movimiento->getNoviembre(),'0',$separadorDecimales,$separadorMiles); ?></td>
+                <td><?php echo number_format($movimiento->getDiciembre(),'0',$separadorDecimales,$separadorMiles); ?></td>
+                <td><?php echo number_format($movimiento->getTotal(),'0',$separadorDecimales,$separadorMiles); ?></td>
+                <td><?php echo ($movimiento->getTieneOverhead()) ? "Si" : "No";?></td>
+                <td><?php echo ($movimiento->getCuentaOverhead()) ? "1" : "0";?></td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
 <script type="text/javascript">
     $().ready(function()
     {
-        var data = [];
-<?php
-        foreach($movimientos as $movimiento)
-        {
-//            if($movimiento->getIdTipoMoneda() == Moneda::CLP)
-//            {
-                $separadorMiles = ".";
-                $separadorDecimales = ",";   
-//            }else{
-//                $separadorMiles = ",";
-//                $separadorDecimales = ".";
-//            }
-        ?>
-        data.push({
-            'id' : '<?php echo $movimiento->getIdPresupuesto(); ?>',
-            'periodo' : '<?php echo $movimiento->getPeriodo(); ?>',
-            'tipo_movimiento' : '<?php echo $movimiento->getIdTipoMovimiento(); ?>',
-            'numero_cuenta' : '<?php echo $movimiento->getCuenta(); ?>',
-            'nombre_cuenta' : '<?php $movimiento->getNombreCuenta(); ?>',
-            'enero' : '<?php echo number_format($movimiento->getEnero(),'0',$separadorDecimales,$separadorMiles); ?>',
-            'febrero' : '<?php echo number_format($movimiento->getFebrero(),'0',$separadorDecimales,$separadorMiles); ?>',
-            'marzo' : '<?php echo number_format($movimiento->getMarzo(),'0',$separadorDecimales,$separadorMiles); ?>',
-            'abril' : '<?php echo number_format($movimiento->getAbril(),'0',$separadorDecimales,$separadorMiles); ?>',
-            'mayo' : '<?php echo number_format($movimiento->getMayo(),'0',$separadorDecimales,$separadorMiles); ?>',
-            'junio' : '<?php echo number_format($movimiento->getJunio(),'0',$separadorDecimales,$separadorMiles); ?>',
-            'julio' : '<?php echo number_format($movimiento->getJulio(),'0',$separadorDecimales,$separadorMiles); ?>',
-            'agosto' : '<?php echo number_format($movimiento->getAgosto(),'0',$separadorDecimales,$separadorMiles); ?>',
-            'septiembre' : '<?php echo number_format($movimiento->getSeptiembre(),'0',$separadorDecimales,$separadorMiles); ?>',
-            'octubre' : '<?php echo number_format($movimiento->getOctubre(),'0',$separadorDecimales,$separadorMiles); ?>',
-            'noviembre' : '<?php echo number_format($movimiento->getNoviembre(),'0',$separadorDecimales,$separadorMiles); ?>',
-            'diciembre' : '<?php echo number_format($movimiento->getDiciembre(),'0',$separadorDecimales,$separadorMiles); ?>',
-            'total' : '<?php echo number_format($movimiento->getTotal(),'0',$separadorDecimales,$separadorMiles); ?>',
-            'tiene_overhead' : '<?php echo ($movimiento->getTieneOverhead()) ? "Si" : "No";?>',
-            'cuenta_overhead' : '<?php echo ($movimiento->getCuentaOverhead()) ? "1" : "0";?>'
-        });
-        <?php
-        }
-        ?>
-        var table = $('#grillaMovimientos').DataTable({
-//            dom: 'Bfrtip',
-            language: spanish,
-//            responsive : true,
-            select : {style: 'single',items: 'row'},
-            data : data,
-//            buttons: ['copy', 'excel', 'pdf'],
-            columns:[
-                {data: 'id', title: 'id'},
-                {data: 'periodo', title: 'Periodo'},
-                {data: 'tipo_movimiento', title: 'Tipo'},
-                {data: 'numero_cuenta', title: 'N° Cuenta'},
-                {data: 'nombre_cuenta', title: 'Nombre Cuenta'},
-                {data: 'enero', title: 'Enero'},
-                {data: 'febrero', title: 'Febrero'},
-                {data: 'marzo', title: 'Marzo'},
-                {data: 'abril', title: 'Abril'},
-                {data: 'mayo', title: 'Mayo'},
-                {data: 'junio', title: 'Junio'},
-                {data: 'julio', title: 'Julio'},
-                {data: 'agosto', title: 'Agosto'},
-                {data: 'septiembre', title: 'Septiembre'},
-                {data: 'octubre', title: 'Octubre'},
-                {data: 'noviembre', title: 'Noviembre'},
-                {data: 'diciembre', title: 'Diciembre'},
-                {data: 'total', title: 'Total'},
-                {data: 'tiene_overhead', title: 'OVH'},
-                {data: 'cuenta_overhead', title: 'esOVH'}
-            ],
+//        var table = $('#grillaMovimientos').DataTable({
+////            dom: 'Bfrtip',
+//            language: spanish,
+////            responsive : true,
+////            select : {style: 'single',items: 'row'},
+////            data : data,
+////            buttons: ['copy', 'excel', 'pdf'],
+//            scrollX : true,
+//            scrollY: 640,
+//            fixedColumns: true,
+////            columnDefs:[{targets: [0,19], visible: false, searchable: false}]
+//        });
+//        new $.fn.dataTable.FixedHeader(table);
+        $('#grillaMovimientos').DataTable({
+            language : spanish,
+            fixedColumns: true,
+            paginate: false,
             scrollX : true,
             scrollY: 640,
-            columnDefs:[{targets: [0,19], visible: false, searchable: false}]
-        });
-//        new $.fn.dataTable.FixedHeader(table);
-        
-        table.on( 'select', function (e, dt, type, indexes) {
-            if ( type === 'row' ) {
-                var fila = indexes;
-                var data = table.rows( indexes ).data()[0];
-                $('#btnEditMovimiento').data('id',data.id);
-                $('#btnEditMovimiento').attr('disabled',false);
-                $('#btnDeleteMovimiento').data('id',data.id);
-                $('#btnDeleteMovimiento').attr('disabled',false);
-                if(data.cuenta_overhead == "1")
-                {
-                    $('#btnCalcularOVH').data('id',data.id);
-                    $('#btnCalcularOVH').show();
-                }else{
-                    $('#btnCalcularOVH').hide();
-                }
+            fixedHeader: {
+                header: true,
+                footer: true
             }
-        } );
-        table.on( 'deselect', function (e, dt, type, indexes) {
-            resetBtnsMovimientos();
-        } );
+        });
+        
+//        table.on( 'select', function (e, dt, type, indexes) {
+//            if ( type === 'row' ) {
+//                var fila = indexes;
+//                var data = table.rows( indexes ).data()[0];
+//                $('#btnEditMovimiento').data('id',data.id);
+//                $('#btnEditMovimiento').attr('disabled',false);
+//                $('#btnDeleteMovimiento').data('id',data.id);
+//                $('#btnDeleteMovimiento').attr('disabled',false);
+//                if(data.cuenta_overhead == "1")
+//                {
+//                    $('#btnCalcularOVH').data('id',data.id);
+//                    $('#btnCalcularOVH').show();
+//                }else{
+//                    $('#btnCalcularOVH').hide();
+//                }
+//            }
+//        } );
+//        table.on( 'deselect', function (e, dt, type, indexes) {
+//            resetBtnsMovimientos();
+//        } );
     });
 
 </script>

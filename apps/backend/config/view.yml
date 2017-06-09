@@ -12,9 +12,9 @@ default:
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [main.css]
+  stylesheets:    [main.css, /assets/bootstrap/css/bootstrap.min.css]
 
-  javascripts:    []
+  javascripts:    [jquery, /assets/bootstrap/js/bootstrap.min.js]
 
   has_layout:     true
   layout:         layout
