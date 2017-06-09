@@ -582,11 +582,13 @@ class proyectoActions extends sfActions
     public function executeOrdenPago(sfWebRequest $request)
     {
         $this->listaUsuarios = UsuarioTable::getInstance()->getAllUsers();
-        $this->listaProyectos = OrdenPago::getListaProyectos();
+        $idUsuario = $this->getUser()->getAttribute('id');
+        $listaProyectos = UsuarioTable::getInstance()->getListaProyectosResponzable($idUsuario);
+        $this->listaProyectos = isset($listaProyectos) ? $listaProyectos : null;
         $this->editable = true;
         $this->idDeleteArchivo = null;
         $this->idInbox = $idInbox = ($request->getParameter('id_inbox')) ? $request->getParameter('id_inbox') : null;
-//        die($idInbox);
+
         $this->accionUsuario = null;
         $this->accionUsuarioPregunta = null;
         $this->accionEstadoFinal = null;
@@ -596,7 +598,6 @@ class proyectoActions extends sfActions
             $this->ordenPago = $ordenPago = (OrdenPagoTable::getInstance()->find($request->getParameter('orden_pago')['id_orden_pago'])) ? : null;
             $this->idProyecto = $idProyecto = $request->getParameter('orden_pago')['id_proyecto'];
             $this->proyecto = $proyecto = ProyectoTable::getInstance()->find($idProyecto);
-            $idUsuario = $this->getUser()->getAttribute('id');
             $form = new OrdenPagoForm($ordenPago,array('is_post' => true,'id_proyecto' => $idProyecto,'id_usuario' => $idUsuario));
             $form->bind($request->getParameter($form->getName()),$request->getFiles($form->getName()));
             $this->form = $form;
@@ -619,7 +620,6 @@ class proyectoActions extends sfActions
         }
         else 
         {
-            $idUsuario = $this->getUser()->getAttribute('id');
             //de momento no deshabilitar ningun campo.
             $this->editable = $editable = ($request->hasParameter('id_inbox')) ? false : true;
             $this->idProyecto = $idProyecto = ($request->hasParameter('id_proyecto')) ? : null;
@@ -801,7 +801,7 @@ class proyectoActions extends sfActions
         }
         if(isset($idUsuario))
         {
-            $listaProyectos = UsuarioTable::getInstance()->getListaProyectosResponzableGastoPais($idUsuario);
+            $listaProyectos = UsuarioTable::getInstance()->getListaProyectosResponzable($idUsuario);
             $this->archivos = ArchivoGastoPaisTable::getInstance()->findByIdUsuario($idUsuario);
             $this->listaProyectos = isset($listaProyectos) ? $listaProyectos : null;
         }

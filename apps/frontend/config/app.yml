@@ -6,3 +6,4 @@ all:
   ruta_documentos_orden_pago: "<?php echo sfConfig::get('sf_upload_dir').DIRECTORY_SEPARATOR.'documentos'.DIRECTORY_SEPARATOR.'ordenes_pago'.DIRECTORY_SEPARATOR.'@proyecto'.DIRECTORY_SEPARATOR.'@ordenPago'; ?>"
   ruta_base_documentos_gasto_pais: "<?php echo sfConfig::get('sf_upload_dir').DIRECTORY_SEPARATOR.'documentos'.DIRECTORY_SEPARATOR.'gastos_pais'; ?>"
   ruta_documentos_gasto_pais: "<?php echo sfConfig::get('sf_upload_dir').DIRECTORY_SEPARATOR.'documentos'.DIRECTORY_SEPARATOR.'gastos_pais'.DIRECTORY_SEPARATOR.'@proyecto'; ?>"
+  url_backend: "http://localhost:8181/backend.php"

@@ -16,21 +16,6 @@ class ProyectoTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Proyecto');
     }
-
-    public static function getListaProyectosOrdenPago()
-    {
-        $q = Doctrine_Query::create()
-            ->select('id_proyecto, sigla_contable as descripcion')
-            ->from('Proyecto')
-            ->orderBy('sigla_contable ASC')
-            ->fetchArray();
-        $response = array();
-        foreach ($q as $row)
-        {
-            $response[$row['id_proyecto']] = $row['descripcion'];
-        }
-        return $response;
-    }
     
     public function getReporteDetalle($idProyecto)
     {

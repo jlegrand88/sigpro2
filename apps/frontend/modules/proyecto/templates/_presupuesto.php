@@ -1,5 +1,5 @@
 <?php if(isset($proyecto) && $proyecto->getIdProyecto()): ?>
-    <div class="tab-pane" id="presupuesto">
+    <div id="presupuesto">
         <div class="row">
             <div class="col-lg-12"><h1 class="page-header">Presupuestos</h1> </div>
         </div>

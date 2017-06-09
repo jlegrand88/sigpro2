@@ -15,9 +15,9 @@
     font-weight: bold;
 }
 
-#grillaMovimientos{
-    font-size: medium;
-}
+/*#grillaMovimientos{*/
+    /*font-size: medium;*/
+/*}*/
 
 .btn-file {
     position: relative;
@@ -42,6 +42,7 @@
 .dataTable td{
     text-align: right;
 }
+
 .dataTable th{
     text-align: right;
 }

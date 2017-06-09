@@ -15,7 +15,7 @@
                                 <select class="form-control input-sm select2" id="id_proyecto" name="id_proyecto" required="true">
                                     <option></option>
                                     <?php foreach ($listaProyectos as $key => $value): ?>
-                                        <option value="<?php echo $key; ?>" <?php echo (isset($idProyecto) && $idProyecto == $key ) ? 'selected' : ''; ?>> <?php echo $key." - ".$value; ?> </option>
+                                        <option value="<?php echo $key; ?>" <?php echo (isset($idProyecto) && $idProyecto == $key ) ? 'selected' : ''; ?>> <?php echo $value; ?> </option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>

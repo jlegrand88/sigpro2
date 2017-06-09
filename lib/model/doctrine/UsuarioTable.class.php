@@ -55,31 +55,16 @@ class UsuarioTable extends Doctrine_Table
     public static function getListaProyectosResponzable($idUsuario)
     {
         $q = Doctrine_Query::create()
-            ->select('id_proyecto, nombre_proyecto_resum')
+            ->select('id_proyecto, numero_contable, sigla_contable as descripcion')
             ->from('Proyecto')
             ->where('id_responsable_proy = ?',array($idUsuario))
+            ->orderBy('numero_contable DESC')
             ->fetchArray();
         $response = array();
         foreach ($q as $row)
         {
-            $response[$row['id_proyecto']] = $row['nombre_proyecto_resum'];
+            $response[$row['id_proyecto']] = $row['numero_contable']." - ".$row['descripcion'];
         }
         return $response;
     }
-
-    public static function getListaProyectosResponzableGastoPais($idUsuario)
-    {
-        $q = Doctrine_Query::create()
-            ->select('id_proyecto, sigla_contable')
-            ->from('Proyecto')
-            ->where('id_responsable_proy = ?',array($idUsuario))
-            ->fetchArray();
-        $response = array();
-        foreach ($q as $row)
-        {
-            $response[$row['id_proyecto']] = $row['sigla_contable'];
-        }
-        return $response;
-    }
-
 }

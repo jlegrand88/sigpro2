@@ -76,9 +76,9 @@
                                 endforeach; ?>
                                 <tr>
                                     <td>TOTAL GASTOS</td>
+                                    <td align=right></td>
                                     <td align=right><?php echo number_format($sumppto)?></td>
                                     <td align=right><?php echo number_format($sumejec)?></td>
-                                    <td align=right></td>
                                     <td align=right></td>
                                     <td align=right></td>
                                 </tr>

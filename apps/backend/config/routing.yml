@@ -310,7 +310,7 @@ accion:
 # default rules
 homepage:
   url:   /
-  param: { module: default, action: index }
+  param: { module: usuario, action: index }
 
 # generic rules
 # please, remove them by adding more specific rules

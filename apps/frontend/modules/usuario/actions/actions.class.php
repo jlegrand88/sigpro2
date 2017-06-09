@@ -35,6 +35,7 @@ class usuarioActions extends sfActions
                     // Logueamos
                     $this->getUser()->setAuthenticated(true);
                     $this->getUser()->setAttribute("id", $user->getIdUsuario());
+                    $this->getUser()->setAttribute("perfil", $user->getIdPerfil());
                     $this->getUser()->setAttribute("nombreCompleto", $user->getNombreCompleto());
                     $this->getUser()->setAttribute("correo", $user->getCorreo());
                     // Comprobamos si tiene referer, si no, le llevamos a la homepage
