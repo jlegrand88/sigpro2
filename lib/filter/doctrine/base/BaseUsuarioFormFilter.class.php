@@ -22,7 +22,7 @@ abstract class BaseUsuarioFormFilter extends BaseFormFilterDoctrine
       'password'          => new sfWidgetFormFilterInput(),
       'id_pais'           => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Pais'), 'add_empty' => true)),
       'id_grupo_proyecto' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('GrupoProyecto'), 'add_empty' => true)),
-      'id_perfil'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Perfil'), 'add_empty' => true)),
+      'id_perfil_reporte' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Perfil'), 'add_empty' => true)),
       'is_active'         => new sfWidgetFormFilterInput(),
     ));
 
@@ -36,7 +36,7 @@ abstract class BaseUsuarioFormFilter extends BaseFormFilterDoctrine
       'password'          => new sfValidatorPass(array('required' => false)),
       'id_pais'           => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Pais'), 'column' => 'id_pais')),
       'id_grupo_proyecto' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('GrupoProyecto'), 'column' => 'id_grupo_proyecto')),
-      'id_perfil'         => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Perfil'), 'column' => 'id_perfil')),
+      'id_perfil_reporte' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Perfil'), 'column' => 'id_perfil')),
       'is_active'         => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
     ));
 
@@ -67,7 +67,7 @@ abstract class BaseUsuarioFormFilter extends BaseFormFilterDoctrine
       'password'          => 'Text',
       'id_pais'           => 'ForeignKey',
       'id_grupo_proyecto' => 'ForeignKey',
-      'id_perfil'         => 'ForeignKey',
+      'id_perfil_reporte' => 'ForeignKey',
       'is_active'         => 'Number',
     );
   }

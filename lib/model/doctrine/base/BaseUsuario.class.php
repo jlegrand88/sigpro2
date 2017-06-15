@@ -17,7 +17,7 @@ Doctrine_Manager::getInstance()->bindComponent('Usuario', 'doctrine');
  * @property string $password
  * @property integer $id_pais
  * @property integer $id_grupo_proyecto
- * @property integer $id_perfil
+ * @property integer $id_perfil_reporte
  * @property integer $is_active
  * @property Grupo $Grupo
  * @property GrupoProyecto $GrupoProyecto
@@ -43,7 +43,7 @@ Doctrine_Manager::getInstance()->bindComponent('Usuario', 'doctrine');
  * @method string              getPassword()                Returns the current record's "password" value
  * @method integer             getIdPais()                  Returns the current record's "id_pais" value
  * @method integer             getIdGrupoProyecto()         Returns the current record's "id_grupo_proyecto" value
- * @method integer             getIdPerfil()                Returns the current record's "id_perfil" value
+ * @method integer             getIdPerfilReporte()         Returns the current record's "id_perfil_reporte" value
  * @method integer             getIsActive()                Returns the current record's "is_active" value
  * @method Grupo               getGrupo()                   Returns the current record's "Grupo" value
  * @method GrupoProyecto       getGrupoProyecto()           Returns the current record's "GrupoProyecto" value
@@ -68,7 +68,7 @@ Doctrine_Manager::getInstance()->bindComponent('Usuario', 'doctrine');
  * @method Usuario             setPassword()                Sets the current record's "password" value
  * @method Usuario             setIdPais()                  Sets the current record's "id_pais" value
  * @method Usuario             setIdGrupoProyecto()         Sets the current record's "id_grupo_proyecto" value
- * @method Usuario             setIdPerfil()                Sets the current record's "id_perfil" value
+ * @method Usuario             setIdPerfilReporte()         Sets the current record's "id_perfil_reporte" value
  * @method Usuario             setIsActive()                Sets the current record's "is_active" value
  * @method Usuario             setGrupo()                   Sets the current record's "Grupo" value
  * @method Usuario             setGrupoProyecto()           Sets the current record's "GrupoProyecto" value
@@ -183,7 +183,7 @@ abstract class BaseUsuario extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 4,
              ));
-        $this->hasColumn('id_perfil', 'integer', 4, array(
+        $this->hasColumn('id_perfil_reporte', 'integer', 4, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
@@ -220,7 +220,7 @@ abstract class BaseUsuario extends sfDoctrineRecord
              'foreign' => 'id_pais'));
 
         $this->hasOne('Perfil', array(
-             'local' => 'id_perfil',
+             'local' => 'id_perfil_reporte',
              'foreign' => 'id_perfil'));
 
         $this->hasMany('ArchivoGastoPais', array(

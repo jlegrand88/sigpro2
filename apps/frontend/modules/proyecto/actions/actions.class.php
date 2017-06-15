@@ -414,171 +414,6 @@ class proyectoActions extends sfActions
         exit;
     }
 
-//    public function executeOrdenPago(sfWebRequest $request)
-//    {
-//        $editable = ($request->hasParameter('editable')) ? $request->getParameter('editable') : 1;
-//        $folio = ($request->hasParameter('id_folio')) ? $request->getParameter('id_folio') : null;
-//        $idProyecto = ($request->hasParameter('idProyecto')) ? $request->getParameter('idProyecto') : null;
-//        $opcion = ($request->hasParameter('opcion')) ? $request->getParameter('opcion') : null;
-//        $IdInbox = ($request->hasParameter('id_inbox')) ? $request->getParameter('id_inbox') : null;
-//        $permisosUsuario = Usuario::getPermisos($this->getUser()->getAttribute('id'));
-//
-//        if($request->hasParameter('tq'))
-//        {
-//            $var = $request->getParameter('tq');
-//            if($var == 'u')
-//            {
-//                $upfile = ($request->hasParameter('upfile')) ? $request->getParameter('upfile') : null;
-//                if ( $upfile == 1 ):
-//                    $alertaSuccess = "Se ha cargado uno o mas archivos al servidor";
-//                elseif ( $upfile == 3 ):
-//                    $idArchivo = ($request->hasParameter('idArchivo')) ? $request->getParameter('idArchivo') : null;
-//                    $archivo = ArchivosAdjuntosTable::getInstance()->find($idArchivo);
-//                    $archivo->delete();
-//                    $alertaSuccess = "Se ha eliminado un archivo del servidor";
-//                else:
-//                    $alertaSuccess = "La orden de pago ha sido actualizada en las cuentas contables!";
-//                endif;
-//            }
-//            elseif($var == 'i')
-//            {
-//                $alertaSuccess = "La Orden de Pago ha sido creada!";
-//            }
-//            $this->alertaSuccess = $alertaSuccess;
-//        }
-//
-//        if($folio)
-//        {
-//            $ordenPago = OrdenPagoTable::getInstance()->findOneByFolioAndIdProyecto($folio, $idProyecto);
-//            $sigla = Proyecto::getSigla($idProyecto);
-//        }
-//        else
-//        {
-//            $ordenPago = new OrdenPago();
-//        }
-//
-//        if($request->isMethod(sfRequest::POST))
-//        {
-//            $ordenPago->setIdUsuario($this->getUser()->getAttribute('id'));
-//            $ordenPago->setValores($_POST);
-//            $save = $ordenPago->save($_POST);
-//            $idProyecto = $request->getParameter('idProyecto');
-//
-////            if(isset($_POST['id_destinatario']))
-////            {
-////                if(isset($_POST['id_inbox']))
-////                {
-////                    $bind = Inbox::find($_POST['id_inbox']);
-////                    $inbox = new Inbox($bind);
-////                }
-////                else
-////                {
-////                    $inbox = new Inbox();
-////                }
-////
-////                $inbox->idProyecto = $idProyecto;
-////                $inbox->fechaDespacho =  date('Y-m-d');
-////                $inbox->idEmisor = $_SESSION['usuario'];
-////                $inbox->idDestinatario = $_POST['id_destinatario'];
-////                $inbox->idTipoDocumento = 2;
-////                $inbox->folio = $folio;
-////                if(isset($_POST['id_accion']))
-////                {
-////                    $inbox->idAccion = $_POST['id_accion'];
-////                }
-////                $inbox->save();
-////            }
-//
-//            if($save)
-//            {
-//                if(isset($_POST['id_folio'] ) && $_POST['id_folio']  != "")
-//                {
-//                    $folio = $_POST['id_folio'];
-//                    $tipoQuery = "u";
-//                }
-//                else
-//                {
-////                    $folio = Folio::getEntregaFolio(2);
-////                    $tipoQuery = "i";
-////                    $inbox = new Inbox();
-////                    $inbox->idProyecto = $idProyecto;
-////                    $inbox->fechaDespacho =  date('Y-m-d');
-////                    $inbox->idEmisor = $_SESSION['usuario'];
-////                    $inbox->idDestinatario = $_SESSION['usuario'];
-////                    $inbox->fechaRecepcion = date('Y-m-d');
-////                    $inbox->idAccion = Accion::CREAR;
-////                    $inbox->folio = $folio;
-////                    $inbox->idTipoDocumento=2;
-////                    $inbox->saveODP();
-////
-////                    $IdInbox=$inbox::ultimoID();
-//                }
-//
-//                header("Location: frontend.php?accion=ordenesPagos&idProyecto=$idProyecto&id_folio=$folio&tq=$tipoQuery&opcion=2&ib=".$IdInbox);
-//                die;
-//            }
-//        }
-//        else
-//        {
-//            $idInbox = ($request->hasParameter('ib')) ? $request->getParameter('ib') : null;
-//            $data['idInbox'] = $idInbox;
-//            if($idInbox)
-//            {
-//                $inbox = InboxTable::getInstance()->find($idInbox);
-//
-//                if($inbox->getIdAccion())
-//                {
-//                    $accion = $inbox->getAccion();
-//                    $data['accionUsuario'] = $accion->idAccion;
-//                    if(in_array($accion->idAccion,$permisosUsuario))
-//                    {
-//                        $data['permiso'] = true;
-//                    }
-//                    else
-//                    {
-//                        $data['permiso'] = false;
-//                        $data['alerta'] = "No posee los privilegios para la acción que desea realizar, favor ponerse en contacto con el administrador.";
-//                    }
-//                    $data['accionUsuarioPregunta'] = (isset($accion->pregunta))?utf8_encode($accion->pregunta):null;
-//                    $data['lblAccion'] = $accion->nombre;
-//                    $data['accionEstadoFinal'] = $accion->idEstadoFinal;
-//                }
-//
-//                if(!isset($inbox->fechaRecepcion) || $inbox->fechaRecepcion == "0000-00-00")
-//                {
-//                    $inbox->fechaRecepcion = date('Y-m-d');
-//                    $inbox->save();
-//                }
-//
-//            }
-//            else
-//            {
-//                $data['accionUsuario'] = Accion::CREAR;
-//                if(in_array(Accion::CREAR,$permisosUsuario))
-//                {
-//                    $data['permiso'] = true;
-//                }
-//                else
-//                {
-//                    $data['permiso'] = false;
-//                    $data['alerta'] = "No posee los privilegios para crear una orden de pago, favor ponerse en contacto con el administrador.";
-//                }
-//            }
-//        }
-//
-//        $data['listaProyectos'] = ordenpago::getListaProyectos();
-//        $data['listaUsuarios'] = Usuario::getListaUsuarios();
-//        $data['listaMoneda'] = Moneda::getListaMonedas();
-//        $data['editable'] = $editable;
-//        $data['ordenpago'] = $ordenPago;
-//        $data['idProyecto'] = $idProyecto;
-//        $data['folio'] = $folio;
-//        $data['opcion'] = $opcion;
-//        $data['id_inbox'] = $IdInbox;
-//        $data['sigla'] = (isset($sigla))?$sigla:null;
-//        $data['upfile'] = (isset($upfile))?$upfile:null;
-//        $this->pintar("ordenesPagos.php",$data);
-//    }
     public function executeOrdenPago(sfWebRequest $request)
     {
         $this->listaUsuarios = UsuarioTable::getInstance()->getAllUsers();
@@ -603,6 +438,7 @@ class proyectoActions extends sfActions
             $this->form = $form;
             if($form->isValid())
             {
+//                var_dump($request->getFiles($form->getName()));die();
                 if ($form->getObject()->isNew()) {
                     $mensaje = "Orden de pago ingresada!";
                 } else {
@@ -611,8 +447,11 @@ class proyectoActions extends sfActions
                 $this->ordenPago = $newOrdenPago = $form->save();
                 $this->getUser()->setFlash('success', $mensaje);
                 $this->idProyecto = $newOrdenPago->getIdProyecto();
-                if ($form->getValue('archivo_orden_pago')[5]['archivo'])
+                $file = $request->getFiles($form->getName());
+                
+                if ($file['archivo_orden_pago']['archivo']['name'])
                 {
+//                    var_dump($file['archivo_orden_pago']['archivo']);die();
                     $this->idDeleteArchivo = ArchivoOrdenPagoTable::getInstance()->getIdArchivoDelete($newOrdenPago->getIdOrdenPago());
                 }
                 $this->form = new OrdenPagoForm($newOrdenPago,array('is_post' => true,'id_proyecto' =>  $this->idProyecto,'id_usuario' => $idUsuario));
@@ -649,7 +488,7 @@ class proyectoActions extends sfActions
     {
         $idArchivo = $request->getParameter('id');
         $archivo = ArchivoOrdenPagoTable::getInstance()->find($idArchivo);
-        unlink($archivo->getRuta().DIRECTORY_SEPARATOR.$archivo->getArchivo());
+        unlink($archivo->getRuta());
         $ordenPago = $archivo->getOrdenPago();
         $archivo->delete();
         return $this->renderPartial('proyecto/tablaArchivosOrdenPago',array('ordenPago' => $ordenPago, 'idDeleteArchivo' => null));
@@ -852,12 +691,12 @@ class proyectoActions extends sfActions
                     END AS tipo_cuenta 
                   FROM FONDECYT.softland.cw_vsnpmovcpbtsitinicnoconc INNER JOIN FONDECYT.softland.cwpctas ON cw_vsnpmovcpbtsitinicnoconc.PCTCOD = cwpctas.PCCODI 
                     WHERE 
-                    (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '4-1-') AND ((Year([CPBFEC])) = 2017)) 
-                    OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '5-1-') AND ((Year([CPBFEC])) = 2017)) 
-                    OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '5-2-') AND ((Year([CPBFEC])) = 2017)) 
-                    OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '5-3-') AND ((Year([CPBFEC])) = 2017)) 
-                    OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '6-1-') AND ((Year([CPBFEC])) = 2017)) 
-                    OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '4-2-') AND ((Year([CPBFEC])) = 2017)) 
+                    (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '4-1-%') AND ((Year([CPBFEC])) = 2017)) 
+                    OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '5-1-%') AND ((Year([CPBFEC])) = 2017)) 
+                    OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '5-2-%') AND ((Year([CPBFEC])) = 2017)) 
+                    OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '5-3-%') AND ((Year([CPBFEC])) = 2017)) 
+                    OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '6-1-%') AND ((Year([CPBFEC])) = 2017)) 
+                    OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '4-2-%') AND ((Year([CPBFEC])) = 2017)) 
                     ORDER BY cw_vsnpmovcpbtsitinicnoconc.CPBFEC";
         $this->response = $con->fetchAssoc($query);
 
@@ -872,8 +711,8 @@ class proyectoActions extends sfActions
                       WHEN Right(cw_vsnpmovcpbtsitinicnoconc.PCTCOD,2) = '01' THEN '1' ELSE '2' 
                     END AS ingresos 
                   FROM FONDECYT.softland.cw_vsnpmovcpbtsitinicnoconc INNER JOIN FONDECYT.softland.cwpctas ON cw_vsnpmovcpbtsitinicnoconc.PCTCOD = cwpctas.PCCODI 
-                  WHERE (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '2-2-1*') AND ((Year([CPBFEC]))>2015)) OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '4-2-')) 
-                    OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '5-6-')) OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '2-2-2*')) 
+                  WHERE (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '2-2-1%') AND ((Year([CPBFEC]))>2015)) OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '4-2-%)) 
+                    OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '5-6-%')) OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '2-2-2%')) 
                   ORDER BY cw_vsnpmovcpbtsitinicnoconc.CPBFEC";
         $this->response2 = $con->fetchAssoc($query2);
     }

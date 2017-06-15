@@ -8,8 +8,8 @@
         <?php foreach ($ordenPago->getArchivoOrdenPago() as $archivo): ?>
                 <tr>
                     <td>
-                        <?php $ruta = '/uploads/documentos/'.$ordenPago->getIdProyecto().DIRECTORY_SEPARATOR.$ordenPago->getIdOrdenPago().DIRECTORY_SEPARATOR.$archivo->getArchivo(); ?>
-                        <a target="_blank" href="<?php echo $ruta; ?>"><?php echo $archivo->getNombre(); ?></a>
+                        <?php $ruta = sfConfig::get('app_ruta_documentos_orden_pago'); ?>
+                        <a target="_blank" href="/uploads/documentos/ordenes_pago/<?php echo $archivo->getArchivo(); ?>"><?php echo $archivo->getNombre(); ?></a>
                     </td>
                     <td><?php echo DateTime::createFromFormat('Y-m-d',$archivo->getFechaUpload())->format('d-m-Y'); ?></td>
                     <td>

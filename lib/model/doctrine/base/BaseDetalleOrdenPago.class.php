@@ -65,14 +65,14 @@ abstract class BaseDetalleOrdenPago extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 4,
              ));
-        $this->hasColumn('cuenta', 'string', 11, array(
+        $this->hasColumn('cuenta', 'string', 45, array(
              'type' => 'string',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'notnull' => false,
              'autoincrement' => false,
-             'length' => 11,
+             'length' => 45,
              ));
         $this->hasColumn('nombre_cuenta', 'string', 150, array(
              'type' => 'string',

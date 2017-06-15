@@ -14,14 +14,14 @@ class ArchivoOrdenPagoForm extends BaseArchivoOrdenPagoForm
     {
 //        $this->widgetSchema["archivo"] = new sfWidgetFormInputFile();
 //        $this->validatorSchema['archivo'] = new sfValidatorFile(array('required'=>$varRequired, 'path' => $ruta, 'mime_types' => $mimes, 'max_size' => $tamano),array('required'=>'Debe adjuntar Curriculum Vitae'));
-        $ruta = preg_replace(array("/@proyecto/", "/@ordenPago/"), array($this->getObject()->getOrdenPago()->getIdProyecto(), $this->getObject()->getIdOrdenPago()), sfConfig::get('ruta_documentos_orden_pago'));
+//        $ruta = preg_replace(array("/@proyecto/", "/@ordenPago/"), array($this->getObject()->getOrdenPago()->getIdProyecto(), $this->getObject()->getIdOrdenPago()), sfConfig::get('ruta_documentos_orden_pago'));
         $this->setWidgets(array(
             'archivo' => new sfWidgetFormInputFile(array(),array('accept' => 'application/pdf'))
         ));
 
 
         $this->setValidators(array(
-            'archivo' => new sfValidatorFile(array('required' => false, 'path' => $ruta, 'mime_types' => array('application/pdf')))
+            'archivo' => new sfValidatorFile(array('required' => false,'path' => sfConfig::get('app_ruta_documentos_orden_pago'), 'mime_types' => array('application/pdf')))
         ));
         $this->getValidator('archivo')->setOption('mime_type_guessers', array(array($this->validatorSchema['archivo'], 'guessFromFileBinary')));
 
@@ -48,6 +48,7 @@ class ArchivoOrdenPagoForm extends BaseArchivoOrdenPagoForm
 //            $this->setValidator('id_archivo_orden_pago', new sfValidatorChoice(array('choices' => array($this->getObject()->get('id_archivo_orden_pago')), 'empty_value' => $this->getObject()->get('id_archivo_orden_pago'), 'required' => false)));
 //        }
 
+        $this->widgetSchema->setNameFormat('archivo_orden_pago[%s]');
         $this->validatorSchema->setPostValidator(new sfValidatorCallback(array('callback' => array($this, 'validacionesExtras'))));
     }
 
@@ -94,16 +95,63 @@ class ArchivoOrdenPagoForm extends BaseArchivoOrdenPagoForm
     public function updateObject($values = null)
     {
         $object = parent::updateObject($values);
+//        $ruta = preg_replace(array("/@proyecto/", "/@ordenPago/"), array($this->getObject()->getOrdenPago()->getIdProyecto(), $this->getObject()->getOrdenPago()->getIdOrdenPago()), sfConfig::get('app_ruta_documentos_orden_pago'));
+//        $this->getValidator('archivo')->setOption('path',$ruta);
+//        die($ruta);
         if(isset($values['archivo']))
         {
+            $rutaBase = sfConfig::get('app_ruta_documentos_orden_pago');
             $archivo = $values['archivo'];
+//            die(var_dump($archivo));
             $nombreArchivo = $archivo->getOriginalName();
-            $ruta = preg_replace(array("/@proyecto/", "/@ordenPago/"), array($this->getObject()->getOrdenPago()->getIdProyecto(), $this->getObject()->getIdOrdenPago()), sfConfig::get('ruta_documentos_orden_pago'));
-            $object->setRuta($ruta);
+            $object->setRuta($archivo->getSavedName());
             $object->setFechaUpload(date('Y-m-d'));
             $object->setNombre($nombreArchivo);
         }
 
         return $object;
     }
+
+//
+//    protected function processUploadedFile($field, $filename = null, $values = null)
+//    {
+//        if (!$this->validatorSchema[$field] instanceof sfValidatorFile)
+//        {
+//            throw new LogicException(sprintf('You cannot save the current file for field "%s" as the field is not a file.', $field));
+//        }
+//
+//        if (null === $values)
+//        {
+//            $values = $this->values;
+//        }
+//
+//        if (isset($values[$field.'_delete']) && $values[$field.'_delete'])
+//        {
+//            $this->removeFile($field);
+//
+//            return '';
+//        }
+//
+//        if (!$values[$field])
+//        {
+//            // this is needed if the form is embedded, in which case
+//            // the parent form has already changed the value of the field
+//            $oldValues = $this->getObject()->getModified(true, false);
+//
+//            return isset($oldValues[$field]) ? $oldValues[$field] : $this->object->$field;
+//        }
+//        $idOP = $this->getObject()->getOrdenPago()->getIdOrdenPago();
+//        $ruta = preg_replace(array("/@proyecto/", "/@ordenPago/"), array($this->getObject()->getOrdenPago()->getIdProyecto(), $idOP), sfConfig::get('app_ruta_documentos_orden_pago'));
+//        $this->validatorSchema[$field]->setOption('path',$ruta);
+//        echo $this->validatorSchema[$field]->getOption('path');
+//        // we need the base directory
+//        if (!$this->validatorSchema[$field]->getOption('path'))
+//        {
+//            return $values[$field];
+//        }
+//
+//        $this->removeFile($field);
+//
+//        return $this->saveFile($field, $filename, $values[$field]);
+//    }
 }

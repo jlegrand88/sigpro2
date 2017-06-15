@@ -66,6 +66,6 @@ abstract class BasePerfil extends sfDoctrineRecord
 
         $this->hasMany('Usuario', array(
              'local' => 'id_perfil',
-             'foreign' => 'id_perfil'));
+             'foreign' => 'id_perfil_reporte'));
     }
 }

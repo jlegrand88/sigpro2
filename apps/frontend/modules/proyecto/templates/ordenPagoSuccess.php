@@ -16,7 +16,7 @@
                     <h1 class="page-header">ORDENES DE PAGO</h1>
                 </div>
             </div>
-            <div class="container">
+            <div >
                 <!-- SELECT PROYECTO-->
                 <div class="form-group row">
                     <div class="col-sm-3">

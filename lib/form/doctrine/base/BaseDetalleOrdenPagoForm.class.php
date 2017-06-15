@@ -29,7 +29,7 @@ abstract class BaseDetalleOrdenPagoForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id_detalle_orden_pago' => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id_detalle_orden_pago')), 'empty_value' => $this->getObject()->get('id_detalle_orden_pago'), 'required' => false)),
       'id_orden_pago'         => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('OrdenPago'), 'required' => false)),
-      'cuenta'                => new sfValidatorString(array('max_length' => 11, 'required' => false)),
+      'cuenta'                => new sfValidatorString(array('max_length' => 45, 'required' => false)),
       'nombre_cuenta'         => new sfValidatorString(array('max_length' => 150, 'required' => false)),
       'presupuesto'           => new sfValidatorNumber(array('required' => false)),
       'ejecucion'             => new sfValidatorNumber(array('required' => false)),

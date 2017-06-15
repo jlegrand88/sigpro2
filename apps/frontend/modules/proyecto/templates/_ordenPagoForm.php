@@ -52,15 +52,9 @@
                                             <?php echo number_format($formDetalleOrdenPago['ejecucion']->getValue(), 0, '', '.'); ?>
                                         </td>
         <!--                                SALDO EFECTIVO-->
-                                        <?php if($formDetalleOrdenPago['saldo_efectivo']->getValue() == 0 AND $formDetalleOrdenPago['ejecucion']->getValue() != $formDetalleOrdenPago['presupuesto']->getValue()): ?>
-                                            <td align=right>
-                                                <?php echo number_format($formDetalleOrdenPago['presupuesto']->getValue(), 0, '', '.');?>
-                                            </td>
-                                        <?php else: ?>
-                                            <td align=right>
-                                                <?php echo number_format($formDetalleOrdenPago['saldo_efectivo']->getValue(), 0, '', '.');?>
-                                            </td>
-                                        <?php endif;?>
+                                        <td align=right>
+                                            <?php echo number_format($formDetalleOrdenPago['saldo_efectivo']->getValue(), 0, '', '.');?>
+                                        </td>
         <!--                                MONTO DOCUMENTO-->
                                         <td align=right>
                                             <?php echo $formDetalleOrdenPago['monto_pago']->render(array('onkeypress' => "return isNumeric(event)", 'oninput' => 'maxLengthCheck(this); validarMontos('.$iter.');', 'min' => "1", 'max' => "99999999")); ?>
@@ -99,15 +93,15 @@
                     </br>
                     <fieldset>
                         <legend>Archivos Adjuntos</legend>
-                        <?php foreach($form['archivo_orden_pago'] as $formArchivoOrdenPago): ?>
+<!--                        --><?php //foreach($form['archivo_orden_pago'] as $formArchivoOrdenPago): ?>
                             <div class='row'>
                                 <div class='col-sm-6'>
                                     <?php
-                                        echo $formArchivoOrdenPago['archivo']->render();
+                                        echo $form['archivo_orden_pago']['archivo']->render();
                                     ?>
                                 </div>
                             </div>
-                        <?php endforeach; ?>
+<!--                        --><?php //endforeach; ?>
                     </fieldset>
                     </br>
                     <div id="documentosOrdenPagoContainer">
@@ -154,13 +148,10 @@
         var orden = "<?php echo $var ?>";
         if(orden)
         {
-            console.log(orden);
-            console.log("entra enabled _");
             $('#nav-tabs-ficha li.active').next('li').removeClass('disabled');
         }
         else
         {
-            console.log("entra disabled _");
             $('#nav-tabs-ficha li.active').next('li').addClass('disabled');
         }
         
@@ -238,9 +229,13 @@
         var presupuesto = $("#orden_pago_detalle_orden_pago_"+pos+"_presupuesto").val();
         var cuenta = $("#orden_pago_detalle_orden_pago_"+pos+"_cuenta").val();
         var saldoEfectivo = $("#orden_pago_detalle_orden_pago_"+pos+"_saldo_efectivo").val();
+        console.log(presupuesto);
+        console.log(cuenta);
+        console.log(parseFloat(saldoEfectivo));
+        console.log(parseFloat(montoDocumento));
         if ( parseFloat(montoDocumento) > parseFloat(saldoEfectivo) )
         {
-            alert("ATENCION\n\nEm la cuenta "+cuenta+" El monto del documento supera en monto del saldo efectivo\n\n Favor vea la ficha del Proyecto");
+            alert("ATENCION\n\nEn la cuenta "+cuenta+" El monto del documento supera en monto del saldo efectivo\n\n Favor vea la ficha del Proyecto");
             $("#orden_pago_detalle_orden_pago_"+pos+"_monto_pago").val(0);
             return;
         }

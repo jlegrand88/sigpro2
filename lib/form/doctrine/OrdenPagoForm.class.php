@@ -20,7 +20,6 @@ class OrdenPagoForm extends BaseOrdenPagoForm
         $idProyecto = $this->getOption('id_proyecto');
         $proyecto = ProyectoTable::getInstance()->find($idProyecto);
 
-
         $this->setWidgets(array(
             'id_orden_pago'       => new sfWidgetFormInputHidden(),
             'folio'               => new sfWidgetFormInputHidden(),
@@ -97,6 +96,11 @@ class OrdenPagoForm extends BaseOrdenPagoForm
                     $varCompromiso = ($reporteDetalle[$i]['compromiso_us']) ? : 0;
                     $varSaldoefectivo = ($reporteDetalle[$i]['saldo_efectivo_us']) ? : 0;
                 }
+
+                if($varSaldoefectivo == 0 AND $varEjecucion != $reporteDetalle[$i]['presupuesto'])
+                {
+                    $varSaldoefectivo = $reporteDetalle[$i]['presupuesto'];
+                }
                 $detalleOrdenPago->setEjecucion($varEjecucion);
                 $detalleOrdenPago->setCompromiso($varCompromiso);
                 $detalleOrdenPago->setSaldoEfectivo($varSaldoefectivo);
@@ -108,7 +112,7 @@ class OrdenPagoForm extends BaseOrdenPagoForm
         $this->embedForm('detalle_orden_pago', $subForm);
 
         //EMBED FORM ARCHIVO ORDEN PAGO
-        $subFormArchivo = new sfForm();
+//        $subFormArchivo = new sfForm();
 //        $archivosOrdenPago = $this->getObject()->getArchivoOrdenPago();
 //        if(count($archivosOrdenPago) > 0)
 //        {
@@ -123,9 +127,10 @@ class OrdenPagoForm extends BaseOrdenPagoForm
             $archivoOrdenPago = new ArchivoOrdenPago();
             $archivoOrdenPago->OrdenPago = $this->getObject();
             $formArchivo = new ArchivoOrdenPagoForm($archivoOrdenPago);
-            $subFormArchivo->embedForm($i, $formArchivo);
+//            $subFormArchivo->embedForm($i, $formArchivo);
 //        }
-        $this->embedForm('archivo_orden_pago', $subFormArchivo);
+//        $this->embedForm('archivo_orden_pago', $subFormArchivo);
+        $this->embedForm('archivo_orden_pago', $formArchivo);
 
         //EMBED FORM BITACORA
         $bitacora = new Bitacora();
@@ -160,4 +165,144 @@ class OrdenPagoForm extends BaseOrdenPagoForm
             }
         }
     }
+
+//    public function updateObjectEmbeddedForms($values, $forms = null)
+//    {
+//        var_dump($values);die();
+//        if($values["archivo_orden_pago"]['archivo'])
+//        {
+//            $archivo = $values["archivo_orden_pago"]['archivo'];
+//
+//            $nombreArchivo = $archivo->getOriginalName();
+//            $ruta = preg_replace(array("/@proyecto/", "/@ordenPago/"), array($this->getObject()->getIdProyecto(), $this->getObject()->getIdOrdenPago()), sfConfig::get('app_ruta_documentos_orden_pago'));
+//            die(var_dump($values));
+////            if (!is_dir($ruta))
+////            {
+////                @mkdir($ruta, 0777, true);
+////            }
+//            $object->setRuta($ruta);
+//            $object->setFechaUpload(date('Y-m-d'));
+//            $object->setNombre($nombreArchivo);
+//        }
+//        return parent::updateObjectEmbeddedForms($values, $forms);
+//    }
+
+
+//    public function saveEmbeddedForms($con = null, $forms = null)
+//    {
+//        if (null === $con)
+//        {
+//            $con = $this->getConnection();
+//        }
+//
+//        if (null === $forms)
+//        {
+//            $forms = $this->getEmbeddedForms();
+//        }
+//
+//        foreach ($forms as $form)
+//        {
+//            if ($form instanceof sfFormObject)
+//            {
+//                if($form->getName() && $form->getName() == "archivo_orden_pago")
+//                {
+//                    die(var_dump($form->getValues()));
+//                    $form->save($con);
+//                    $form->saveEmbeddedForms($con);
+//                }
+//                else
+//                {
+//                    $form->getObject()->save($con);
+//                    $form->saveEmbeddedForms($con);
+//                }
+//            }
+//            else
+//            {
+//                $this->saveEmbeddedForms($con, $form->getEmbeddedForms());
+//            }
+//        }
+//    }
+//    protected function doSave($con = null)
+//    {
+//        if (null === $con)
+//        {
+//            $con = $this->getConnection();
+//        }
+//        $valores = $this->values;
+//        $this->updateObject();
+//
+//        $this->getObject()->save($con);
+//
+//        $this->updateObjectEmbeddedForms($valores);
+//        // embedded forms
+//        $this->saveEmbeddedForms($con);
+//    }
+//    public function processValues($values)
+//    {
+//        // see if the user has overridden some column setter
+//        $valuesToProcess = $values;
+//        foreach ($valuesToProcess as $field => $value)
+//        {
+//            $method = sprintf('update%sColumn', $this->camelize($field));
+//
+//            if (method_exists($this, $method))
+//            {
+//                if (false === $ret = $this->$method($value))
+//                {
+//                    unset($values[$field]);
+//                }
+//                else
+//                {
+//                    $values[$field] = $ret;
+//                }
+//            }
+//            else
+//            {
+//                // save files
+//                if ($this->validatorSchema[$field] instanceof sfValidatorFile)
+//                {
+//                    $values[$field] = $this->processUploadedFile($field, null, $valuesToProcess);
+//                }
+//            }
+//        }
+//
+//        return $values;
+//    }
+//    public function updateObject($values = null)
+//    {
+//        if (null === $values)
+//        {
+//            $values = $this->values;
+//        }
+//
+//        $values = $this->processValues($values);
+//
+//        $this->doUpdateObject($values);
+//
+//        // embedded forms
+//        if (null === $forms)
+//        {
+//            $forms = $this->embeddedForms;
+//        }
+//
+//        foreach ($forms as $name => $form)
+//        {
+//            if (!isset($values[$name]) || !is_array($values[$name]) || $name == "archivo_Orden_pago")
+//            {
+//                die($name);
+//                continue;
+//            }
+//
+//            if ($form instanceof sfFormObject)
+//            {
+//                $form->updateObject($values[$name]);
+//            }
+//            else
+//            {
+//                $this->updateObjectEmbeddedForms($values[$name], $form->getEmbeddedForms());
+//            }
+//        }
+//
+//        return $this->getObject();
+//    }
 }

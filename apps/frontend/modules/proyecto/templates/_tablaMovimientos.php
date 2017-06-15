@@ -1,4 +1,4 @@
-<table id="grillaMovimientos" class="table table-striped table-bordered table-hover dataTable display compact nowrap table-condensed" ></table>
+<table id="grillaMovimientos" class="table table-striped table-bordered table-hover dataTable display compact nowrap table-condensed" cellspacing="0" width="100%"></table>
 <script type="text/javascript">
     $().ready(function()
     {
@@ -75,7 +75,11 @@
             fixedColumns: true,
             columnDefs:[{targets: [0,19], visible: false, searchable: false}]
         });
-        
+
+        $('a[data-toggle="tab"]').on( 'shown.bs.tab', function (e) {
+            $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();
+        } );
+
         table.on( 'select', function (e, dt, type, indexes) {
             if ( type === 'row' ) {
                 var fila = indexes;
@@ -97,5 +101,4 @@
             resetBtnsMovimientos();
         } );
     });
-
 </script>

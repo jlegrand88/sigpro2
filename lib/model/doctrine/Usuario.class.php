@@ -22,15 +22,19 @@ class Usuario extends BaseUsuario
         return trim($this->getNombre()." ".$this->getApellidoPaterno()." ".$this->getApellidoMaterno());
     }
 
+//    public static function getPermisos($idUsuario)
+//    {
+//        $usuario = UsuarioTable::getInstance()->findOneByIdUsuario($idUsuario);
+//        $acciones = $usuario->getPerfil()->getPerfilAccion();
+//        $permisos = array();
+//        foreach ($acciones as $accion)
+//        {
+//            $permisos[] = $accion->getIdAccion();
+//        }
+//        return $permisos;
+//    }
     public static function getPermisos($idUsuario)
     {
-        $usuario = UsuarioTable::getInstance()->findOneByIdUsuario($idUsuario);
-        $acciones = $usuario->getPerfil()->getPerfilAccion();
-        $permisos = array();
-        foreach ($acciones as $accion)
-        {
-            $permisos[] = $accion->getIdAccion();
-        }
-        return $permisos;
+        return UsuarioTable::getInstance()->getPermisos($idUsuario);
     }
 }

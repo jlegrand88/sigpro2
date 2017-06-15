@@ -895,7 +895,7 @@ DetalleOrdenPago:
       primary: false
       autoincrement: false
     cuenta:
-      type: string(11)
+      type: string(45)
       fixed: false
       unsigned: false
       primary: false
@@ -1126,7 +1126,7 @@ Perfil:
       type: many
     Usuario:
       local: id_perfil
-      foreign: id_perfil
+      foreign: id_perfil_reporte
       type: many
 PerfilAccion:
   connection: doctrine
@@ -2478,7 +2478,7 @@ Usuario:
       primary: false
       notnull: false
       autoincrement: false
-    id_perfil:
+    id_perfil_reporte:
       type: integer(4)
       fixed: false
       unsigned: false
@@ -2507,7 +2507,7 @@ Usuario:
       foreign: id_pais
       type: one
     Perfil:
-      local: id_perfil
+      local: id_perfil_reporte
       foreign: id_perfil
       type: one
     ArchivoGastoPais:

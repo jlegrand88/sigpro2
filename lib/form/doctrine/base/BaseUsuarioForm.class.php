@@ -25,7 +25,7 @@ abstract class BaseUsuarioForm extends BaseFormDoctrine
       'password'          => new sfWidgetFormInputText(),
       'id_pais'           => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Pais'), 'add_empty' => true)),
       'id_grupo_proyecto' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('GrupoProyecto'), 'add_empty' => true)),
-      'id_perfil'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Perfil'), 'add_empty' => true)),
+      'id_perfil_reporte' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Perfil'), 'add_empty' => true)),
       'is_active'         => new sfWidgetFormInputText(),
     ));
 
@@ -40,7 +40,7 @@ abstract class BaseUsuarioForm extends BaseFormDoctrine
       'password'          => new sfValidatorString(array('max_length' => 45, 'required' => false)),
       'id_pais'           => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Pais'), 'required' => false)),
       'id_grupo_proyecto' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('GrupoProyecto'), 'required' => false)),
-      'id_perfil'         => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Perfil'), 'required' => false)),
+      'id_perfil_reporte' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Perfil'), 'required' => false)),
       'is_active'         => new sfValidatorInteger(array('required' => false)),
     ));
 

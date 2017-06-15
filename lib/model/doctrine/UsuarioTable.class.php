@@ -67,4 +67,19 @@ class UsuarioTable extends Doctrine_Table
         }
         return $response;
     }
+
+    public function getPermisos($idUsuario)
+    {
+        $q = "SELECT acc.id_accion FROM usuario usu, grupo gru, perfil per, perfil_accion peracc, accion acc
+                where usu.id_grupo = gru.id_grupo and gru.id_perfil = per.id_perfil and per.id_perfil = peracc.id_perfil
+                and peracc.id_accion = acc.id_accion and usu.id_usuario = $idUsuario";
+        $con = Doctrine_Manager::getInstance()->getConnection('doctrine');
+        $rows = $con->fetchAssoc($q);
+        $response = array();
+        foreach ($rows as $row)
+        {
+            $response[] = $row['id_accion'];
+        }
+        return $response;
+    }
 }
