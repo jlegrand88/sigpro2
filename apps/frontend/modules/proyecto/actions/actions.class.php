@@ -521,7 +521,7 @@ class proyectoActions extends sfActions
     {
         $idUsuario = $this->getUser()->getAttribute('id');
         $usuario = UsuarioTable::getInstance()->find($idUsuario);
-        $this->accionUsuario = $idPerfilReporte = $usuario->getIdPerfil();
+        $this->accionUsuario = $idPerfilReporte = $usuario->getIdPerfilReporte();
         $this->pais = $pais =$usuario->getIdPais();
         switch ($idPerfilReporte)
         {

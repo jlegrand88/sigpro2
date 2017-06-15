@@ -111,9 +111,9 @@
                             <li>
                                 <?php echo link_to("<i class='fa fa-table fa-cubes'></i> Gastos Otros Paises", url_for('@gasto_pais'),array('id' => 'linkGastosOtrosPaises','query_string' => '',)); ?>
                             </li>
-                            <li>
-                                <?php echo link_to("<i class='fa fa-table fa-refresh'></i> Movimientos Contables", url_for('proyecto/movimientosContables'),array('id' => 'linkMovimientosContables','query_string' => '',)); ?>
-                            </li>
+<!--                            <li>-->
+<!--                                --><?php //echo link_to("<i class='fa fa-table fa-refresh'></i> Movimientos Contables", url_for('proyecto/movimientosContables'),array('id' => 'linkMovimientosContables','query_string' => '',)); ?>
+<!--                            </li>-->
 <!--                            <li>-->
 <!--                                <a href="#"><i class="fa fa-wrench fa-fw"></i> Mantenedores<span class="fa arrow"></span></a>-->
 <!--                                <ul class="nav nav-second-level">-->
