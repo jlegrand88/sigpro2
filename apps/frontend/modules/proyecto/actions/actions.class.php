@@ -418,7 +418,7 @@ class proyectoActions extends sfActions
     {
         $this->listaUsuarios = UsuarioTable::getInstance()->getAllUsers();
         $idUsuario = $this->getUser()->getAttribute('id');
-        $listaProyectos = UsuarioTable::getInstance()->getListaProyectosResponzable($idUsuario);
+        $listaProyectos = UsuarioTable::getInstance()->getListaProyectosResponsable($idUsuario);
         $this->listaProyectos = isset($listaProyectos) ? $listaProyectos : null;
         $this->editable = true;
         $this->idDeleteArchivo = null;
@@ -640,7 +640,7 @@ class proyectoActions extends sfActions
         }
         if(isset($idUsuario))
         {
-            $listaProyectos = UsuarioTable::getInstance()->getListaProyectosResponzable($idUsuario);
+            $listaProyectos = UsuarioTable::getInstance()->getListaProyectosResponsable($idUsuario);
             $this->archivos = ArchivoGastoPaisTable::getInstance()->findByIdUsuario($idUsuario);
             $this->listaProyectos = isset($listaProyectos) ? $listaProyectos : null;
         }

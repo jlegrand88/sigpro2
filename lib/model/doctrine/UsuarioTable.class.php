@@ -52,13 +52,14 @@ class UsuarioTable extends Doctrine_Table
         return $response;
     }
 
-    public static function getListaProyectosResponzable($idUsuario)
+    public static function getListaProyectosResponsable($idUsuario)
     {
         $q = Doctrine_Query::create()
-            ->select('id_proyecto, numero_contable, sigla_contable as descripcion')
-            ->from('Proyecto')
-            ->where('id_responsable_proy = ?',array($idUsuario))
-            ->orderBy('numero_contable DESC')
+            ->select('pro.id_proyecto, pro.numero_contable, pro.sigla_contable as descripcion, pg.id_usuario')
+            ->from('Proyecto pro')
+            ->innerJoin('pro.ProyectoGrupo pg')
+            ->where('pg.id_usuario = ?',array($idUsuario))
+            ->orderBy('pro.numero_contable DESC')
             ->fetchArray();
         $response = array();
         foreach ($q as $row)

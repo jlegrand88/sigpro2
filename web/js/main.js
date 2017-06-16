@@ -25,3 +25,9 @@ var spanish = {
         rows: "<span></br>%d filas seleccionadas<span>"
     }
 };
+
+$(document).ready(function () {
+    $('.select2').select2({
+        placeholder: "Seleccione"
+    });
+});
