@@ -1,9 +1,27 @@
 <?php
 
     if($form->hasGlobalErrors()){
-        echo $form->renderGlobalErrors();
+        $globalErrors = true;
     }
+    $errors = array();
+    foreach ($form->getErrorSchema() as $key => $err)
+    {
+        if ($key)
+        {
+            $errors[$key] = $err->getMessage();
+        }
+    }
+    if($errors || $globalErrors):
 ?>
+        <div class="alert alert-danger">
+            <?php echo $form->renderGlobalErrors(); ?>
+            </br>
+            <?php foreach ($errors as $error):
+                    echo $error;
+                endforeach;
+            ?>
+        </div>
+<?php endif; ?>
 <form enctype="multipart/form-data" class="form-inline" id="ingresoOrdPagoForm" action="<?php echo url_for('proyecto/ordenPago') ?>" method="post" class="form-horizontal">
     <fieldset>
         <?php use_helper('Number'); ?>
