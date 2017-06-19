@@ -58,7 +58,7 @@ class UsuarioTable extends Doctrine_Table
             ->select('pro.id_proyecto, pro.numero_contable, pro.sigla_contable as descripcion, pg.id_usuario')
             ->from('Proyecto pro')
             ->innerJoin('pro.ProyectoGrupo pg')
-            ->where('pg.id_usuario = ?',array($idUsuario))
+            ->where('pg.id_usuario = ? or pro.id_responsable_proy = ?',array($idUsuario,$idUsuario))
             ->orderBy('pro.numero_contable DESC')
             ->fetchArray();
         $response = array();

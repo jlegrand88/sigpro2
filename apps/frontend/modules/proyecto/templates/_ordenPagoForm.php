@@ -1,5 +1,5 @@
 <?php
-
+    $globalErrors = false;
     if($form->hasGlobalErrors()){
         $globalErrors = true;
     }

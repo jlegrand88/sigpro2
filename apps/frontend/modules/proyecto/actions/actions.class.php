@@ -451,7 +451,6 @@ class proyectoActions extends sfActions
                 
                 if ($file['archivo_orden_pago']['archivo']['name'])
                 {
-//                    var_dump($file['archivo_orden_pago']['archivo']);die();
                     $this->idDeleteArchivo = ArchivoOrdenPagoTable::getInstance()->getIdArchivoDelete($newOrdenPago->getIdOrdenPago());
                 }
                 $this->form = new OrdenPagoForm($newOrdenPago,array('is_post' => true,'id_proyecto' =>  $this->idProyecto,'id_usuario' => $idUsuario));
@@ -469,7 +468,8 @@ class proyectoActions extends sfActions
                 $idProyecto = $inbox->getIdProyecto();
                 $this->proyecto = $proyecto = ProyectoTable::getInstance()->find($idProyecto);
                 $this->ordenPago = $ordenPago = $proyecto->getOrdenPago();
-                $this->form = new OrdenPagoForm($ordenPago, array('editable' => $editable));
+//                die($idProyecto);
+                $this->form = new OrdenPagoForm($ordenPago, array('editable' => $editable,'id_proyecto' =>  $idProyecto,'id_usuario' => $idUsuario));
             }
         }
     }
