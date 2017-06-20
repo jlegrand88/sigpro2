@@ -63,19 +63,19 @@
                                         </td>
         <!--                                PRESUPUESTO-->
                                         <td align=right>
-                                            <?php echo number_format($formDetalleOrdenPago['presupuesto']->getValue(), 0, '', '.');?>
+                                            <?php echo number_format($formDetalleOrdenPago['presupuesto']->getValue(), 2, ',', '.');?>
                                         </td>
         <!--                                EJECUCION-->
                                         <td align=right>
-                                            <?php echo number_format($formDetalleOrdenPago['ejecucion']->getValue(), 0, '', '.'); ?>
+                                            <?php echo number_format($formDetalleOrdenPago['ejecucion']->getValue(), 2, ',', '.'); ?>
                                         </td>
         <!--                                SALDO EFECTIVO-->
                                         <td align=right>
-                                            <?php echo number_format($formDetalleOrdenPago['saldo_efectivo']->getValue(), 0, '', '.');?>
+                                            <?php echo number_format($formDetalleOrdenPago['saldo_efectivo']->getValue(), 2, ',', '.');?>
                                         </td>
         <!--                                MONTO DOCUMENTO-->
                                         <td align=right>
-                                            <?php echo $formDetalleOrdenPago['monto_pago']->render(array('onkeypress' => "return isNumeric(event)", 'oninput' => 'maxLengthCheck(this); validarMontos('.$iter.');', 'min' => "1", 'max' => "99999999")); ?>
+                                            <?php echo $formDetalleOrdenPago['monto_pago']->render(array('onkeypress' => "return isNumeric(event)", 'oninput' => 'maxLengthCheck(this); validarMontos('.$iter.');', 'min' => "1", 'max' => "999999999999")); ?>
                                         </td>
                                     </tr>
                                     <?php
@@ -89,8 +89,8 @@
                                 <tr>
                                     <td>TOTAL GASTOS</td>
                                     <td align=right></td>
-                                    <td align=right><?php echo number_format($sumppto)?></td>
-                                    <td align=right><?php echo number_format($sumejec)?></td>
+                                    <td align=right><?php echo number_format($sumppto,2,',','.')?></td>
+                                    <td align=right><?php echo number_format($sumejec,2,',','.')?></td>
                                     <td align=right></td>
                                     <td align=right></td>
                                 </tr>
