@@ -57,9 +57,16 @@ class OrdenPagoForm extends BaseOrdenPagoForm
             }
         }
 
+        $idOrdenPago = $this->getObject()->getIdOrdenPago();
         //EMBED FORMS DETALLE ORDEN DE PAGO
         $subForm = new sfForm();
-        $detallesOrdenPago = $this->getObject()->getDetalleOrdenPago();
+        if($idOrdenPago)
+        {
+            $detallesOrdenPago = DetalleOrdenPagoTable::getInstance()->findByIdOrdenPago($this->getObject()->getIdOrdenPago());
+        }else{
+            $detallesOrdenPago = $this->getObject()->getDetalleOrdenPago();
+        }
+
         if(count($detallesOrdenPago) > 0)
         {
 
