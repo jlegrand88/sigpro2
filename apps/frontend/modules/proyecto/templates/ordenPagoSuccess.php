@@ -71,6 +71,7 @@
                 return false;
             }
         });
+        $('#despacharForm #id_proyecto').val($('#idProyecto').val());
     });
 
     
