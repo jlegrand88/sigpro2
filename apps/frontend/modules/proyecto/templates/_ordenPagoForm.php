@@ -137,7 +137,7 @@
                             <div class='col-sm-6'>
                                 <div class="form-group">
                                     <?php
-                                        echo $form['bitacora']['observacion']->render();
+                                        echo $form['observacion']->render();
                                     ?>
                                 </div>
                             </div>

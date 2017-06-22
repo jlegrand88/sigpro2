@@ -15,6 +15,7 @@ Doctrine_Manager::getInstance()->bindComponent('OrdenPago', 'doctrine');
  * @property integer $rut_proveedor
  * @property timestamp $fecha_ingreso
  * @property timestamp $fecha_contabilizado
+ * @property string $observacion
  * @property Proyecto $Proyecto
  * @property Usuario $Usuario
  * @property Doctrine_Collection $DetalleOrdenPago
@@ -28,6 +29,7 @@ Doctrine_Manager::getInstance()->bindComponent('OrdenPago', 'doctrine');
  * @method integer             getRutProveedor()        Returns the current record's "rut_proveedor" value
  * @method timestamp           getFechaIngreso()        Returns the current record's "fecha_ingreso" value
  * @method timestamp           getFechaContabilizado()  Returns the current record's "fecha_contabilizado" value
+ * @method string              getObservacion()         Returns the current record's "observacion" value
  * @method Proyecto            getProyecto()            Returns the current record's "Proyecto" value
  * @method Usuario             getUsuario()             Returns the current record's "Usuario" value
  * @method Doctrine_Collection getDetalleOrdenPago()    Returns the current record's "DetalleOrdenPago" collection
@@ -40,6 +42,7 @@ Doctrine_Manager::getInstance()->bindComponent('OrdenPago', 'doctrine');
  * @method OrdenPago           setRutProveedor()        Sets the current record's "rut_proveedor" value
  * @method OrdenPago           setFechaIngreso()        Sets the current record's "fecha_ingreso" value
  * @method OrdenPago           setFechaContabilizado()  Sets the current record's "fecha_contabilizado" value
+ * @method OrdenPago           setObservacion()         Sets the current record's "observacion" value
  * @method OrdenPago           setProyecto()            Sets the current record's "Proyecto" value
  * @method OrdenPago           setUsuario()             Sets the current record's "Usuario" value
  * @method OrdenPago           setDetalleOrdenPago()    Sets the current record's "DetalleOrdenPago" collection
@@ -125,6 +128,15 @@ abstract class BaseOrdenPago extends sfDoctrineRecord
              'notnull' => false,
              'autoincrement' => false,
              'length' => 25,
+             ));
+        $this->hasColumn('observacion', 'string', null, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => '',
              ));
     }
 

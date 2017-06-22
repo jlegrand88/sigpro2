@@ -29,6 +29,7 @@ class OrdenPagoForm extends BaseOrdenPagoForm
             'rut_proveedor'       => new sfWidgetFormChoice(array('choices' => $proveedores),array('class' => 'form-control input-sm select2','required' =>'true')),
             'fecha_ingreso'       => new sfWidgetFormInputHidden(),
             'fecha_contabilizado' => new sfWidgetFormInputHidden(),
+            'observacion' => new sfWidgetFormTextarea( array(), array( 'class' => 'form-control input-sm', 'rows' => "3", 'cols' => "170",'required' => "true" ) )
         ));
 
         $this->setValidators(array(
@@ -40,6 +41,7 @@ class OrdenPagoForm extends BaseOrdenPagoForm
             'rut_proveedor'       => new sfValidatorChoice(array('choices' => array_keys($proveedores), 'required' => false)),
             'fecha_ingreso'       => new sfValidatorDateTime(array('required' => false)),
             'fecha_contabilizado' => new sfValidatorDateTime(array('required' => false)),
+            'observacion'    => new sfValidatorString(array('required' => true))
         ));
 //        if(!$this->isNew()){
 //            $rutProveedor = $this->getObject()->getRutProveedor();
@@ -160,16 +162,6 @@ class OrdenPagoForm extends BaseOrdenPagoForm
 //        }
 //        $this->embedForm('archivo_orden_pago', $subFormArchivo);
         $this->embedForm('archivo_orden_pago', $formArchivo);
-
-        //EMBED FORM BITACORA
-        $bitacora = new Bitacora();
-        $bitacora->setIdProyecto($idProyecto);
-        $bitacora->setIdUsuario($idUsuario);
-        $bitacora->setFechaCreacion($fecha);
-
-        $formBitacora = new BitacoraForm($bitacora);
-        $this->embedForm('bitacora', $formBitacora);
-        //FIN EMBED FORMS
 
         if (!$editable){
             $this->setDisabled();

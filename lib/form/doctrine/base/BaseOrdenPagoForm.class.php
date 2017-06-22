@@ -23,6 +23,7 @@ abstract class BaseOrdenPagoForm extends BaseFormDoctrine
       'rut_proveedor'       => new sfWidgetFormInputText(),
       'fecha_ingreso'       => new sfWidgetFormDateTime(),
       'fecha_contabilizado' => new sfWidgetFormDateTime(),
+      'observacion'         => new sfWidgetFormTextarea(),
     ));
 
     $this->setValidators(array(
@@ -34,6 +35,7 @@ abstract class BaseOrdenPagoForm extends BaseFormDoctrine
       'rut_proveedor'       => new sfValidatorInteger(array('required' => false)),
       'fecha_ingreso'       => new sfValidatorDateTime(array('required' => false)),
       'fecha_contabilizado' => new sfValidatorDateTime(array('required' => false)),
+      'observacion'         => new sfValidatorString(),
     ));
 
     $this->widgetSchema->setNameFormat('orden_pago[%s]');

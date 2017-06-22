@@ -861,6 +861,13 @@ OrdenPago:
       primary: false
       notnull: false
       autoincrement: false
+    observacion:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
   relations:
     Proyecto:
       local: id_proyecto

@@ -20,6 +20,7 @@ abstract class BaseOrdenPagoFormFilter extends BaseFormFilterDoctrine
       'rut_proveedor'       => new sfWidgetFormFilterInput(),
       'fecha_ingreso'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'fecha_contabilizado' => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
+      'observacion'         => new sfWidgetFormFilterInput(array('with_empty' => false)),
     ));
 
     $this->setValidators(array(
@@ -30,6 +31,7 @@ abstract class BaseOrdenPagoFormFilter extends BaseFormFilterDoctrine
       'rut_proveedor'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'fecha_ingreso'       => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'fecha_contabilizado' => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'observacion'         => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('orden_pago_filters[%s]');
@@ -57,6 +59,7 @@ abstract class BaseOrdenPagoFormFilter extends BaseFormFilterDoctrine
       'rut_proveedor'       => 'Number',
       'fecha_ingreso'       => 'Date',
       'fecha_contabilizado' => 'Date',
+      'observacion'         => 'Text',
     );
   }
 }
