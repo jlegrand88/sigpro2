@@ -678,43 +678,26 @@ class proyectoActions extends sfActions
 
     public function executeMovimientosContables(sfWebRequest $request)
     {
-        $bbdd = "FONDECYT";
-        $bbdd2 = "ONG2016";
+        $db = 'FONDECYT';
         $con = Doctrine_Manager::getInstance()->getConnection('mssql');
+        $query = "SELECT PCTCOD as codigo_cta,CPBNUM,CPBFEC,GLOSAMOV,MONTOMA,MONTOMB,PCDESC as nombre_cta,(Right(Left(PCTCOD,7),3)) AS proyecto,
+                    CASE 
+                        WHEN 
+                            CHARINDEX('(c/P',PCDESC,1) > 0 THEN 3 else '' 
+                        END compromiso,
+                    CASE 
+                        WHEN Right(PCTCOD,2) = '01' THEN '1' ELSE '2' 
+                    END ingresos 
+                    FROM ".$db.".softland.cw_vsnpmovcpbtsitinicnoconc
+                        INNER JOIN ".$db.".softland.cwpctas ON ".$db.".softland.cw_vsnpmovcpbtsitinicnoconc.PCTCOD = ".$db.".softland.cwpctas.PCCODI
+                    WHERE PCTCOD LIKE '2-2-1%' OR PCTCOD LIKE '4-2%' OR PCTCOD LIKE '5-6%' OR PCTCOD LIKE '2-2-2%'
+                ORDER BY ".$db.".softland.cw_vsnpmovcpbtsitinicnoconc.CPBFEC;";
 
-        $query = "SELECT cw_vsnpmovcpbtsitinicnoconc.PCTCOD AS codigo_cuenta, cwpctas.PCDESC AS nombre_cuenta, 
-                    cw_vsnpmovcpbtsitinicnoconc.CPBNUM AS numero_comprobante, cw_vsnpmovcpbtsitinicnoconc.CPBFEC AS fecha, Month([CPBFEC]) AS mes, 
-                    Year([CPBFEC]) AS ano, cw_vsnpmovcpbtsitinicnoconc.GLOSAMOV as glosa, cw_vsnpmovcpbtsitinicnoconc.MONTOMA AS dolares, 
-                    cw_vsnpmovcpbtsitinicnoconc.MONTOMB AS pesos, 236 AS proyecto, 1 AS Expr1, 2 AS Expr2, 
-                    CASE 
-                        WHEN Left(cw_vsnpmovcpbtsitinicnoconc.PCTCOD,1) = '4' THEN '1' ELSE '2' 
-                    END AS tipo_cuenta 
-                  FROM FONDECYT.softland.cw_vsnpmovcpbtsitinicnoconc INNER JOIN FONDECYT.softland.cwpctas ON cw_vsnpmovcpbtsitinicnoconc.PCTCOD = cwpctas.PCCODI 
-                    WHERE 
-                    (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '4-1-%') AND ((Year([CPBFEC])) = 2017)) 
-                    OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '5-1-%') AND ((Year([CPBFEC])) = 2017)) 
-                    OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '5-2-%') AND ((Year([CPBFEC])) = 2017)) 
-                    OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '5-3-%') AND ((Year([CPBFEC])) = 2017)) 
-                    OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '6-1-%') AND ((Year([CPBFEC])) = 2017)) 
-                    OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '4-2-%') AND ((Year([CPBFEC])) = 2017)) 
-                    ORDER BY cw_vsnpmovcpbtsitinicnoconc.CPBFEC";
-        $this->response = $con->fetchAssoc($query);
-
-        $query2 ="SELECT cw_vsnpmovcpbtsitinicnoconc.PCTCOD AS codigo_cuenta, cwpctas.PCDESC AS nombre_cuenta, (Right(Left(cw_vsnpmovcpbtsitinicnoconc.PCTCOD,7),3)) AS proyecto, 
-                    cw_vsnpmovcpbtsitinicnoconc.CPBNUM AS numero_comprobante, 
-                    cw_vsnpmovcpbtsitinicnoconc.CPBFEC AS fecha, Month(CPBFEC) AS mes, Year(CPBFEC) AS ano, cw_vsnpmovcpbtsitinicnoconc.GLOSAMOV as glosa, 
-                    cw_vsnpmovcpbtsitinicnoconc.MONTOMA AS dolares, cw_vsnpmovcpbtsitinicnoconc.MONTOMB AS pesos, 
-                    CASE 
-                      WHEN CHARINDEX(cwpctas.PCDESC,'(c/P',1) > 0 THEN '3' ELSE '' 
-                    END AS compromiso, 
-                    CASE 
-                      WHEN Right(cw_vsnpmovcpbtsitinicnoconc.PCTCOD,2) = '01' THEN '1' ELSE '2' 
-                    END AS ingresos 
-                  FROM FONDECYT.softland.cw_vsnpmovcpbtsitinicnoconc INNER JOIN FONDECYT.softland.cwpctas ON cw_vsnpmovcpbtsitinicnoconc.PCTCOD = cwpctas.PCCODI 
-                  WHERE (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '2-2-1%') AND ((Year([CPBFEC]))>2015)) OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '4-2-%)) 
-                    OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '5-6-%')) OR (((cw_vsnpmovcpbtsitinicnoconc.PCTCOD) Like '2-2-2%')) 
-                  ORDER BY cw_vsnpmovcpbtsitinicnoconc.CPBFEC";
-        $this->response2 = $con->fetchAssoc($query2);
+        $response  = $con->fetchAssoc($query);
+        echo "<pre>";
+        print_r($response);
+        echo "</pre>";
+        die();
     }
 
 }

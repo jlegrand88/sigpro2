@@ -19,10 +19,6 @@ abstract class BaseDetalleOrdenPagoForm extends BaseFormDoctrine
       'id_orden_pago'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('OrdenPago'), 'add_empty' => true)),
       'cuenta'                => new sfWidgetFormInputText(),
       'nombre_cuenta'         => new sfWidgetFormInputText(),
-      'presupuesto'           => new sfWidgetFormInputText(),
-      'ejecucion'             => new sfWidgetFormInputText(),
-      'compromiso'            => new sfWidgetFormInputText(),
-      'saldo_efectivo'        => new sfWidgetFormInputText(),
       'monto_pago'            => new sfWidgetFormInputText(),
     ));
 
@@ -31,10 +27,6 @@ abstract class BaseDetalleOrdenPagoForm extends BaseFormDoctrine
       'id_orden_pago'         => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('OrdenPago'), 'required' => false)),
       'cuenta'                => new sfValidatorString(array('max_length' => 45, 'required' => false)),
       'nombre_cuenta'         => new sfValidatorString(array('max_length' => 150, 'required' => false)),
-      'presupuesto'           => new sfValidatorNumber(array('required' => false)),
-      'ejecucion'             => new sfValidatorNumber(array('required' => false)),
-      'compromiso'            => new sfValidatorNumber(array('required' => false)),
-      'saldo_efectivo'        => new sfValidatorNumber(array('required' => false)),
       'monto_pago'            => new sfValidatorNumber(array('required' => false)),
     ));
 

@@ -20,7 +20,7 @@ abstract class BaseBitacoraForm extends BaseFormDoctrine
       'id_usuario'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Usuario'), 'add_empty' => false)),
       'id_accion'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Accion'), 'add_empty' => false)),
       'fecha_creacion' => new sfWidgetFormDate(),
-      'observacion'    => new sfWidgetFormInputText(),
+      'observacion'    => new sfWidgetFormTextarea(),
     ));
 
     $this->setValidators(array(
@@ -29,7 +29,7 @@ abstract class BaseBitacoraForm extends BaseFormDoctrine
       'id_usuario'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Usuario'))),
       'id_accion'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Accion'))),
       'fecha_creacion' => new sfValidatorDate(array('required' => false)),
-      'observacion'    => new sfValidatorString(array('max_length' => 45, 'required' => false)),
+      'observacion'    => new sfValidatorString(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('bitacora[%s]');

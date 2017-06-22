@@ -11,10 +11,6 @@ Doctrine_Manager::getInstance()->bindComponent('DetalleOrdenPago', 'doctrine');
  * @property integer $id_orden_pago
  * @property string $cuenta
  * @property string $nombre_cuenta
- * @property decimal $presupuesto
- * @property decimal $ejecucion
- * @property decimal $compromiso
- * @property decimal $saldo_efectivo
  * @property decimal $monto_pago
  * @property OrdenPago $OrdenPago
  * 
@@ -22,20 +18,12 @@ Doctrine_Manager::getInstance()->bindComponent('DetalleOrdenPago', 'doctrine');
  * @method integer          getIdOrdenPago()           Returns the current record's "id_orden_pago" value
  * @method string           getCuenta()                Returns the current record's "cuenta" value
  * @method string           getNombreCuenta()          Returns the current record's "nombre_cuenta" value
- * @method decimal          getPresupuesto()           Returns the current record's "presupuesto" value
- * @method decimal          getEjecucion()             Returns the current record's "ejecucion" value
- * @method decimal          getCompromiso()            Returns the current record's "compromiso" value
- * @method decimal          getSaldoEfectivo()         Returns the current record's "saldo_efectivo" value
  * @method decimal          getMontoPago()             Returns the current record's "monto_pago" value
  * @method OrdenPago        getOrdenPago()             Returns the current record's "OrdenPago" value
  * @method DetalleOrdenPago setIdDetalleOrdenPago()    Sets the current record's "id_detalle_orden_pago" value
  * @method DetalleOrdenPago setIdOrdenPago()           Sets the current record's "id_orden_pago" value
  * @method DetalleOrdenPago setCuenta()                Sets the current record's "cuenta" value
  * @method DetalleOrdenPago setNombreCuenta()          Sets the current record's "nombre_cuenta" value
- * @method DetalleOrdenPago setPresupuesto()           Sets the current record's "presupuesto" value
- * @method DetalleOrdenPago setEjecucion()             Sets the current record's "ejecucion" value
- * @method DetalleOrdenPago setCompromiso()            Sets the current record's "compromiso" value
- * @method DetalleOrdenPago setSaldoEfectivo()         Sets the current record's "saldo_efectivo" value
  * @method DetalleOrdenPago setMontoPago()             Sets the current record's "monto_pago" value
  * @method DetalleOrdenPago setOrdenPago()             Sets the current record's "OrdenPago" value
  * 
@@ -82,46 +70,6 @@ abstract class BaseDetalleOrdenPago extends sfDoctrineRecord
              'notnull' => false,
              'autoincrement' => false,
              'length' => 150,
-             ));
-        $this->hasColumn('presupuesto', 'decimal', 11, array(
-             'type' => 'decimal',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
-             'autoincrement' => false,
-             'length' => 11,
-             'scale' => '2',
-             ));
-        $this->hasColumn('ejecucion', 'decimal', 11, array(
-             'type' => 'decimal',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
-             'autoincrement' => false,
-             'length' => 11,
-             'scale' => '2',
-             ));
-        $this->hasColumn('compromiso', 'decimal', 11, array(
-             'type' => 'decimal',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
-             'autoincrement' => false,
-             'length' => 11,
-             'scale' => '2',
-             ));
-        $this->hasColumn('saldo_efectivo', 'decimal', 11, array(
-             'type' => 'decimal',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
-             'autoincrement' => false,
-             'length' => 11,
-             'scale' => '2',
              ));
         $this->hasColumn('monto_pago', 'decimal', 11, array(
              'type' => 'decimal',

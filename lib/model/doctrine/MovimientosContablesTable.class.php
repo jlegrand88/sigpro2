@@ -90,4 +90,20 @@ class MovimientosContablesTable extends Doctrine_Table
         $response = $con->fetchAssoc($query);
         return $response;
     }
+
+    public static function deleteCurrents()
+    {
+        return Doctrine_Query::DELETE()
+            ->from("MovimientosContables")
+            ->where("anho BETWEEN 2016 AND 2017")
+            ->execute();
+    }
+
+    public static function deleteLegacy()
+    {
+        return Doctrine_Query::DELETE()
+            ->from("MovimientosContables")
+            ->where("anho < 2015")
+            ->execute();
+    }
 }

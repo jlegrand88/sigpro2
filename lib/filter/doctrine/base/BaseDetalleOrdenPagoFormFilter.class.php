@@ -16,10 +16,6 @@ abstract class BaseDetalleOrdenPagoFormFilter extends BaseFormFilterDoctrine
       'id_orden_pago'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('OrdenPago'), 'add_empty' => true)),
       'cuenta'                => new sfWidgetFormFilterInput(),
       'nombre_cuenta'         => new sfWidgetFormFilterInput(),
-      'presupuesto'           => new sfWidgetFormFilterInput(),
-      'ejecucion'             => new sfWidgetFormFilterInput(),
-      'compromiso'            => new sfWidgetFormFilterInput(),
-      'saldo_efectivo'        => new sfWidgetFormFilterInput(),
       'monto_pago'            => new sfWidgetFormFilterInput(),
     ));
 
@@ -27,10 +23,6 @@ abstract class BaseDetalleOrdenPagoFormFilter extends BaseFormFilterDoctrine
       'id_orden_pago'         => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('OrdenPago'), 'column' => 'id_orden_pago')),
       'cuenta'                => new sfValidatorPass(array('required' => false)),
       'nombre_cuenta'         => new sfValidatorPass(array('required' => false)),
-      'presupuesto'           => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
-      'ejecucion'             => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
-      'compromiso'            => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
-      'saldo_efectivo'        => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'monto_pago'            => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
     ));
 
@@ -55,10 +47,6 @@ abstract class BaseDetalleOrdenPagoFormFilter extends BaseFormFilterDoctrine
       'id_orden_pago'         => 'ForeignKey',
       'cuenta'                => 'Text',
       'nombre_cuenta'         => 'Text',
-      'presupuesto'           => 'Number',
-      'ejecucion'             => 'Number',
-      'compromiso'            => 'Number',
-      'saldo_efectivo'        => 'Number',
       'monto_pago'            => 'Number',
     );
   }

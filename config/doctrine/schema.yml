@@ -247,7 +247,7 @@ Bitacora:
       notnull: false
       autoincrement: false
     observacion:
-      type: string(45)
+      type: string()
       fixed: false
       unsigned: false
       primary: false
@@ -903,34 +903,6 @@ DetalleOrdenPago:
       autoincrement: false
     nombre_cuenta:
       type: string(150)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    presupuesto:
-      type: 'decimal(11, 2)'
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    ejecucion:
-      type: 'decimal(11, 2)'
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    compromiso:
-      type: 'decimal(11, 2)'
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    saldo_efectivo:
-      type: 'decimal(11, 2)'
       fixed: false
       unsigned: false
       primary: false

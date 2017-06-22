@@ -90,14 +90,14 @@ abstract class BaseBitacora extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 25,
              ));
-        $this->hasColumn('observacion', 'string', 45, array(
+        $this->hasColumn('observacion', 'string', null, array(
              'type' => 'string',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'notnull' => false,
              'autoincrement' => false,
-             'length' => 45,
+             'length' => '',
              ));
     }
 

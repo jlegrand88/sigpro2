@@ -20,7 +20,8 @@ class ProyectoTable extends Doctrine_Table
     public function getReporteDetalle($idProyecto)
     {
         $query = "SELECT proy.numero_contable, pre_ing.cuenta, proy.sigla_contable, UPPER(pre_ing.nombre_cuenta) nombre_cuenta,
-                  SUM(pre_ing.enero + pre_ing.febrero + pre_ing.marzo + pre_ing.abril + pre_ing.mayo + pre_ing.junio + pre_ing.julio + pre_ing.agosto + pre_ing.septiembre + pre_ing.octubre + pre_ing.noviembre + pre_ing.diciembre) presupuesto,  
+                  SUM(pre_ing.enero + pre_ing.febrero + pre_ing.marzo + pre_ing.abril + pre_ing.mayo + pre_ing.junio + 
+                  pre_ing.julio + pre_ing.agosto + pre_ing.septiembre + pre_ing.octubre + pre_ing.noviembre + pre_ing.diciembre) presupuesto,  
                   (
                       SELECT ABS(SUM((ing_real.pesos))) 
                       FROM  movimientos_contables ing_real 

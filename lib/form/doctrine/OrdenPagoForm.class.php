@@ -69,12 +69,34 @@ class OrdenPagoForm extends BaseOrdenPagoForm
 
         if(count($detallesOrdenPago) > 0)
         {
-
             for ($i = 0; $i < count($detallesOrdenPago); $i++)
             {
                 if($detallesOrdenPago[$i]->getIdDetalleOrdenPago())
                 {
+                    $cuenta = $detallesOrdenPago[$i]['cuenta'];
+                    $detalleSaldosCuenta = DetalleOrdenPagoTable::getInstance()->getDetalleSaldosCuenta($cuenta);
                     $form = new DetalleOrdenPagoForm($detallesOrdenPago[$i]);
+                    $form->setDefault('presupuesto',$detalleSaldosCuenta['presupuesto']);
+                    if($detalleSaldosCuenta['id_moneda'] == Moneda::CLP)
+                    {
+                        $varEjecucion = ($detalleSaldosCuenta['ejecucion']) ? : 0;
+                        $varCompromiso = ($detalleSaldosCuenta['compromiso']) ? : 0;
+                        $varSaldoefectivo = ($detalleSaldosCuenta['saldo_efectivo']) ? : 0;
+                    }
+                    else
+                    {
+                        $varEjecucion = ($detalleSaldosCuenta['ejecucion_us']) ? : 0;
+                        $varCompromiso = ($detalleSaldosCuenta['compromiso_us']) ? : 0;
+                        $varSaldoefectivo = ($detalleSaldosCuenta['saldo_efectivo_us']) ? : 0;
+                    }
+
+                    if($varSaldoefectivo == 0 AND $varEjecucion != $detalleSaldosCuenta['presupuesto'])
+                    {
+                        $varSaldoefectivo = $detalleSaldosCuenta['presupuesto'];
+                    }
+                    $form->setDefault('ejecucion',$varEjecucion);
+                    $form->setDefault('compromiso',$varCompromiso);
+                    $form->setDefault('saldo_efectivo',$varSaldoefectivo);
                     $subForm->embedForm($i, $form);
                 }
             }
@@ -89,7 +111,6 @@ class OrdenPagoForm extends BaseOrdenPagoForm
                 $detalleOrdenPago->OrdenPago = $this->getObject();
                 $detalleOrdenPago->setCuenta($reporteDetalle[$i]['cuenta']);
                 $detalleOrdenPago->setNombreCuenta($reporteDetalle[$i]['nombre_cuenta']);
-                $detalleOrdenPago->setPresupuesto($reporteDetalle[$i]['presupuesto']);
 
                 if($reporteDetalle[$i]['id_moneda'] == Moneda::CLP)
                 {
@@ -108,11 +129,12 @@ class OrdenPagoForm extends BaseOrdenPagoForm
                 {
                     $varSaldoefectivo = $reporteDetalle[$i]['presupuesto'];
                 }
-                $detalleOrdenPago->setEjecucion($varEjecucion);
-                $detalleOrdenPago->setCompromiso($varCompromiso);
-                $detalleOrdenPago->setSaldoEfectivo($varSaldoefectivo);
 
                 $form = new DetalleOrdenPagoForm($detalleOrdenPago);
+                $form->setDefault('presupuesto',$reporteDetalle[$i]['presupuesto']);
+                $form->setDefault('ejecucion',$varEjecucion);
+                $form->setDefault('compromiso',$varCompromiso);
+                $form->setDefault('saldo_efectivo',$varSaldoefectivo);
                 $subForm->embedForm($i, $form);
             }
         }

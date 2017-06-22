@@ -16,4 +16,47 @@ class DetalleOrdenPagoTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('DetalleOrdenPago');
     }
+
+    public static function getDetalleSaldosCuenta($cuenta)
+    {
+        $query = "SELECT proy.numero_contable, pre_ing.cuenta, proy.sigla_contable, UPPER(pre_ing.nombre_cuenta) nombre_cuenta,
+                  SUM(pre_ing.enero + pre_ing.febrero + pre_ing.marzo + pre_ing.abril + pre_ing.mayo + pre_ing.junio + 
+                  pre_ing.julio + pre_ing.agosto + pre_ing.septiembre + pre_ing.octubre + pre_ing.noviembre + pre_ing.diciembre) presupuesto,  
+                  (
+                      SELECT ABS(SUM((ing_real.pesos))) 
+                      FROM  movimientos_contables ing_real 
+                      WHERE ing_real.proyecto=proy.numero_contable 
+                      AND pre_ing.cuenta = ing_real.codigo_cuenta  
+                  ) ejecucion,
+                  ( 
+                      SELECT ABS(SUM((ing_real.dolares))) 
+                      FROM movimientos_contables ing_real 
+                      WHERE ing_real.proyecto=proy.numero_contable 
+                      AND pre_ing.cuenta = ing_real.codigo_cuenta 
+				  ) ejecucion_us,
+				  0 compromiso, id_moneda, 0 compromiso_us,
+				  SUM(pre_ing.enero + pre_ing.febrero + pre_ing.marzo + pre_ing.abril + pre_ing.mayo + pre_ing.junio + pre_ing.julio + pre_ing.agosto + pre_ing.septiembre + pre_ing.octubre + pre_ing.noviembre + pre_ing.diciembre)
+                  -
+                  ( 
+                      select ABS(SUM((ing_real.pesos))) 
+                      FROM  movimientos_contables ing_real 
+                      WHERE ing_real.proyecto=proy.numero_contable 
+                      AND pre_ing.cuenta = ing_real.codigo_cuenta  
+				  ) saldo_efectivo,
+                  SUM(pre_ing.enero + pre_ing.febrero + pre_ing.marzo + pre_ing.abril + pre_ing.mayo + pre_ing.junio + pre_ing.julio + pre_ing.agosto + pre_ing.septiembre + pre_ing.octubre + pre_ing.noviembre + pre_ing.diciembre)
+                  -
+                  ( 
+				      SELECT ABS(SUM((ing_real.dolares))) 
+                      FROM  movimientos_contables ing_real 
+                      WHERE ing_real.proyecto=proy.numero_contable 
+                      and pre_ing.cuenta = ing_real.codigo_cuenta 
+                  ) saldo_efectivo_us
+                  FROM  proyecto proy
+				  LEFT JOIN presupuesto pre_ing ON pre_ing.id_proyecto=proy.id_proyecto AND pre_ing.id_tipo_movimiento = 2
+				  WHERE cuenta_overhead <> 1 AND pre_ing.cuenta = '".$cuenta."'
+				  GROUP BY proy.id_proyecto, pre_ing.cuenta";
+        $con = Doctrine_Manager::getInstance()->getConnection('doctrine');
+        $response = $con->fetchAssoc($query);
+        return $response[0];
+    }
 }
