@@ -93,16 +93,16 @@ class MovimientosContablesTable extends Doctrine_Table
 
     public static function deleteCurrents()
     {
-        return Doctrine_Query::DELETE()
-            ->from("MovimientosContables")
+        return Doctrine_Query::create()
+            ->delete("MovimientosContables")
             ->where("anho BETWEEN 2016 AND 2017")
             ->execute();
     }
 
     public static function deleteLegacy()
     {
-        return Doctrine_Query::DELETE()
-            ->from("MovimientosContables")
+        return Doctrine_Query::create()
+            ->delete("MovimientosContables")
             ->where("anho < 2015")
             ->execute();
     }

@@ -675,29 +675,4 @@ class proyectoActions extends sfActions
         $archivo->delete();
         exit;
     }
-
-    public function executeMovimientosContables(sfWebRequest $request)
-    {
-        $db = 'FONDECYT';
-        $con = Doctrine_Manager::getInstance()->getConnection('mssql');
-        $query = "SELECT PCTCOD as codigo_cta,CPBNUM,CPBFEC,GLOSAMOV,MONTOMA,MONTOMB,PCDESC as nombre_cta,(Right(Left(PCTCOD,7),3)) AS proyecto,
-                    CASE 
-                        WHEN 
-                            CHARINDEX('(c/P',PCDESC,1) > 0 THEN 3 else '' 
-                        END compromiso,
-                    CASE 
-                        WHEN Right(PCTCOD,2) = '01' THEN '1' ELSE '2' 
-                    END ingresos 
-                    FROM ".$db.".softland.cw_vsnpmovcpbtsitinicnoconc
-                        INNER JOIN ".$db.".softland.cwpctas ON ".$db.".softland.cw_vsnpmovcpbtsitinicnoconc.PCTCOD = ".$db.".softland.cwpctas.PCCODI
-                    WHERE PCTCOD LIKE '2-2-1%' OR PCTCOD LIKE '4-2%' OR PCTCOD LIKE '5-6%' OR PCTCOD LIKE '2-2-2%'
-                ORDER BY ".$db.".softland.cw_vsnpmovcpbtsitinicnoconc.CPBFEC;";
-
-        $response  = $con->fetchAssoc($query);
-        echo "<pre>";
-        print_r($response);
-        echo "</pre>";
-        die();
-    }
-
 }
