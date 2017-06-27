@@ -40,6 +40,7 @@ EOF;
     protected function execute($arguments = array(), $options = array())
     {
         set_time_limit(0);
+        ini_set('memory_limit', '-1');
         // initialize the database connection
         $databaseManager = new sfDatabaseManager($this->configuration);
         //$connection = $databaseManager->getDatabase($options['connection'])->getConnection();
