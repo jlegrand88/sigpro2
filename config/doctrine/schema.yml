@@ -1804,7 +1804,7 @@ Proyecto:
     OrdenPago:
       local: id_proyecto
       foreign: id_proyecto
-      type: one
+      type: many
     Presupuesto:
       local: id_proyecto
       foreign: id_proyecto

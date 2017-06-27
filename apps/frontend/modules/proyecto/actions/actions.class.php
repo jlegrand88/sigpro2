@@ -479,7 +479,8 @@ class proyectoActions extends sfActions
         $idUsuario = $this->getUser()->getAttribute('id');
         $idProyecto = ($request->hasParameter('id_proyecto')) ? $request->getParameter('id_proyecto') : null;
         $proyecto = (isset($idProyecto)) ? ProyectoTable::getInstance()->find($idProyecto) : null;
-        $ordenPago = (!$proyecto->getOrdenPago()->isNew()) ? $proyecto->getOrdenPago() : null;
+//        $ordenPago = (!$proyecto->getOrdenPago()->isNew()) ? $proyecto->getOrdenPago() : null;
+        $ordenPago = null;
         $form = new OrdenPagoForm($ordenPago,array('id_usuario' => $idUsuario, 'id_proyecto' => $idProyecto));
         return $this->renderPartial('proyecto/ordenPagoForm',array('form' => $form,'ordenPago' => $ordenPago, 'idDeleteArchivo' => null));
     }
