@@ -72,6 +72,7 @@
             }
         });
         $('#despacharForm #id_proyecto').val($('#idProyecto').val());
+        $('#despacharForm #id_orden_pago').val(<?php echo ($ordenPago) ? $ordenPago->getIdOrdenPago() : ""; ?>);
     });
 
     

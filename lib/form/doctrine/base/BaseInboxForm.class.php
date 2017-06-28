@@ -26,6 +26,7 @@ abstract class BaseInboxForm extends BaseFormDoctrine
       'unidad_destino'    => new sfWidgetFormInputText(),
       'id_tipo_documento' => new sfWidgetFormInputText(),
       'folio'             => new sfWidgetFormInputText(),
+      'id_orden_pago'     => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
@@ -40,6 +41,7 @@ abstract class BaseInboxForm extends BaseFormDoctrine
       'unidad_destino'    => new sfValidatorString(array('max_length' => 45, 'required' => false)),
       'id_tipo_documento' => new sfValidatorInteger(array('required' => false)),
       'folio'             => new sfValidatorInteger(array('required' => false)),
+      'id_orden_pago'     => new sfValidatorInteger(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('inbox[%s]');

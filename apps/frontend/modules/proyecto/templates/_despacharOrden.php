@@ -2,6 +2,7 @@
     <div class="container" style="margin-left: 0px;margin-right: 0px;">
         <form id="despacharForm" class="form-horizontal">
             <input type="hidden" id="id_proyecto" name="id_proyecto" />
+            <input type="hidden" id="id_orden_pago" name="id_orden_pago" />
             <input type="hidden" id="id_inbox" name="id_inbox" value="<?php  echo (isset($idInbox) ? $idInbox : ''); ?>" />
             <input type="hidden" id="id_tipo_documento" name="id_tipo_documento" value="<?php  echo $tipoDocumento; ?>" />
             <fieldset>

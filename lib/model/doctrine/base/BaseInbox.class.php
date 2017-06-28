@@ -18,6 +18,7 @@ Doctrine_Manager::getInstance()->bindComponent('Inbox', 'doctrine');
  * @property string $unidad_destino
  * @property integer $id_tipo_documento
  * @property integer $folio
+ * @property integer $id_orden_pago
  * @property Accion $Accion
  * @property Proyecto $Proyecto
  * @property Usuario $Emisor
@@ -34,6 +35,7 @@ Doctrine_Manager::getInstance()->bindComponent('Inbox', 'doctrine');
  * @method string   getUnidadDestino()     Returns the current record's "unidad_destino" value
  * @method integer  getIdTipoDocumento()   Returns the current record's "id_tipo_documento" value
  * @method integer  getFolio()             Returns the current record's "folio" value
+ * @method integer  getIdOrdenPago()       Returns the current record's "id_orden_pago" value
  * @method Accion   getAccion()            Returns the current record's "Accion" value
  * @method Proyecto getProyecto()          Returns the current record's "Proyecto" value
  * @method Usuario  getEmisor()            Returns the current record's "Emisor" value
@@ -49,6 +51,7 @@ Doctrine_Manager::getInstance()->bindComponent('Inbox', 'doctrine');
  * @method Inbox    setUnidadDestino()     Sets the current record's "unidad_destino" value
  * @method Inbox    setIdTipoDocumento()   Sets the current record's "id_tipo_documento" value
  * @method Inbox    setFolio()             Sets the current record's "folio" value
+ * @method Inbox    setIdOrdenPago()       Sets the current record's "id_orden_pago" value
  * @method Inbox    setAccion()            Sets the current record's "Accion" value
  * @method Inbox    setProyecto()          Sets the current record's "Proyecto" value
  * @method Inbox    setEmisor()            Sets the current record's "Emisor" value
@@ -154,6 +157,15 @@ abstract class BaseInbox extends sfDoctrineRecord
              'length' => 4,
              ));
         $this->hasColumn('folio', 'integer', 4, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 4,
+             ));
+        $this->hasColumn('id_orden_pago', 'integer', 4, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,

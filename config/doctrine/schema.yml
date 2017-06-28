@@ -632,6 +632,13 @@ Inbox:
       primary: false
       notnull: false
       autoincrement: false
+    id_orden_pago:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
   relations:
     Accion:
       local: id_accion

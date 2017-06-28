@@ -23,6 +23,7 @@ abstract class BaseInboxFormFilter extends BaseFormFilterDoctrine
       'unidad_destino'    => new sfWidgetFormFilterInput(),
       'id_tipo_documento' => new sfWidgetFormFilterInput(),
       'folio'             => new sfWidgetFormFilterInput(),
+      'id_orden_pago'     => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
@@ -36,6 +37,7 @@ abstract class BaseInboxFormFilter extends BaseFormFilterDoctrine
       'unidad_destino'    => new sfValidatorPass(array('required' => false)),
       'id_tipo_documento' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'folio'             => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'id_orden_pago'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
     ));
 
     $this->widgetSchema->setNameFormat('inbox_filters[%s]');
@@ -66,6 +68,7 @@ abstract class BaseInboxFormFilter extends BaseFormFilterDoctrine
       'unidad_destino'    => 'Text',
       'id_tipo_documento' => 'Number',
       'folio'             => 'Number',
+      'id_orden_pago'     => 'Number',
     );
   }
 }

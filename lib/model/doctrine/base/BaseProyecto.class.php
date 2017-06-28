@@ -56,7 +56,7 @@ Doctrine_Manager::getInstance()->bindComponent('Proyecto', 'doctrine');
  * @property Doctrine_Collection $GastoPais
  * @property Doctrine_Collection $Inbox
  * @property Doctrine_Collection $InformeProyecto
- * @property OrdenPago $OrdenPago
+ * @property Doctrine_Collection $OrdenPago
  * @property Doctrine_Collection $Presupuesto
  * @property Doctrine_Collection $ProyectoAmbito
  * @property Doctrine_Collection $ProyectoGrupo
@@ -114,7 +114,7 @@ Doctrine_Manager::getInstance()->bindComponent('Proyecto', 'doctrine');
  * @method Doctrine_Collection getGastoPais()             Returns the current record's "GastoPais" collection
  * @method Doctrine_Collection getInbox()                 Returns the current record's "Inbox" collection
  * @method Doctrine_Collection getInformeProyecto()       Returns the current record's "InformeProyecto" collection
- * @method OrdenPago           getOrdenPago()             Returns the current record's "OrdenPago" value
+ * @method Doctrine_Collection getOrdenPago()             Returns the current record's "OrdenPago" collection
  * @method Doctrine_Collection getPresupuesto()           Returns the current record's "Presupuesto" collection
  * @method Doctrine_Collection getProyectoAmbito()        Returns the current record's "ProyectoAmbito" collection
  * @method Doctrine_Collection getProyectoGrupo()         Returns the current record's "ProyectoGrupo" collection
@@ -171,7 +171,7 @@ Doctrine_Manager::getInstance()->bindComponent('Proyecto', 'doctrine');
  * @method Proyecto            setGastoPais()             Sets the current record's "GastoPais" collection
  * @method Proyecto            setInbox()                 Sets the current record's "Inbox" collection
  * @method Proyecto            setInformeProyecto()       Sets the current record's "InformeProyecto" collection
- * @method Proyecto            setOrdenPago()             Sets the current record's "OrdenPago" value
+ * @method Proyecto            setOrdenPago()             Sets the current record's "OrdenPago" collection
  * @method Proyecto            setPresupuesto()           Sets the current record's "Presupuesto" collection
  * @method Proyecto            setProyectoAmbito()        Sets the current record's "ProyectoAmbito" collection
  * @method Proyecto            setProyectoGrupo()         Sets the current record's "ProyectoGrupo" collection
@@ -583,7 +583,7 @@ abstract class BaseProyecto extends sfDoctrineRecord
              'local' => 'id_proyecto',
              'foreign' => 'id_proyecto'));
 
-        $this->hasOne('OrdenPago', array(
+        $this->hasMany('OrdenPago', array(
              'local' => 'id_proyecto',
              'foreign' => 'id_proyecto'));
 

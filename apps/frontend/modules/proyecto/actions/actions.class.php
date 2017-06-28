@@ -460,14 +460,16 @@ class proyectoActions extends sfActions
         {
             //de momento no deshabilitar ningun campo.
             $this->editable = $editable = ($request->hasParameter('id_inbox')) ? false : true;
-            $this->idProyecto = $idProyecto = ($request->hasParameter('id_proyecto')) ? : null;
+            $this->idProyecto = $idProyecto = ($request->hasParameter('id_proyecto')) ?  $request->getParameter('id_proyecto') : null;
             $this->proyecto = $proyecto = ProyectoTable::getInstance()->find($idProyecto);
+            $this->ordenPago = null;
             if (isset($idInbox))
             {
                 $inbox = InboxTable::getInstance()->find($idInbox);
                 $idProyecto = $inbox->getIdProyecto();
+                $idOrdenPago = $inbox->getIdOrdenPago();
                 $this->proyecto = $proyecto = ProyectoTable::getInstance()->find($idProyecto);
-                $this->ordenPago = $ordenPago = $proyecto->getOrdenPago();
+                $this->ordenPago = $ordenPago = OrdenPagoTable::getInstance()->find($idOrdenPago);
 //                die($idProyecto);
                 $this->form = new OrdenPagoForm($ordenPago, array('editable' => $editable,'id_proyecto' =>  $idProyecto,'id_usuario' => $idUsuario));
             }
@@ -498,6 +500,7 @@ class proyectoActions extends sfActions
     public function executeDespacharOrden(sfWebRequest $request)
     {
         $idProyecto = ($request->getParameter('id_proyecto')) ? $request->getParameter('id_proyecto') : null;
+        $idOrdenPago = ($request->getParameter('id_orden_pago')) ? $request->getParameter('id_orden_pago') : null;
         if($request->isMethod(sfRequest::POST))
         {
             if($request->getParameter('id_inbox'))
@@ -509,6 +512,7 @@ class proyectoActions extends sfActions
                 $inbox = new Inbox();
             }
             $inbox->setIdProyecto($idProyecto);
+            $inbox->setIdOrdenPago($idOrdenPago);
             $inbox->setFechaDespacho(date('Y-m-d'));
             $inbox->setIdEmisor($this->getUser()->getAttribute('id'));
             $inbox->setIdDestinatario($request->getParameter('id_destinatario'));
