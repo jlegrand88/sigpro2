@@ -49,8 +49,8 @@ class RevisionArchivo {
         	$errores['no_concatenable'] = "Archivo no concatenable";
         }
         
-        if($numArchEncript>0)
-            $errores['encriptado'] = "Archivo encriptado o protegido";
+/*        if($numArchEncript>0)
+            $errores['encriptado'] = "Archivo encriptado o protegido";*/
         if($numFinalArchivo<1)
             $errores['final_archivo'] = "Archivo Corrupto";
         return $errores;
@@ -77,7 +77,7 @@ class RevisionArchivo {
     {
     	$error = '';
     	
-    	if(preg_match('|ñ|', $nombreArchivo))
+    	if(preg_match('|ï¿½|', $nombreArchivo))
     	{
     		$error = "El nombre del archivo adjunto contiene caracteres no permitidos";
     	}
@@ -88,9 +88,9 @@ class RevisionArchivo {
     {
 	   	$error = '';
     	 
-    	if(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)\+=\{\}\[\]\|;ñ:"\<\>,\?\¿\\\]/',$nombreArchivo))
+    	if(preg_match('/[\'\/~`\!@#\$%\^&\*\(\)\+=\{\}\[\]\|;ï¿½:"\<\>,\?\ï¿½\\\]/',$nombreArchivo))
     	{
-    		$error = "El nombre del archivo contiene caracteres no permitidos ['/~`!@#$%^&*()+={}[]|;ñ:''<>,?¿\]";
+    		$error = "El nombre del archivo contiene caracteres no permitidos ['/~`!@#$%^&*()+={}[]|;ï¿½:''<>,?ï¿½\]";
     	}
     
     	return $error;
