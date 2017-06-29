@@ -13,14 +13,16 @@
     }
     if($errors || $globalErrors):
 ?>
+    <div class="row">
         <div class="alert alert-danger">
             <?php echo $form->renderGlobalErrors(); ?>
             </br>
             <?php foreach ($errors as $error):
-                    echo $error;
-                endforeach;
+                echo $error;
+            endforeach;
             ?>
         </div>
+    </div>
 <?php endif; ?>
 <form enctype="multipart/form-data" class="form-inline" id="ingresoOrdPagoForm" action="<?php echo url_for('proyecto/ordenPago') ?>" method="post" class="form-horizontal">
     <fieldset>
