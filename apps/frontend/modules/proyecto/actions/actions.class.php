@@ -469,6 +469,7 @@ class proyectoActions extends sfActions
                 $idProyecto = $inbox->getIdProyecto();
                 $idOrdenPago = $inbox->getIdOrdenPago();
                 $this->proyecto = $proyecto = ProyectoTable::getInstance()->find($idProyecto);
+                $this->listaProyectos = [$proyecto->getIdProyecto() =>  $proyecto->getNumeroContable()." - ".$proyecto->getDescripcion()];
                 $this->ordenPago = $ordenPago = OrdenPagoTable::getInstance()->find($idOrdenPago);
 //                die($idProyecto);
                 $this->form = new OrdenPagoForm($ordenPago, array('editable' => $editable,'id_proyecto' =>  $idProyecto,'id_usuario' => $idUsuario));
