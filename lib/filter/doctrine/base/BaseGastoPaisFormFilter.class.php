@@ -31,6 +31,7 @@ abstract class BaseGastoPaisFormFilter extends BaseFormFilterDoctrine
       'octubre'               => new sfWidgetFormFilterInput(),
       'noviembre'             => new sfWidgetFormFilterInput(),
       'diciembre'             => new sfWidgetFormFilterInput(),
+      'cuenta_overhead'       => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
@@ -52,6 +53,7 @@ abstract class BaseGastoPaisFormFilter extends BaseFormFilterDoctrine
       'octubre'               => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'noviembre'             => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'diciembre'             => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'cuenta_overhead'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
     ));
 
     $this->widgetSchema->setNameFormat('gasto_pais_filters[%s]');
@@ -90,6 +92,7 @@ abstract class BaseGastoPaisFormFilter extends BaseFormFilterDoctrine
       'octubre'               => 'Number',
       'noviembre'             => 'Number',
       'diciembre'             => 'Number',
+      'cuenta_overhead'       => 'Number',
     );
   }
 }

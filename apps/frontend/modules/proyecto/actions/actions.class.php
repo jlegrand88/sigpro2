@@ -584,69 +584,75 @@ class proyectoActions extends sfActions
                     {
                         $this->logMessage('Error loading file "' . pathinfo($tmpName, PATHINFO_BASENAME) . '": ' . $e->getMessage());
                     }
-                    //  Get worksheet dimensions
-                    $sheet = $objPHPExcel->getSheet(0);     //Selecting sheet 0
-                    $highestRow = $sheet->getHighestRow();     //Getting number of rows
-                    $highestColumn = $sheet->getHighestColumn();     //Getting number of columns
 
-                    $fecha = date('Y/m/d H:i:s');
-                    $fileName = md5($fecha.$fileName).'.'.$ext;
-                    $rutaDestino = preg_replace("/@proyecto/", $idProyecto, sfConfig::get('app_ruta_documentos_gasto_pais'));
-                    if (!is_dir($rutaDestino) && !mkdir($rutaDestino, 0777, true))
+                    $erroresArchivo = GastoPais::validaArchivo($idProyecto, $objPHPExcel);
+                    $this->errors = "";
+                    if ($erroresArchivo)
                     {
-                        $this->logMessage("Error creating folder $rutaDestino");
+                        $this->errors = $erroresArchivo;
                     }
-                    $rutaDestinoFinal = preg_replace("/@proyecto/", $idProyecto, sfConfig::get('app_ruta_documentos_gasto_pais')).DIRECTORY_SEPARATOR.$fileName;
-
-                    $archivoGastoPais = new ArchivoGastoPais();
-                    $archivoGastoPais->setIdUsuario($idUsuario);
-                    $archivoGastoPais->setNombre($fileName);
-                    $archivoGastoPais->setRuta($rutaDestinoFinal);
-                    $archivoGastoPais->setFecha($fecha);
-                    if($request->hasParameter('vigente') && $request->getParameter('vigente') == 'on')
+                    else
                     {
-                        $archivoGastoPais->setVigente(1);
-                    }
-                    $archivoGastoPais->save();
-                    //  Loop through each row of the worksheet in turn
-                    for ($row = 1; $row <= $highestRow; $row++)
-                    {
-                        if($row > 1)
-                        {
-                            //  Read a row of data into an array
-                            $rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, NULL, TRUE, FALSE);
-                            $data = $rowData[0];
+                        //  Get worksheet dimensions
+                        $sheet = $objPHPExcel->getSheet(0);     //Selecting sheet 0
+                        $highestRow = $sheet->getHighestRow();     //Getting number of rows
+                        $highestColumn = $sheet->getHighestColumn();     //Getting number of columns
 
-                            $gastoPais = new GastoPais();
-                            $gastoPais->setIdProyecto($idProyecto);
-                            $gastoPais->setIdArchivoGastoPais($archivoGastoPais->getIdArchivoGastoPais());
-                            $gastoPais->setCuenta($data[0]);
-                            $gastoPais->setIdTipoMovimiento($data[1]);
-                            $gastoPais->setNombreCuenta($data[2]);
-                            $gastoPais->setPeriodo($data[3]);
-                            $gastoPais->setEnero($data[4]);
-                            $gastoPais->setFebrero($data[5]);
-                            $gastoPais->setMarzo($data[6]);
-                            $gastoPais->setAbril($data[7]);
-                            $gastoPais->setMayo($data[8]);
-                            $gastoPais->setJunio($data[9]);
-                            $gastoPais->setJulio($data[10]);
-                            $gastoPais->setAgosto($data[11]);
-                            $gastoPais->setSeptiembre($data[12]);
-                            $gastoPais->setOctubre($data[13]);
-                            $gastoPais->setNoviembre($data[14]);
-                            $gastoPais->setDiciembre($data[15]);
-                            if(strtolower($data[16]) == "x" || $data[16] == "1" || strtolower($data[16]) == "s" || strtolower($data[16]) == "y" || strtolower($data[16]) == "si" ||
-                                strtolower($data[16]) == "yes" || strtolower($data[16]) == "true")
-                            {
-                                $gastoPais->setCuentaOvh(1);
-                            }else{
-                                $gastoPais->setCuentaOvh(0);
-                            }
-                            $gastoPais->save();
+                        $fecha = date('Y/m/d H:i:s');
+                        $fileName = md5($fecha . $fileName) . '.' . $ext;
+                        $rutaDestino = preg_replace("/@proyecto/", $idProyecto, sfConfig::get('app_ruta_documentos_gasto_pais'));
+                        if (!is_dir($rutaDestino) && !mkdir($rutaDestino, 0777, true)) {
+                            $this->logMessage("Error creating folder $rutaDestino");
                         }
+                        $rutaDestinoFinal = preg_replace("/@proyecto/", $idProyecto, sfConfig::get('app_ruta_documentos_gasto_pais')) . DIRECTORY_SEPARATOR . $fileName;
+
+                        $archivoGastoPais = new ArchivoGastoPais();
+                        $archivoGastoPais->setIdUsuario($idUsuario);
+                        $archivoGastoPais->setNombre($fileName);
+                        $archivoGastoPais->setRuta($rutaDestinoFinal);
+                        $archivoGastoPais->setFecha($fecha);
+                        if ($request->hasParameter('vigente') && $request->getParameter('vigente') == 'on') {
+                            $archivoGastoPais->setVigente(1);
+                        }
+                        $archivoGastoPais->save();
+                        //  Loop through each row of the worksheet in turn
+                        for ($row = 1; $row <= $highestRow; $row++) {
+                            if ($row > 1) {
+                                //  Read a row of data into an array
+                                $rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, NULL, TRUE, FALSE);
+                                $data = $rowData[0];
+
+                                $gastoPais = new GastoPais();
+                                $gastoPais->setIdProyecto($idProyecto);
+                                $gastoPais->setIdArchivoGastoPais($archivoGastoPais->getIdArchivoGastoPais());
+                                $gastoPais->setCuenta($data[0]);
+                                $gastoPais->setIdTipoMovimiento($data[1]);
+                                $gastoPais->setNombreCuenta($data[2]);
+                                $gastoPais->setPeriodo($data[3]);
+                                $gastoPais->setEnero($data[4]);
+                                $gastoPais->setFebrero($data[5]);
+                                $gastoPais->setMarzo($data[6]);
+                                $gastoPais->setAbril($data[7]);
+                                $gastoPais->setMayo($data[8]);
+                                $gastoPais->setJunio($data[9]);
+                                $gastoPais->setJulio($data[10]);
+                                $gastoPais->setAgosto($data[11]);
+                                $gastoPais->setSeptiembre($data[12]);
+                                $gastoPais->setOctubre($data[13]);
+                                $gastoPais->setNoviembre($data[14]);
+                                $gastoPais->setDiciembre($data[15]);
+                                if (strtolower($data[16]) == "x" || $data[16] == "1" || strtolower($data[16]) == "s" || strtolower($data[16]) == "y" || strtolower($data[16]) == "si" ||
+                                    strtolower($data[16]) == "yes" || strtolower($data[16]) == "true"
+                                ) {
+                                    $gastoPais->setCuentaOverhead(1);
+                                } else {
+                                    $gastoPais->setCuentaOverhead(0);
+                                }
+                                $gastoPais->save();
+                            }
+                        }
+                        move_uploaded_file($tmpName, $rutaDestinoFinal);
                     }
-                    move_uploaded_file($tmpName,$rutaDestinoFinal);
                 }
             }
             $this->archivosGastoPais = ArchivoGastoPaisTable::getInstance()->getArchivos($idProyecto,$idUsuario);

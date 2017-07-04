@@ -5,6 +5,23 @@
         </div>
     </div>
     <div class="row">
+        <?php if(!empty($errors)): ?>
+            <div class="col-lg-12">
+                <div class="row-fluid">
+                    <div class="alert alert-danger col-lg-12">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <?php foreach ($errors as $iter => $error): ?>
+                            <b>Errores en fila <?php echo $iter; ?>:</b>
+                            <ul>
+                                <?php foreach ($error as $key => $value): ?>
+                                    <li><span><b><?php echo $key; ?>:</b><?php echo $value; ?></span></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
         <div class="col-lg-12">
             <form id="uploadForm"  enctype="multipart/form-data" method="post" class="form-horizontal">
                 <fieldset>

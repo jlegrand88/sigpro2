@@ -26,6 +26,7 @@ Doctrine_Manager::getInstance()->bindComponent('GastoPais', 'doctrine');
  * @property integer $octubre
  * @property integer $noviembre
  * @property integer $diciembre
+ * @property integer $cuenta_overhead
  * @property ArchivoGastoPais $ArchivoGastoPais
  * @property Proyecto $Proyecto
  * @property TipoMovimiento $TipoMovimiento
@@ -49,6 +50,7 @@ Doctrine_Manager::getInstance()->bindComponent('GastoPais', 'doctrine');
  * @method integer          getOctubre()               Returns the current record's "octubre" value
  * @method integer          getNoviembre()             Returns the current record's "noviembre" value
  * @method integer          getDiciembre()             Returns the current record's "diciembre" value
+ * @method integer          getCuentaOverhead()        Returns the current record's "cuenta_overhead" value
  * @method ArchivoGastoPais getArchivoGastoPais()      Returns the current record's "ArchivoGastoPais" value
  * @method Proyecto         getProyecto()              Returns the current record's "Proyecto" value
  * @method TipoMovimiento   getTipoMovimiento()        Returns the current record's "TipoMovimiento" value
@@ -71,6 +73,7 @@ Doctrine_Manager::getInstance()->bindComponent('GastoPais', 'doctrine');
  * @method GastoPais        setOctubre()               Sets the current record's "octubre" value
  * @method GastoPais        setNoviembre()             Sets the current record's "noviembre" value
  * @method GastoPais        setDiciembre()             Sets the current record's "diciembre" value
+ * @method GastoPais        setCuentaOverhead()        Sets the current record's "cuenta_overhead" value
  * @method GastoPais        setArchivoGastoPais()      Sets the current record's "ArchivoGastoPais" value
  * @method GastoPais        setProyecto()              Sets the current record's "Proyecto" value
  * @method GastoPais        setTipoMovimiento()        Sets the current record's "TipoMovimiento" value
@@ -266,6 +269,16 @@ abstract class BaseGastoPais extends sfDoctrineRecord
              'notnull' => false,
              'autoincrement' => false,
              'length' => 4,
+             ));
+        $this->hasColumn('cuenta_overhead', 'integer', 1, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'default' => '0',
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 1,
              ));
     }
 

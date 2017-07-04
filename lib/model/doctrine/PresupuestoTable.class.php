@@ -66,4 +66,13 @@ class PresupuestoTable extends Doctrine_Table
 
             return $q->execute(array(), Doctrine::HYDRATE_SINGLE_SCALAR);
     }
+
+    public function countCuentaPorProyecto($idProyecto, $cuenta)
+    {
+        $q = Doctrine_Query::create()
+            ->select("count(id_presupuesto) as count")
+            ->from("Presupuesto")
+            ->where("id_proyecto = ? AND cuenta = ?",array($idProyecto, $cuenta));
+        return $q->execute(array(), Doctrine::HYDRATE_SINGLE_SCALAR);
+    }
 }

@@ -34,6 +34,7 @@ abstract class BaseGastoPaisForm extends BaseFormDoctrine
       'octubre'               => new sfWidgetFormInputText(),
       'noviembre'             => new sfWidgetFormInputText(),
       'diciembre'             => new sfWidgetFormInputText(),
+      'cuenta_overhead'       => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
@@ -56,6 +57,7 @@ abstract class BaseGastoPaisForm extends BaseFormDoctrine
       'octubre'               => new sfValidatorInteger(array('required' => false)),
       'noviembre'             => new sfValidatorInteger(array('required' => false)),
       'diciembre'             => new sfValidatorInteger(array('required' => false)),
+      'cuenta_overhead'       => new sfValidatorInteger(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('gasto_pais[%s]');

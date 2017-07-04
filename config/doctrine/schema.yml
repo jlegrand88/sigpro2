@@ -476,6 +476,14 @@ GastoPais:
       default: '0'
       notnull: false
       autoincrement: false
+    cuenta_overhead:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: false
+      autoincrement: false
   relations:
     ArchivoGastoPais:
       local: id_archivo_gasto_pais

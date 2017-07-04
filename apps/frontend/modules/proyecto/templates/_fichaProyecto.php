@@ -87,7 +87,7 @@
                             <div class='col-sm-4'>
                                 <?php
                                 echo $form['numero_contable'] ->renderLabel();
-                                echo $form['numero_contable']->render(array('class' => 'form-control input-sm','type'=>'number','readonly' => $blockAdministrativo));
+                                echo $form['numero_contable']->render(array('class' => 'form-control input-sm','readonly' => $blockAdministrativo));
                                 ?>
                             </div>
                             <div class='col-sm-4'>

@@ -106,4 +106,13 @@ class MovimientosContablesTable extends Doctrine_Table
             ->where("anho < 2016")
             ->execute();
     }
+
+    public function countCuentaPorProyecto($idProyecto, $cuenta)
+    {
+        $q = Doctrine_Query::create()
+            ->select("count(id) as count")
+            ->from("MovimientosContables")
+            ->where("proyecto = ? AND codigo_cuenta = ?",array($idProyecto, $cuenta));
+        return $q->execute(array(), Doctrine::HYDRATE_SINGLE_SCALAR);
+    }
 }
