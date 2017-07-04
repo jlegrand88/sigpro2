@@ -636,6 +636,13 @@ class proyectoActions extends sfActions
                             $gastoPais->setOctubre($data[13]);
                             $gastoPais->setNoviembre($data[14]);
                             $gastoPais->setDiciembre($data[15]);
+                            if(strtolower($data[16]) == "x" || $data[16] == "1" || strtolower($data[16]) == "s" || strtolower($data[16]) == "y" || strtolower($data[16]) == "si" ||
+                                strtolower($data[16]) == "yes" || strtolower($data[16]) == "true")
+                            {
+                                $gastoPais->setCuentaOvh(1);
+                            }else{
+                                $gastoPais->setCuentaOvh(0);
+                            }
                             $gastoPais->save();
                         }
                     }

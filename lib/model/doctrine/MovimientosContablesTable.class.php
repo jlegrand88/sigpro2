@@ -103,7 +103,7 @@ class MovimientosContablesTable extends Doctrine_Table
     {
         return Doctrine_Query::create()
             ->delete("MovimientosContables")
-            ->where("anho < 2015")
+            ->where("anho < 2016")
             ->execute();
     }
 }
