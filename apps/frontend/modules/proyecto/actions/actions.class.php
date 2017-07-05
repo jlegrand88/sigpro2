@@ -529,22 +529,23 @@ class proyectoActions extends sfActions
         $usuario = UsuarioTable::getInstance()->find($idUsuario);
         $this->accionUsuario = $idPerfilReporte = $usuario->getIdPerfilReporte();
         $this->pais = $pais =$usuario->getIdPais();
-        switch ($idPerfilReporte)
-        {
-            case 5://OFICINA PAIS
-                $this->listaTotalProyectos = RptGeneralProyectoTable::getInstance()->getListadoProyectosValoresPais($pais);
-                break;
-            case 7://RESPONSABLE
-                $this->listaTotalProyectos = RptGeneralProyectoTable::getInstance()->getListadoProyectosValoresPorResponsable($idUsuario);
-                break;
-            case 8://GRUPO
-                $this->grupo = $usuario->getGrupoProyecto();
-                $this->listaTotalProyectos = RptGeneralProyectoTable::getInstance()->getListadoProyectosValoresPorGrupo($this->grupo);
-                break;
-            default://6 o 9
-                $this->listaTotalProyectos = RptGeneralProyectoTable::getInstance()->getListadoProyectosValores();
-                break;
-        }
+//        switch ($idPerfilReporte)
+//        {
+//            case 5://OFICINA PAIS
+//                $this->listaTotalProyectos = RptGeneralProyectoTable::getInstance()->getListadoProyectosValoresPais($pais);
+//                break;
+//            case 7://RESPONSABLE
+//                $this->listaTotalProyectos = RptGeneralProyectoTable::getInstance()->getListadoProyectosValoresPorResponsable($idUsuario);
+//                break;
+//            case 8://GRUPO
+//                $this->grupo = $usuario->getGrupoProyecto();
+//                $this->listaTotalProyectos = RptGeneralProyectoTable::getInstance()->getListadoProyectosValoresPorGrupo($this->grupo);
+//                break;
+//            default://6 o 9
+//                $this->listaTotalProyectos = RptGeneralProyectoTable::getInstance()->getListadoProyectosValores();
+//                break;
+//        }
+        $this->listaTotalProyectos = RptGeneralProyectoTable::getInstance()->getListadoProyectosValores();
     }
 
     public function executeReporteInformeDetalle(sfWebRequest $request)
