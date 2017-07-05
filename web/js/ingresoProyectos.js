@@ -54,6 +54,7 @@ $( document ).ready(function()
         $('#proyecto_fecha_termino').attr("data-after",minDate);
         $('#proyecto_fecha_avance_inf').attr("data-after",minDate);
         $('#proyecto_fecha_fin_inf').attr("data-after",minDate);
+        $('#proyecto_fecha_firma_contrato').attr("data-after",minDate);
         var resta = restaFechas($('#proyecto_fecha_inicio').val(),$('#proyecto_fecha_termino').val());
         $('#proyecto_duracion_proyecto').val(resta);
     });
@@ -62,6 +63,7 @@ $( document ).ready(function()
         $('#proyecto_fecha_inicio').attr("data-before",e.target.value);
         $('#proyecto_fecha_avance_inf').attr("data-before", e.target.value);
         $('#proyecto_fecha_fin_inf').attr("data-before", e.target.value);
+        $('#proyecto_fecha_firma_contrato').attr("data-before", e.target.value);
         var resta = restaFechas($('#proyecto_fecha_inicio').val(),$('#proyecto_fecha_termino').val());
         $('#proyecto_duracion_proyecto').val(resta);
     });
