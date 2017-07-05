@@ -1,5 +1,5 @@
-$( document ).ready(function(){
-
+$( document ).ready(function()
+{
     $('.select2').select2({
         placeholder: "Seleccione"
     });
@@ -10,28 +10,21 @@ $( document ).ready(function(){
         format: "YYYY"
     });
 
-    if($('#fecha_avance_inf2').val() !== '')
+    var minDate = sumarDia($("#proyecto_fecha_inicio").val());
+    if(minDate)
     {
-        $('#fecha_avance_inf2').removeAttr("readonly");
+        $('#proyecto_fecha_termino').attr("data-after",minDate);
+        $('#proyecto_fecha_avance_inf').attr("data-after",minDate);
+        $('#proyecto_fecha_fin_inf').attr("data-after",minDate);
     }
 
-    // $("Document").ready( function (e)
-    // {
-        var minDate = sumarDia($("#proyecto_fecha_inicio").val());
-        if(minDate)
-        {
-            $('#proyecto_fecha_termino').attr("data-after",minDate);
-            $('#proyecto_fecha_avance_inf').attr("data-after",minDate);
-            $('#proyecto_fecha_fin_inf').attr("data-after",minDate);
-        }
-
-        var maxDate = $("#proyecto_fecha_termino").val();
-        if(maxDate)
-        {
-            $('#proyecto_fecha_inicio').attr("data-before", maxDate);
-            $('#proyecto_fecha_termino').attr("data-before", maxDate);
-            $('#proyecto_fecha_avance_inf').attr("data-before", maxDate);
-        }
+    var maxDate = $("#proyecto_fecha_termino").val();
+    if(maxDate)
+    {
+        $('#proyecto_fecha_inicio').attr("data-before", maxDate);
+        $('#proyecto_fecha_avance_inf').attr("data-before", maxDate);
+        $('#proyecto_fecha_fin_inf').attr("data-before", maxDate);
+    }
         // var resta = restaFechas($('#proyecto_fecha_inicio').val(),$('#proyecto_fecha_termino').val());
         // $('#proyecto_duracion_proyecto').val(resta);
     // });
@@ -67,26 +60,10 @@ $( document ).ready(function(){
 
     $("#proyecto_fecha_termino").on("change", function (e) {
         $('#proyecto_fecha_inicio').attr("data-before",e.target.value);
+        $('#proyecto_fecha_avance_inf').attr("data-before", e.target.value);
+        $('#proyecto_fecha_fin_inf').attr("data-before", e.target.value);
         var resta = restaFechas($('#proyecto_fecha_inicio').val(),$('#proyecto_fecha_termino').val());
         $('#proyecto_duracion_proyecto').val(resta);
-    });
-
-
-    $("#proyecto_fecha_avance_inf").on("change", function (e) {
-        $('#fecha_avance_inf2').removeAttr("readonly");
-        var minDate = e.target.value;
-        $('#proyecto_fecha_fin_inf').attr("data-after",minDate);
-    });
-
-    $("#proyecto_fecha_fin_inf").on("change", function (e) {
-        // var fechaFinInf = moment(e.target.value,'DD-MM-YYYY');
-        // var fechaTermino = moment($('#proyecto_fecha_termino').val(),'DD-MM-YYYY');
-        // if(fechaFinInf.isBefore(fechaTermino))
-        // {
-        //     $('#proyecto_fecha_inicio').attr("data-before",e.target.value);
-        //     $('#proyecto_fecha_termino').attr("data-before",e.target.value);
-        // }
-        $('#proyecto_fecha_avance_inf').attr("data-before",e.target.value);
     });
 
 // FIN CONTROL DE EVENTOS FECHAS
