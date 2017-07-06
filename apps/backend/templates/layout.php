@@ -12,7 +12,7 @@
         <div id="container">
             <div id="header">
                 <h1>
-                    <a href="<?php echo $sf_request->getUriPrefix().$sf_request->getRelativeUrlRoot().DIRECTORY_SEPARATOR.'index.php'.DIRECTORY_SEPARATOR.'bandejaEntrada'; ?>">
+                    <a href="<?php echo $sf_request->getUriPrefix().$sf_request->getRelativeUrlRoot().DIRECTORY_SEPARATOR.'index.php'.DIRECTORY_SEPARATOR.'usuario'.DIRECTORY_SEPARATOR.'bandejaEntrada'; ?>">
                         <img src="/legacy/images/logo.jpg" alt="Sigpro" />
                     </a>
                 </h1>
