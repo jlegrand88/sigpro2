@@ -137,7 +137,7 @@
 <!--                                    </li>-->
 <!--                                </ul>-->
 <!--                            </li>-->
-                            <?php if($sf_user->getAttribute('perfil') == Perfil::CONTADOR): ?>
+                            <?php if($sf_user->getAttribute('perfil') == Perfil::ADMINISTRADOR): ?>
                                 <li>
                                     <a id='linkAdministracion' href="<?php echo $sf_request->getUriPrefix().$sf_request->getRelativeUrlRoot().DIRECTORY_SEPARATOR.'backend.php'; ?>"><i class="fa fa-wrench fa-fw"></i>Administración</a>
                                 </li>
