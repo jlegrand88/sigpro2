@@ -12,6 +12,16 @@
  */
 class Perfil extends BasePerfil
 {
+    const ADMINISTRADOR = 1;
+    const CONTADOR = 2;
+    const CREADOR_FICHA = 3;
+    const APROBADOR_FICHA = 4;
+    const OFICINA = 5;
+    const VISUALIZADOR = 6;
+    const RESPONSABLE = 7;
+    const GRUPO = 8;
+    const GENERAL = 9;
+
     public function __toString()
     {
         return $this->getDescripcion();
