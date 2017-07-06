@@ -61,8 +61,8 @@ class GastoPais extends BaseGastoPais
                 }
                 //tipo_movimiento
                 if(isset($idTipoMovimiento)) {
-                    if ($idTipoMovimiento != TipoMovimiento::INGRESO && $idTipoMovimiento != TipoMovimiento::EGRESO) {
-                        $errores[$row]['tipo_movimiento'] = 'Valor no admitido. Los valores admitidos son "1" para ingreso y "2" para egreso.';
+                    if ($idTipoMovimiento != TipoMovimiento::INGRESO && $idTipoMovimiento != TipoMovimiento::EGRESO && $idTipoMovimiento != TipoMovimiento::COMPROMISO) {
+                        $errores[$row]['tipo_movimiento'] = 'Valor no admitido. Los valores admitidos son "1" para ingreso, "2" para egreso y "3" para compromiso.';
                     }
                 }else{
                     $errores[$row]['tipo_movimiento'] = "Valor obligatorio.";

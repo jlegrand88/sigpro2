@@ -40,7 +40,7 @@ rpt_general_proyecto:
     model:                RptGeneralProyecto
     module:               rpt_general_proyecto
     prefix_path:          /rpt_general_proyecto
-    column:               Array
+    column:               id
     with_wildcard_routes: true
 
 proyecto_respaldo:
@@ -58,7 +58,7 @@ proyecto_grupo:
     model:                ProyectoGrupo
     module:               proyecto_grupo
     prefix_path:          /proyecto_grupo
-    column:               Array
+    column:               false
     with_wildcard_routes: true
 
 proyecto_ambito:
@@ -112,7 +112,7 @@ perfil_accion:
     model:                PerfilAccion
     module:               perfil_accion
     prefix_path:          /perfil_accion
-    column:               Array
+    column:               id_perfil
     with_wildcard_routes: true
 
 perfil:
@@ -184,7 +184,7 @@ informe_proyecto:
     model:                InformeProyecto
     module:               informe_proyecto
     prefix_path:          /informe_proyecto
-    column:               Array
+    column:               id_informe_proyecto
     with_wildcard_routes: true
 
 inbox:

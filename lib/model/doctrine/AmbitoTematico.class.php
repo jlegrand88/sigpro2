@@ -12,5 +12,9 @@
  */
 class AmbitoTematico extends BaseAmbitoTematico
 {
+    public function __toString()
+    {
+        return $this->getDescripcion();
+    }
 
 }

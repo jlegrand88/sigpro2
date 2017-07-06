@@ -16,6 +16,7 @@ $( document ).ready(function()
         $('#proyecto_fecha_termino').attr("data-after",minDate);
         $('#proyecto_fecha_avance_inf').attr("data-after",minDate);
         $('#proyecto_fecha_fin_inf').attr("data-after",minDate);
+        $('#proyecto_fecha_firma_contrato').attr("data-after",minDate);
     }
 
     var maxDate = $("#proyecto_fecha_termino").val();
@@ -24,6 +25,7 @@ $( document ).ready(function()
         $('#proyecto_fecha_inicio').attr("data-before", maxDate);
         $('#proyecto_fecha_avance_inf').attr("data-before", maxDate);
         $('#proyecto_fecha_fin_inf').attr("data-before", maxDate);
+        $('#proyecto_fecha_firma_contrato').attr("data-before", maxDate);
     }
         // var resta = restaFechas($('#proyecto_fecha_inicio').val(),$('#proyecto_fecha_termino').val());
         // $('#proyecto_duracion_proyecto').val(resta);

@@ -14,7 +14,8 @@ class TipoMovimiento extends BaseTipoMovimiento
 {
     const INGRESO = 1;
     const EGRESO = 2;
-    
+    const COMPROMISO = 3;
+
     public function __toString()
     {
         return $this->getDescripcion();

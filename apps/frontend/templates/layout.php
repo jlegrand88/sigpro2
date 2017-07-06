@@ -138,7 +138,8 @@
 <!--                                </ul>-->
 <!--                            </li>-->
                             <li>
-                                <a id='linkAdministracion' href="<?php echo sfConfig::get('app_url_backend'); ?>"><i class="fa fa-wrench fa-fw"></i>Administración</a>
+<!--                                <a id='linkAdministracion' href="--><?php //echo sfConfig::get('app_url_backend'); ?><!--"><i class="fa fa-wrench fa-fw"></i>Administración</a>-->
+                                <a id='linkAdministracion' href="<?php echo $sf_request->getUriPrefix().$sf_request->getRelativeUrlRoot().DIRECTORY_SEPARATOR.'backend.php'; ?>"><i class="fa fa-wrench fa-fw"></i>Administración</a>
                             </li>
                         </ul>
                     </div>

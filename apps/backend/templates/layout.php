@@ -12,7 +12,7 @@
         <div id="container">
             <div id="header">
                 <h1>
-                    <a href="<?php echo sfConfig::get('app_url_frontend'); ?>">
+                    <a href="<?php echo $sf_request->getUriPrefix().$sf_request->getRelativeUrlRoot().DIRECTORY_SEPARATOR.'index.php'; ?>">
                         <img src="/legacy/images/logo.jpg" alt="Sigpro" />
                     </a>
                 </h1>
@@ -24,15 +24,15 @@
                     <li><?php echo link_to('Tipo Movimiento', 'tipo_movimiento'); ?></li>
                     <li><?php echo link_to('Tipo Control Proyecto', 'tipo_control_proyecto'); ?></li>
                     <li><?php echo link_to('Territorio', 'territorio'); ?></li>
-<!--                    <li>--><?php //echo link_to('Reporte General Proyecto', 'rpt_general_proyecto'); ?><!--</li>-->
+                    <li><?php echo link_to('Reporte General Proyecto', 'rpt_general_proyecto'); ?></li>
                     <li><?php echo link_to('Proyecto Respaldo', 'proyecto_respaldo'); ?></li>
-<!--                    <li>--><?php //echo link_to('proyecto_grupo', 'proyecto_grupo'); ?><!--</li>-->
+                    <li><?php echo link_to('proyecto_grupo', 'proyecto_grupo'); ?></li>
                     <li><?php echo link_to('proyecto_ambito', 'proyecto_ambito'); ?></li>
                     <li><?php echo link_to('proyecto', 'proyecto'); ?></li>
                     <li><?php echo link_to('proveedor', 'proveedor'); ?></li>
                     <li><?php echo link_to('presupuesto_respaldo', 'presupuesto_respaldo'); ?></li>
                     <li><?php echo link_to('presupuesto', 'presupuesto'); ?></li>
-<!--                    <li>--><?php //echo link_to('perfil_accion', 'perfil_accion'); ?><!--</li>-->
+                    <li><?php echo link_to('perfil_accion', 'perfil_accion'); ?></li>
                     <li><?php echo link_to('perfil', 'perfil'); ?></li>
                     <li><?php echo link_to('parametro', 'parametro'); ?></li>
                     <li><?php echo link_to('pais_territorio', 'pais_territorio'); ?></li>
@@ -40,7 +40,7 @@
                     <li><?php echo link_to('orden_pago', 'orden_pago'); ?></li>
                     <li><?php echo link_to('movimientos_contables', 'movimientos_contables'); ?></li>
                     <li><?php echo link_to('moneda', 'moneda'); ?></li>
-<!--                    <li>--><?php //echo link_to('informe_proyecto', 'informe_proyecto'); ?><!--</li>-->
+                    <li><?php echo link_to('informe_proyecto', 'informe_proyecto'); ?></li>
                     <li><?php echo link_to('inbox', 'inbox'); ?></li>
                     <li><?php echo link_to('grupo_proyecto', 'grupo_proyecto'); ?></li>
                     <li><?php echo link_to('grupo', 'grupo'); ?></li>

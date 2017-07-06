@@ -12,6 +12,11 @@
  */
 class Proyecto extends BaseProyecto
 {
+    public function __toString()
+    {
+        return $this->getNumeroContable()." - ".$this->getSiglaContable();
+    }
+
     public function saveRespaldo()
     {
         $idProyecto = $this->getIdProyecto();

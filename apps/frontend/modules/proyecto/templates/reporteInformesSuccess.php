@@ -97,7 +97,7 @@
 			language : spanish,
 			searching: true,
 			paging: false,
-			order: false,
+			order: [[ 0, 'desc' ]],
 			scrollX : true,
             scrollY:     640,
 			fixedColumns: true,

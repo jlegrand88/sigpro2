@@ -18,4 +18,9 @@ class Accion extends BaseAccion
     const MANTENER = 3;
     const OFICINA = 5;
     const VISUALIZAR = 6;
+
+    public function __toString()
+    {
+        return $this->getNombre();
+    }
 }

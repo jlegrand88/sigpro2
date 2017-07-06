@@ -83,9 +83,35 @@ class MovimientosContablesTable extends Doctrine_Table
 
     public static function getReporteDetalleCuentas($numContable)
     {
-        $query = "SELECT codigo_cuenta, nombre_cuenta, numero_comprobante, DATE_FORMAT(fecha, '%d-%m-%Y') fecha, mes, anho, glosa, Dolares, Pesos 
-			             from movimientos_contables WHERE SUBSTRING(codigo_cuenta,5,3)=$numContable 
-						 ORDER BY codigo_cuenta ASC,anho ASC,  mes ASC, fecha ASC";
+        $query = "
+                  SELECT 
+				    gp.cuenta AS codigo_cuenta, 
+				    CONCAT(gp.nombre_cuenta,' ','(Gastos Otros Paises)') nombre_cuenta,
+				    '' numero_comprobante,
+				    '' fecha,
+				    '' mes, 
+				    gp.periodo AS anho, 
+				    '' glosa, 
+				    0 Dolares, 
+				    IFNULL(gp.enero + gp.febrero + gp.marzo + gp.abril + gp.mayo + gp.junio + gp.julio + gp.agosto + gp.septiembre + gp.octubre 
+                    + gp.noviembre + gp.diciembre,0) AS Pesos 
+                  FROM gasto_pais gp INNER JOIN proyecto pro ON gp.id_proyecto = pro.id_proyecto AND pro.numero_contable = $numContable 
+                  
+				  UNION ALL
+				  
+				  SELECT 
+                      codigo_cuenta, 
+                      nombre_cuenta, 
+                      numero_comprobante, 
+                      DATE_FORMAT(fecha, '%d-%m-%Y') fecha, 
+                      mes, 
+                      anho, 
+                      glosa, 
+                      Dolares, 
+                      Pesos 
+                  FROM movimientos_contables WHERE SUBSTRING(codigo_cuenta,5,3)=$numContable 
+                  ORDER BY codigo_cuenta ASC,anho ASC,  mes ASC, fecha ASC";
+
         $con = Doctrine_Manager::getInstance()->getConnection('doctrine');
         $response = $con->fetchAssoc($query);
         return $response;

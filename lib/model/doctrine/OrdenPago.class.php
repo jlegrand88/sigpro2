@@ -16,4 +16,9 @@ class OrdenPago extends BaseOrdenPago
     {
         return ProyectoTable::getListaProyectosOrdenPago();
     }
+
+    public function __toString()
+    {
+        return $this->getIdOrdenPago();
+    }
 }

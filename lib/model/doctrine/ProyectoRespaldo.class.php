@@ -12,5 +12,8 @@
  */
 class ProyectoRespaldo extends BaseProyectoRespaldo
 {
-
+    public function __toString()
+    {
+        return $this->getNumeroContable()." - ".$this->getSiglaContable();
+    }
 }
