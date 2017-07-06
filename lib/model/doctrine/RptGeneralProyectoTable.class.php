@@ -38,6 +38,7 @@ class RptGeneralProyectoTable extends Doctrine_Table
 					 DATE_FORMAT(fec_inicio_proy, '%d-%m-%Y') fec_inicio_proy, DATE_FORMAT(fec_termino_proy, '%d-%m-%Y') fec_termino_proy, moneda, pais, ppto_ovh, gasto_ovhpesos, gasto_ovhus,
                      fec_inicio_proy fec_inicio_proy_ord, fec_termino_proy fec_termino_proy_ord					 
 					 from rpt_general_proyecto order by numcontable DESC";
+        die($query);
         $con = Doctrine_Manager::getInstance()->getConnection('doctrine');
         $response = $con->fetchAssoc($query);
         return $response;
