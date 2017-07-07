@@ -65,15 +65,15 @@
                                         </td>
         <!--                                PRESUPUESTO-->
                                         <td align=right>
-                                            <?php echo number_format($formDetalleOrdenPago['presupuesto']->getValue(), 2, ',', '.');?>
+                                            <?php echo number_format($formDetalleOrdenPago['presupuesto']->getValue(), 2);?>
                                         </td>
         <!--                                EJECUCION-->
                                         <td align=right>
-                                            <?php echo number_format($formDetalleOrdenPago['ejecucion']->getValue(), 2, ',', '.'); ?>
+                                            <?php echo number_format($formDetalleOrdenPago['ejecucion']->getValue(), 2); ?>
                                         </td>
         <!--                                SALDO EFECTIVO-->
                                         <td align=right>
-                                            <?php echo number_format($formDetalleOrdenPago['saldo_efectivo']->getValue(), 2, ',', '.');?>
+                                            <?php echo number_format($formDetalleOrdenPago['saldo_efectivo']->getValue(), 2);?>
                                         </td>
         <!--                                MONTO DOCUMENTO-->
                                         <td align=right>
@@ -91,8 +91,8 @@
                                 <tr>
                                     <td>TOTAL GASTOS</td>
                                     <td align=right></td>
-                                    <td align=right><?php echo number_format($sumppto,2,',','.')?></td>
-                                    <td align=right><?php echo number_format($sumejec,2,',','.')?></td>
+                                    <td align=right><?php echo number_format($sumppto,2)?></td>
+                                    <td align=right><?php echo number_format($sumejec,2)?></td>
                                     <td align=right></td>
                                     <td align=right></td>
                                 </tr>
