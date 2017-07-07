@@ -131,13 +131,73 @@ class GastoPais extends BaseGastoPais
                     $errores[$row]['diciembre'] = "Solo se permiten valores numericos.";
                 }
 
-                if(strtolower($data[16]) !== "x" && $data[16] !== "1" && strtolower($data[16]) !== "s" && strtolower($data[16]) !== "y" && strtolower($data[16]) !== "si"
-                    && strtolower($data[16]) !== "yes" && strtolower($data[16]) !== "true" && strtolower($data[16]) !== "")
+                if(strtolower($data[16]) !== "")
                 {
-                   $errores[$row]['cuenta_ovh'] = 'Valor no admitido. Para ingresar registro como cuenta overhead los valores permitodos son "x", "1", "y", "s", "yes", "si" o "true". Para un registro de una cuenta que no es overhead solo dejar en blanco.';
+                    if($idTipoMovimiento != TipoMovimiento::EGRESO )
+                    {
+                        $errores[$row]['tipo_movimiento'] = 'Para Cuentas Over Head el unico valor valido es "2" que corresponde a egresos.';
+                    }
+                    if(strtolower($data[16]) !== "x" && $data[16] !== "1" && strtolower($data[16]) !== "s" && strtolower($data[16]) !== "y" && strtolower($data[16]) !== "si"
+                        && strtolower($data[16]) !== "yes" && strtolower($data[16]) !== "true")
+                    {
+                       $errores[$row]['cuenta_ovh'] = 'Valor no admitido. Para ingresar registro como cuenta overhead los valores permitodos son "x", "1", "y", "s", "yes", "si" o "true". Para un registro de una cuenta que no es overhead solo dejar en blanco.';
+                    }
                 }
             }
         }
         return $errores;
+    }
+    
+    public function getSumaMontosMeses()
+    {
+        $sumatoria = $this->getEnero() + $this->getFebrero() + $this->getMarzo() + $this->getAbril() + $this->getMayo() + $this->getJunio() + $this->getJulio() + 
+            $this->getAgosto() + $this->getSeptiembre() + $this->getOctubre() + $this->getNoviembre() + $this->getDiciembre();
+        return $sumatoria;
+    }
+    
+    public function sumarValoresAReporteGeneral()
+    {
+        $reporteGeneralProyecto = RptGeneralProyectoTable::getInstance()->findOneByIdProyecto($this->getIdProyecto());
+        $sumaMontosGP = $this->getSumaMontosMeses();
+        if($this->getIdTipoMovimiento() == TipoMovimiento::INGRESO)
+        {
+            $reporteGeneralProyecto->setIngReales($reporteGeneralProyecto->getIngReales() + $sumaMontosGP);
+        }
+        elseif($this->getIdTipoMovimiento() == TipoMovimiento::EGRESO)
+        {
+            $reporteGeneralProyecto->setGasReales($reporteGeneralProyecto->getGasReales() + $sumaMontosGP);
+            if($this->getCuentaOverhead())
+            {
+                $reporteGeneralProyecto->setGastoOvhpesos($reporteGeneralProyecto->getGastoOvhpesos() + $sumaMontosGP);
+            }
+        }
+        elseif ($this->getIdTipoMovimiento() == TipoMovimiento::COMPROMISO)
+        {
+            $reporteGeneralProyecto->setCompromisos($reporteGeneralProyecto->getCompromisos() + $sumaMontosGP);
+        }
+        $reporteGeneralProyecto->save();
+    }
+    
+    public function restarValoresAReporteGeneral()
+    {
+        $reporteGeneralProyecto = RptGeneralProyectoTable::getInstance()->findOneByIdProyecto($this->getIdProyecto());
+        $sumaMontosGP = $this->getSumaMontosMeses();
+        if($this->getIdTipoMovimiento() == TipoMovimiento::INGRESO)
+        {
+            $reporteGeneralProyecto->setIngReales($reporteGeneralProyecto->getIngReales() - $sumaMontosGP);
+        }
+        elseif($this->getIdTipoMovimiento() == TipoMovimiento::EGRESO)
+        {
+            $reporteGeneralProyecto->setGasReales($reporteGeneralProyecto->getGasReales() - $sumaMontosGP);
+            if($this->getCuentaOverhead())
+            {
+                $reporteGeneralProyecto->setGastoOvhpesos($reporteGeneralProyecto->getGastoOvhpesos() - $sumaMontosGP);
+            }
+        }
+        elseif ($this->getIdTipoMovimiento() == TipoMovimiento::COMPROMISO)
+        {
+            $reporteGeneralProyecto->setCompromisos($reporteGeneralProyecto->getCompromisos() - $sumaMontosGP);
+        }
+        $reporteGeneralProyecto->save();
     }
 }

@@ -76,6 +76,7 @@ class RptGeneralProyectoTable extends Doctrine_Table
             ->delete("RptGeneralProyecto")
             ->execute();
     }
+
     public function poblarReporteGeneralProyecto()
     {
         set_time_limit(0);
@@ -133,7 +134,7 @@ class RptGeneralProyectoTable extends Doctrine_Table
                     IFNULL((
                       SELECT sum(gp.enero + gp.febrero + gp.marzo + gp.abril + gp.mayo + gp.junio + gp.julio + gp.agosto + gp.septiembre + gp.octubre + gp.noviembre + gp.diciembre)
                       FROM gasto_pais gp
-                      WHERE gp.id_proyecto = proy.id_proyecto AND gp.cuenta_overhead = 1
+                      WHERE gp.id_proyecto = proy.id_proyecto AND gp.cuenta_overhead = 1 AND gp.id_tipo_movimiento = 2 
                       AND gp.cuenta
                       IN
                       (
