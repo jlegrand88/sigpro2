@@ -650,6 +650,8 @@ class proyectoActions extends sfActions
                                     $gastoPais->setCuentaOverhead(0);
                                 }
                                 $gastoPais->save();
+//                                $query = "IFNULL(( SELECT SUM((gp.enero + gp.febrero + gp.marzo + gp.abril + gp.mayo + gp.junio + gp.julio + gp.agosto + gp.septiembre + gp.octubre
+//                                   + gp.noviembre + gp.diciembre)) FROM gasto_pais gp WHERE gp.id_proyecto = $idProyecto AND gp.id_tipo_movimiento = ".$gastoPais->getIdTipoMovimiento()." ),0)";
                             }
                         }
                         move_uploaded_file($tmpName, $rutaDestinoFinal);

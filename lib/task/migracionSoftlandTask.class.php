@@ -118,5 +118,9 @@ EOF;
             }
         }
         $this->logSection("migracionSoftlandTask", "Ha concluido la tarea de migracion.");
+        $this->logSection("migracionSoftlandTask", "Actualizando Reporte General Proyecto...");
+        $reporte = new RptGeneralProyecto();
+        $insertsReporte = $reporte->poblarReporteGeneralProyecto();
+        $this->logSection("migracionSoftlandTask", "$insertsReporte registros insertados en Reporte General Proyecto.");
     }
 }

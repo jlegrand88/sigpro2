@@ -12,5 +12,9 @@
  */
 class RptGeneralProyecto extends BaseRptGeneralProyecto
 {
+    public static function poblarReporteGeneralProyecto()
+    {
+        return RptGeneralProyectoTable::getInstance()->poblarReporteGeneralProyecto();
+    }
 
 }
