@@ -13,14 +13,14 @@ abstract class BaseProveedorFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'rut_proveedor' => new sfWidgetFormFilterInput(),
+      'rut_proveedor' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Proyecto'), 'add_empty' => true)),
       'razon_social'  => new sfWidgetFormFilterInput(),
       'telefono'      => new sfWidgetFormFilterInput(),
       'email'         => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
-      'rut_proveedor' => new sfValidatorPass(array('required' => false)),
+      'rut_proveedor' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Proyecto'), 'column' => 'id_proyecto')),
       'razon_social'  => new sfValidatorPass(array('required' => false)),
       'telefono'      => new sfValidatorPass(array('required' => false)),
       'email'         => new sfValidatorPass(array('required' => false)),
@@ -44,7 +44,7 @@ abstract class BaseProveedorFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id_proveedor'  => 'Number',
-      'rut_proveedor' => 'Text',
+      'rut_proveedor' => 'ForeignKey',
       'razon_social'  => 'Text',
       'telefono'      => 'Text',
       'email'         => 'Text',

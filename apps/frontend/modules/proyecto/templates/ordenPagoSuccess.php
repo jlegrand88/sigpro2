@@ -3,7 +3,7 @@
     <li class="active">
         <a href="#ordenPago" data-toggle="tab">Orden de Pago</a>
     </li>
-    <li <?php echo (isset($ordenCompra) ? "" : "class='disabled'")?> >
+    <li <?php echo (isset($ordenCompra) ? "" : "class='disabled'"); ?> >
         <a href="#despachar"  data-toggle="tab">Despachar</a>
     </li>
 </ul>
@@ -29,6 +29,15 @@
                                 </option>
                             <?php endforeach; ?>
                         </select>
+                    </div>
+                    <div class="container col-sm-3">
+                        <div class="alert alert-info" id="container_moneda_proyecto" hidden>
+                        </div>
+                    </div>
+                    <div class="container col-sm-3">
+                        <?php if( isset($ordenPago) ): ?>
+                            <?php echo link_to("Descargar ODP", url_for('proyecto/descargarODP'),array('id' => 'link_descargar_odp','query_string' => 'id='.$ordenPago->getIdOrdenPago(),'target' => '_blank','class' => 'btn btn-warning' )); ?>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <!-- ALERTAS-->
@@ -73,12 +82,19 @@
         });
         $('#despacharForm #id_proyecto').val($('#idProyecto').val());
         $('#despacharForm #id_orden_pago').val(<?php echo ($ordenPago) ? $ordenPago->getIdOrdenPago() : ""; ?>);
+        if($('#idProyecto').val())
+        {
+            $('#container_moneda_proyecto').load("<?php echo url_for('proyecto/getMonedaProyecto'); ?>",{ id_proyecto : $('#idProyecto').val() });
+            $('#container_moneda_proyecto').show();
+        }
     });
 
     
 
     $('#idProyecto').on('change',function (event) 
     {
+        $('#container_moneda_proyecto').load("<?php echo url_for('proyecto/getMonedaProyecto'); ?>",{id_proyecto:$(this).val()});
+        $('#container_moneda_proyecto').show();
         $('#containerOrdenPagoForm').html('<?php echo image_tag("gears.gif"); ?>');
         $('#containerOrdenPagoForm').load(
             "<?php echo url_for('proyecto/loadOrdenPagoForm'); ?>",

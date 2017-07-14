@@ -900,6 +900,10 @@ OrdenPago:
       local: id_orden_pago
       foreign: id_orden_pago
       type: many
+    Proveedor:
+      local: rut_proveedor
+      foreign: rut_proveedor
+      type: one
 DetalleOrdenPago:
   connection: doctrine
   tableName: detalle_orden_pago
@@ -1499,6 +1503,11 @@ Proveedor:
       primary: false
       notnull: false
       autoincrement: false
+  relations:
+    Proyecto:
+      local: rut_proveedor
+      foreign: rut_proveedor
+      type: many
 Proyecto:
   connection: doctrine
   tableName: proyecto

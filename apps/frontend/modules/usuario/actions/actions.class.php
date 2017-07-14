@@ -122,4 +122,29 @@ class usuarioActions extends sfActions
         print_r( json_encode ( $acciones ) );
         exit;
     }
+
+    public function executeCambioClave(sfWebRequest $request)
+    {
+        if($request->isMethod('post'))
+        {
+            $data = array();
+            $idUsuario = $this->getUser()->getAttribute('id');
+            $autenticar = Usuario::validarClave($idUsuario,$request->getParameter('passwordActual'));
+
+            if($autenticar)
+            {
+                $usuario = UsuarioTable::getInstance()->find($idUsuario);
+                $usuario->setPassword(md5($request->getParameter('nuevaPassword')));
+                $usuario->save();
+                $this->alerta = "Su clave de acceso ha sido modificada, favor salga del sistema.";
+                $this->tipoAlerta = 'alert alert-success';
+            }
+            else
+            {
+                $this->alerta = "hay inconsistencia en la informacion ingresada, vuelva a ingresar.";
+                $this->tipoAlerta = 'alert alert-danger';
+            }
+            $this->data = $data;
+        }
+    }
 }

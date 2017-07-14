@@ -20,6 +20,7 @@ Doctrine_Manager::getInstance()->bindComponent('OrdenPago', 'doctrine');
  * @property Usuario $Usuario
  * @property Doctrine_Collection $DetalleOrdenPago
  * @property Doctrine_Collection $ArchivoOrdenPago
+ * @property Proveedor $Proveedor
  * 
  * @method integer             getIdOrdenPago()         Returns the current record's "id_orden_pago" value
  * @method integer             getFolio()               Returns the current record's "folio" value
@@ -34,6 +35,7 @@ Doctrine_Manager::getInstance()->bindComponent('OrdenPago', 'doctrine');
  * @method Usuario             getUsuario()             Returns the current record's "Usuario" value
  * @method Doctrine_Collection getDetalleOrdenPago()    Returns the current record's "DetalleOrdenPago" collection
  * @method Doctrine_Collection getArchivoOrdenPago()    Returns the current record's "ArchivoOrdenPago" collection
+ * @method Proveedor           getProveedor()           Returns the current record's "Proveedor" value
  * @method OrdenPago           setIdOrdenPago()         Sets the current record's "id_orden_pago" value
  * @method OrdenPago           setFolio()               Sets the current record's "folio" value
  * @method OrdenPago           setIdMoneda()            Sets the current record's "id_moneda" value
@@ -47,6 +49,7 @@ Doctrine_Manager::getInstance()->bindComponent('OrdenPago', 'doctrine');
  * @method OrdenPago           setUsuario()             Sets the current record's "Usuario" value
  * @method OrdenPago           setDetalleOrdenPago()    Sets the current record's "DetalleOrdenPago" collection
  * @method OrdenPago           setArchivoOrdenPago()    Sets the current record's "ArchivoOrdenPago" collection
+ * @method OrdenPago           setProveedor()           Sets the current record's "Proveedor" value
  * 
  * @package    sigpro
  * @subpackage model
@@ -158,5 +161,9 @@ abstract class BaseOrdenPago extends sfDoctrineRecord
         $this->hasMany('ArchivoOrdenPago', array(
              'local' => 'id_orden_pago',
              'foreign' => 'id_orden_pago'));
+
+        $this->hasOne('Proveedor', array(
+             'local' => 'rut_proveedor',
+             'foreign' => 'rut_proveedor'));
     }
 }

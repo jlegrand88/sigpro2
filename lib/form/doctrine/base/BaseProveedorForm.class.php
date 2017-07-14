@@ -16,7 +16,7 @@ abstract class BaseProveedorForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id_proveedor'  => new sfWidgetFormInputHidden(),
-      'rut_proveedor' => new sfWidgetFormInputText(),
+      'rut_proveedor' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Proyecto'), 'add_empty' => true)),
       'razon_social'  => new sfWidgetFormInputText(),
       'telefono'      => new sfWidgetFormInputText(),
       'email'         => new sfWidgetFormInputText(),
@@ -24,7 +24,7 @@ abstract class BaseProveedorForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id_proveedor'  => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id_proveedor')), 'empty_value' => $this->getObject()->get('id_proveedor'), 'required' => false)),
-      'rut_proveedor' => new sfValidatorString(array('max_length' => 45, 'required' => false)),
+      'rut_proveedor' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Proyecto'), 'required' => false)),
       'razon_social'  => new sfValidatorString(array('max_length' => 45, 'required' => false)),
       'telefono'      => new sfValidatorString(array('max_length' => 45, 'required' => false)),
       'email'         => new sfValidatorString(array('max_length' => 255, 'required' => false)),

@@ -12,6 +12,11 @@
  */
 class Proveedor extends BaseProveedor
 {
+    public function __toString()
+    {
+        return $this->getRazonSocial();
+    }
+
     public function getListaProveedores()
     {
         return ProveedorTable::getInstance()->getListaProveedores();

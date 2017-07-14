@@ -701,4 +701,105 @@ class proyectoActions extends sfActions
         $archivo->delete();
         exit;
     }
+
+    public function executeGetMonedaProyecto(sfWebRequest $request)
+    {
+        $proyecto = ProyectoTable::getInstance()->find($request->getParameter('id_proyecto'));
+        echo '<b>MONEDA DE PROYECTO:</b> '.$proyecto->getMoneda();
+        exit;
+    }
+    
+    public function executeDescargarODP(sfWebRequest $request)
+    {
+        sfConfig::set('sf_web_debug', false);
+        ob_start();
+        $config = sfTCPDFPluginConfigHandler::loadConfig();
+        $ordenDePago = OrdenPagoTable::getInstance()->find($request->getParameter('id'));
+        $pdf = new sfTCPDF();
+
+        // set document information
+        $pdf->SetCreator(PDF_CREATOR);
+        $pdf->SetAuthor('SIGPRO');
+        $pdf->SetTitle('ORDEN DE PAGO');
+//        $pdf->SetSubject('TCPDF Tutorial');
+        $pdf->SetKeywords('TCPDF, PDF, sigpro, orden de pago');
+
+        // set default header data
+//        $pdf->SetHeaderData('rimisp_logo.png', '', '', '');
+
+
+        // set header and footer fonts
+        $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+        $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+        // set default monospaced font
+        $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+        //set margins
+        $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+        $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+        $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+        //set auto page breaks
+        $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+        //set image scale factor
+        $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+        // ---------------------------------------------------------
+
+        // set default font subsetting mode
+        $pdf->setFontSubsetting(true);
+
+        // Set font
+        // dejavusans is a UTF-8 Unicode font, if you only need to
+        // print standard ASCII chars, you can use core fonts like
+        // helvetica or times to reduce file size.
+        $pdf->SetFont('Helvetica', '', 14, '', true);
+        $pdf->setPrintHeader(false);
+
+        // Add a page
+        // This method has several options, check the source code documentation for more information.
+        $pdf->AddPage();
+
+        $html = $this->getPartial('pdfODP',array('ODP' => $ordenDePago));
+//        die($html);
+
+        // Print text using writeHTMLCell()
+        $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
+        // ---------------------------------------------------------
+
+        // Close and output PDF document
+        // This method has several options, check the source code documentation for more information.
+        $docName = 'orden_de_pago_'.$ordenDePago->getIdOrdenPago().'.pdf';
+        ob_end_clean();
+        $pdf->Output($docName, 'D');
+
+        // Stop symfony process
+        throw new sfStopException();
+
+//        $pdf->SetCreator(PDF_CREATOR);
+//        $pdf->SetAuthor('SIGPRO');
+//        $pdf->SetTitle('ORDEN DE PAGO');
+//        $pdf->SetHeaderData('rimisp-logo_270_180.png', PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 001', PDF_HEADER_STRING);
+//        $pdf->setPrintHeader(false);
+//        $pdf->setPrintFooter(false);
+//        $pdf->SetMargins(20, 20, 20, false);
+//        $pdf->SetAutoPageBreak(true, 20);
+//        $pdf->SetFont('Helvetica', '', 10);
+//
+//        $pdf->addPage();
+//        $html = $this->getPartial('pdfODP',array('ODP' => $ordenDePago));
+////        die($html);
+//        $pdf->writeHTML($html, true, 0, true, 0);
+//        $pdf->lastPage();
+//
+//        $docName = 'orden_de_pago_'.$ordenDePago->getIdOrdenPago().'.pdf';
+//        $pdf->output($docName, 'I');
+//        ob_end_clean();
+//        $pdf->Output($docName, 'I');
+//
+//        throw new sfStopException();
+//        return sfView::NONE;
+    }
 }

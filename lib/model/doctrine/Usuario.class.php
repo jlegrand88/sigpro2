@@ -37,4 +37,15 @@ class Usuario extends BaseUsuario
     {
         return UsuarioTable::getInstance()->getPermisos($idUsuario);
     }
+
+    public static function validarClave($idUsuario,$password)
+    {
+        $usuario = UsuarioTable::getInstance()->find($idUsuario);
+        if($usuario->getPassword() == md5($password )) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

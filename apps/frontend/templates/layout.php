@@ -67,7 +67,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-user">
                             <li>
-                                <a href="{{ path( 'cambioClave' ) }}">
+                                <a href="<?php echo url_for('usuario/cambioClave'); ?>"
                                     <i class="fa fa-gear fa-fw"></i> Cambio Contraseña
                                 </a>
                             </li>

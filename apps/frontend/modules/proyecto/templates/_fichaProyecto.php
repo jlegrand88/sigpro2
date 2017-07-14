@@ -96,10 +96,6 @@
                                 echo $form['nombre_contrato']->render(array('class' => 'form-control input-sm', 'required' => 'true', 'size' => '150','readonly' => $blockAdministrativo));
                                 ?>
                             </div>
-                            <div class='col-sm-4'>
-                                <?php echo $form['fecha_firma_contrato'] ->renderLabel(); ?>
-                                <?php echo $form['fecha_firma_contrato']->render(array('class' => 'form-control input-sm','required' => 'true', 'size' => '30','readonly' => $blockAdministrativo)); ?>
-                            </div>
                         </div>
                         <div class="form-group">
                             <div class='col-sm-4'>
@@ -142,7 +138,7 @@
                     </fieldset>
                     <br><br>
                     <fieldset>
-                        <legend>PLAZOS DE EJECUCION</legend>
+                        <legend>PLAZOS DEL PROYECTO</legend>
                         <div class='form-group'>
                             <div class='col-sm-4'>
                                 <?php echo $form['fecha_inicio']->renderLabel(); ?>
@@ -175,6 +171,10 @@
                             <div class='col-sm-4'>
                                 <?php echo $form['fecha_fin_inf']->renderLabel(); ?>
                                 <?php echo $form['fecha_fin_inf']->render( array( 'class' => 'form-control input-sm', 'size' => "30", 'required' => "true" ) ); ?>
+                            </div>
+                            <div class='col-sm-4'>
+                                <?php echo $form['fecha_firma_contrato'] ->renderLabel(); ?>
+                                <?php echo $form['fecha_firma_contrato']->render(array('class' => 'form-control input-sm','required' => 'true', 'size' => '30','readonly' => $blockAdministrativo)); ?>
                             </div>
                         </div>
                         <br><br>
