@@ -13,7 +13,7 @@
     }
     if($errors || $globalErrors):
 ?>
-    <div class="row">
+    <div class="container-fluid">
         <div class="alert alert-danger">
             <?php echo $form->renderGlobalErrors(); ?>
             </br>

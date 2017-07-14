@@ -16,12 +16,12 @@ class ArchivoOrdenPagoForm extends BaseArchivoOrdenPagoForm
 //        $this->validatorSchema['archivo'] = new sfValidatorFile(array('required'=>$varRequired, 'path' => $ruta, 'mime_types' => $mimes, 'max_size' => $tamano),array('required'=>'Debe adjuntar Curriculum Vitae'));
 //        $ruta = preg_replace(array("/@proyecto/", "/@ordenPago/"), array($this->getObject()->getOrdenPago()->getIdProyecto(), $this->getObject()->getIdOrdenPago()), sfConfig::get('ruta_documentos_orden_pago'));
         $this->setWidgets(array(
-            'archivo' => new sfWidgetFormInputFile(array(),array('accept' => 'application/pdf'))
+            'archivo' => new sfWidgetFormInputFile(array(),array('accept' => 'application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document'))
         ));
 
 
         $this->setValidators(array(
-            'archivo' => new sfValidatorFile(array('required' => false,'path' => sfConfig::get('app_ruta_documentos_orden_pago'), 'mime_types' => array('application/pdf')))
+            'archivo' => new sfValidatorFile(array('required' => false,'path' => sfConfig::get('app_ruta_documentos_orden_pago'), 'mime_types' => array('application/pdf','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document')))
         ));
         $this->getValidator('archivo')->setOption('mime_type_guessers', array(array($this->validatorSchema['archivo'], 'guessFromFileBinary')));
 
