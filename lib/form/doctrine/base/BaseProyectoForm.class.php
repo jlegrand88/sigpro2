@@ -53,6 +53,7 @@ abstract class BaseProyectoForm extends BaseFormDoctrine
       'frases_claves'                => new sfWidgetFormInputText(),
       'id_tipo_control_tec'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('TipoControlTec'), 'add_empty' => true)),
       'id_tipo_control_fin'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('TipoControlFin'), 'add_empty' => true)),
+      'vigente'                      => new sfWidgetFormInputText(),
       'usuarios_proyecto_grupo_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Usuario')),
     ));
 
@@ -95,6 +96,7 @@ abstract class BaseProyectoForm extends BaseFormDoctrine
       'frases_claves'                => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'id_tipo_control_tec'          => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('TipoControlTec'), 'required' => false)),
       'id_tipo_control_fin'          => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('TipoControlFin'), 'required' => false)),
+      'vigente'                      => new sfValidatorInteger(array('required' => false)),
       'usuarios_proyecto_grupo_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Usuario', 'required' => false)),
     ));
 

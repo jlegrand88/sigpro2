@@ -14,6 +14,7 @@ class ProyectoForm extends BaseProyectoForm
     {
         $this->setWidgets(array(
             'id_proyecto'           => new sfWidgetFormInputHidden(),
+            'vigente'               => new sfWidgetFormChoice(array('label' => 'Estado Proyecto:','choices' => array(0 => 'No Vigente',1 => 'Vigente'))),
             'id_pais'               => new sfWidgetFormDoctrineChoice( array( 'label' => 'Administra:', 'model' => $this->getRelatedModelName('Pais'), 'add_empty' => false ) ),
             'fecha_creacion'        => new sfWidgetFormInputHidden(),
             'id_creador'            => new sfWidgetFormInputHidden(),
@@ -59,6 +60,7 @@ class ProyectoForm extends BaseProyectoForm
 
         $this->setValidators(array(
             'id_proyecto'           => new sfValidatorInteger(array('required' => false)),
+            'vigente'               => new sfValidatorChoice(array('choices' => array(0,1),'required' => false)),
             'id_pais'               => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Pais'))),
             'fecha_creacion'        => new sfValidatorDate(array('required' => false)),
             'id_creador'            => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Creador'))),
@@ -98,6 +100,10 @@ class ProyectoForm extends BaseProyectoForm
             'id_tipo_control_fin'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('TipoControlFin'), 'required' => false)),
             'usuarios_proyecto_grupo_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Usuario', 'required' => false)),
         ));
+        $archivoContrato = new ArchivoContrato();
+        $archivoContrato->Proyecto = $this->getObject();
+        $formArchivo = new ArchivoContratoForm($archivoContrato);
+        $this->embedForm('archivo_contrato', $formArchivo);
 
         $this->widgetSchema->setNameFormat('proyecto[%s]');
     }

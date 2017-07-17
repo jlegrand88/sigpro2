@@ -50,6 +50,7 @@ abstract class BaseProyectoFormFilter extends BaseFormFilterDoctrine
       'frases_claves'                => new sfWidgetFormFilterInput(),
       'id_tipo_control_tec'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('TipoControlTec'), 'add_empty' => true)),
       'id_tipo_control_fin'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('TipoControlFin'), 'add_empty' => true)),
+      'vigente'                      => new sfWidgetFormFilterInput(),
       'usuarios_proyecto_grupo_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Usuario')),
     ));
 
@@ -91,6 +92,7 @@ abstract class BaseProyectoFormFilter extends BaseFormFilterDoctrine
       'frases_claves'                => new sfValidatorPass(array('required' => false)),
       'id_tipo_control_tec'          => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('TipoControlTec'), 'column' => 'id_tipo_control')),
       'id_tipo_control_fin'          => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('TipoControlFin'), 'column' => 'id_tipo_control')),
+      'vigente'                      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'usuarios_proyecto_grupo_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Usuario', 'required' => false)),
     ));
 
@@ -167,6 +169,7 @@ abstract class BaseProyectoFormFilter extends BaseFormFilterDoctrine
       'frases_claves'                => 'Text',
       'id_tipo_control_tec'          => 'ForeignKey',
       'id_tipo_control_fin'          => 'ForeignKey',
+      'vigente'                      => 'Number',
       'usuarios_proyecto_grupo_list' => 'ManyKey',
     );
   }

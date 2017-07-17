@@ -113,15 +113,13 @@
                     </br>
                     <fieldset>
                         <legend>Archivos Adjuntos</legend>
-<!--                        --><?php //foreach($form['archivo_orden_pago'] as $formArchivoOrdenPago): ?>
-                            <div class='row'>
-                                <div class='col-sm-6'>
-                                    <?php
-                                        echo $form['archivo_orden_pago']['archivo']->render();
-                                    ?>
-                                </div>
+                        <div class='row'>
+                            <div class='col-sm-6'>
+                                <?php
+                                    echo $form['archivo_orden_pago']['archivo']->render();
+                                ?>
                             </div>
-<!--                        --><?php //endforeach; ?>
+                        </div>
                     </fieldset>
                     </br>
                     <div id="documentosOrdenPagoContainer">

@@ -135,6 +135,56 @@ ArchivoGastoPais:
       local: id_archivo_gasto_pais
       foreign: id_archivo_gasto_pais
       type: many
+ArchivoContrato:
+  connection: doctrine
+  tableName: archivo_contrato
+  columns:
+    id_archivo_contrato:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    id_proyecto:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    nombre:
+      type: string(45)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    archivo:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    ruta:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    fecha:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    Proyecto:
+      local: id_proyecto
+      foreign: id_proyecto
+      type: one
 ArchivosAdjuntos:
   connection: doctrine
   tableName: archivos_adjuntos
@@ -1777,6 +1827,13 @@ Proyecto:
       primary: false
       notnull: false
       autoincrement: false
+    vigente:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
   relations:
     GrupoProyecto:
       local: id_grupo_proyecto
@@ -1858,6 +1915,11 @@ Proyecto:
       type: one
     ProyectoGrupo:
       class: ProyectoGrupo
+      local: id_proyecto
+      foreign: id_proyecto
+      type: many
+    ArchivoContrato:
+      class: ArchivoContrato
       local: id_proyecto
       foreign: id_proyecto
       type: many

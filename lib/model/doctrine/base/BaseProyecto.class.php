@@ -45,6 +45,7 @@ Doctrine_Manager::getInstance()->bindComponent('Proyecto', 'doctrine');
  * @property string $frases_claves
  * @property integer $id_tipo_control_tec
  * @property integer $id_tipo_control_fin
+ * @property integer $vigente
  * @property GrupoProyecto $GrupoProyecto
  * @property EstadoProyecto $EstadoProyecto
  * @property Moneda $Moneda
@@ -63,6 +64,7 @@ Doctrine_Manager::getInstance()->bindComponent('Proyecto', 'doctrine');
  * @property TipoControlProyecto $TipoControlTec
  * @property TipoControlProyecto $TipoControlFin
  * @property Pais $PaisEjecuta
+ * @property Doctrine_Collection $ArchivoContrato
  * @property Doctrine_Collection $UsuariosProyectoGrupo
  * @property Proveedor $Proveedor
  * 
@@ -104,6 +106,7 @@ Doctrine_Manager::getInstance()->bindComponent('Proyecto', 'doctrine');
  * @method string              getFrasesClaves()          Returns the current record's "frases_claves" value
  * @method integer             getIdTipoControlTec()      Returns the current record's "id_tipo_control_tec" value
  * @method integer             getIdTipoControlFin()      Returns the current record's "id_tipo_control_fin" value
+ * @method integer             getVigente()               Returns the current record's "vigente" value
  * @method GrupoProyecto       getGrupoProyecto()         Returns the current record's "GrupoProyecto" value
  * @method EstadoProyecto      getEstadoProyecto()        Returns the current record's "EstadoProyecto" value
  * @method Moneda              getMoneda()                Returns the current record's "Moneda" value
@@ -122,6 +125,7 @@ Doctrine_Manager::getInstance()->bindComponent('Proyecto', 'doctrine');
  * @method TipoControlProyecto getTipoControlTec()        Returns the current record's "TipoControlTec" value
  * @method TipoControlProyecto getTipoControlFin()        Returns the current record's "TipoControlFin" value
  * @method Pais                getPaisEjecuta()           Returns the current record's "PaisEjecuta" value
+ * @method Doctrine_Collection getArchivoContrato()       Returns the current record's "ArchivoContrato" collection
  * @method Doctrine_Collection getUsuariosProyectoGrupo() Returns the current record's "UsuariosProyectoGrupo" collection
  * @method Proveedor           getProveedor()             Returns the current record's "Proveedor" value
  * @method Proyecto            setIdProyecto()            Sets the current record's "id_proyecto" value
@@ -162,6 +166,7 @@ Doctrine_Manager::getInstance()->bindComponent('Proyecto', 'doctrine');
  * @method Proyecto            setFrasesClaves()          Sets the current record's "frases_claves" value
  * @method Proyecto            setIdTipoControlTec()      Sets the current record's "id_tipo_control_tec" value
  * @method Proyecto            setIdTipoControlFin()      Sets the current record's "id_tipo_control_fin" value
+ * @method Proyecto            setVigente()               Sets the current record's "vigente" value
  * @method Proyecto            setGrupoProyecto()         Sets the current record's "GrupoProyecto" value
  * @method Proyecto            setEstadoProyecto()        Sets the current record's "EstadoProyecto" value
  * @method Proyecto            setMoneda()                Sets the current record's "Moneda" value
@@ -180,6 +185,7 @@ Doctrine_Manager::getInstance()->bindComponent('Proyecto', 'doctrine');
  * @method Proyecto            setTipoControlTec()        Sets the current record's "TipoControlTec" value
  * @method Proyecto            setTipoControlFin()        Sets the current record's "TipoControlFin" value
  * @method Proyecto            setPaisEjecuta()           Sets the current record's "PaisEjecuta" value
+ * @method Proyecto            setArchivoContrato()       Sets the current record's "ArchivoContrato" collection
  * @method Proyecto            setUsuariosProyectoGrupo() Sets the current record's "UsuariosProyectoGrupo" collection
  * @method Proyecto            setProveedor()             Sets the current record's "Proveedor" value
  * 
@@ -537,6 +543,15 @@ abstract class BaseProyecto extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 4,
              ));
+        $this->hasColumn('vigente', 'integer', 1, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
     }
 
     public function setUp()
@@ -613,6 +628,10 @@ abstract class BaseProyecto extends sfDoctrineRecord
         $this->hasOne('Pais as PaisEjecuta', array(
              'local' => 'id_pais_ejecuta',
              'foreign' => 'id_pais'));
+
+        $this->hasMany('ArchivoContrato', array(
+             'local' => 'id_proyecto',
+             'foreign' => 'id_proyecto'));
 
         $this->hasMany('Usuario as UsuariosProyectoGrupo', array(
              'refClass' => 'ProyectoGrupo',

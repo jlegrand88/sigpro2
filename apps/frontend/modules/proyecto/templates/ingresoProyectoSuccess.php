@@ -9,7 +9,7 @@
     <?php
         $varAlerta = isset($alerta) ? $alerta : "";
         $varAlertaSuccess = (isset($alertaSuccess)) ? $alertaSuccess : "";
-        include_partial('proyecto/fichaProyecto',array('form' => $form, 'permiso' => $permiso, 'permisosUsuario' => $permisosUsuario, 'editable' => $editable, 'alerta' => $varAlerta, 'alertaSuccess' => $varAlertaSuccess));
+        include_partial('proyecto/fichaProyecto',array('form' => $form, 'permiso' => $permiso, 'permisosUsuario' => $permisosUsuario, 'editable' => $editable, 'alerta' => $varAlerta, 'alertaSuccess' => $varAlertaSuccess,'archivosContrato' => $archivosContrato));
         include_partial('proyecto/presupuesto',array('proyecto' => $proyecto, 'editable' => $editable, 'accionUsuario' => $accionUsuario, 'movimientos' => $movimientos));
         include_partial('proyecto/despachar',array('proyecto' => $proyecto, 'accionUsuario' => $accionUsuario, 'accionUsuarioPregunta' => $accionUsuarioPregunta,
             'accionEstadoFinal' => $accionEstadoFinal, 'listaUsuarios' => $listaUsuarios, 'idInbox' => $idInbox,'tipoDocumento' => $tipoDocumento));

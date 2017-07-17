@@ -44,12 +44,14 @@ class proyectoActions extends sfActions
             $idProyecto = $request->getParameter('id_proyecto');
             $proyecto = ProyectoTable::getInstance()->find($idProyecto);
             $this->movimientos = $proyecto->getPresupuesto();
+            $this->archivosContrato = $proyecto->getArchivoContrato();
         }
         else
         {
             $proyecto = null;
             $idProyecto = null;
             $this->movimientos = null;
+            $this->archivosContrato = null;
         }
         $this->proyecto = $proyecto;
         $this->form = new ProyectoForm($proyecto);
@@ -117,7 +119,7 @@ class proyectoActions extends sfActions
         $this->listaUsuarios = UsuarioTable::getInstance()->getAllUsers();
         if($request->isMethod(sfRequest::POST))
         {
-            $this->form->bind($request->getParameter($this->form->getName()));
+            $this->form->bind($request->getParameter($this->form->getName()),$request->getFiles($this->form->getName()));
             if ($this->form->isValid())
             {
                 $esNuevo = $this->form->isNew();
@@ -142,7 +144,6 @@ class proyectoActions extends sfActions
                     $showAlert = 2;
                 }
             }
-//            $this->redirect('proyecto/ingresoProyecto?id_proyecto='.$idProyecto."&id_inbox=".$idInbox);
             $this->redirect($this->generateUrl('ingreso_proyecto',array('id_proyecto' => $idProyecto,'id_inbox' => $idInbox,'a'=>$showAlert)));
         }
         if($request->hasParameter('a'))
@@ -496,6 +497,16 @@ class proyectoActions extends sfActions
         $ordenPago = $archivo->getOrdenPago();
         $archivo->delete();
         return $this->renderPartial('proyecto/tablaArchivosOrdenPago',array('ordenPago' => $ordenPago, 'idDeleteArchivo' => null));
+    }
+
+    public function executeEliminarArchivoContrato(sfWebRequest $request)
+    {
+        $idArchivo = $request->getParameter('id');
+        $archivo = ArchivoContratoTable::getInstance()->find($idArchivo);
+        unlink($archivo->getRuta());
+        $archivo->delete();
+        $archivosContrato = $archivo->getProyecto()->getArchivoContrato();
+        return $this->renderPartial('proyecto/tablaArchivosContrato',array('archivosContrato' => $archivosContrato));
     }
 
     public function executeDespacharOrden(sfWebRequest $request)

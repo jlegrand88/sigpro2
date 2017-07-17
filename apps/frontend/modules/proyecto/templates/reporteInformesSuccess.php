@@ -12,27 +12,28 @@
 				<!-- /.panel-heading -->
 				<div class="panel-body">
 					<div class="dataTable_wrapper">
-						<table class="table table-striped table-bordered table-hover dataTable display compact nowrap table-condensed no-footer dtr-inline" id="tablaReporte1">
+						<table class="table table-striped table-bordered table-hover dataTable display compact nowrap table-condensed" id="tablaReporte1">
 							<thead>
 								<tr>
-									<th width="3%">ID</th>
-									<th width="5%">Sigla</th>
-									<th width="6%">Grupo Proyecto</th>
-									<th width="5%">Pais</th>
-									<th width="5%">Tipo<br>Moneda</th>
-									<th width="6%">Fecha<br>Inicio</th>
-									<th width="6%">Fecha<br>Termino</th>
-									<th width="4%">% Overhead</th>
-									<th width="8%">Monto Total<br>Proyecto</th>
-									<th width="7%">Presupuesto<br>Ingresos</th>
-									<th width="5%">Presupuesto<br>Gastos</th>
-									<th width="5%">Ingresos<br>Reales</th>
-									<th width="5%">Gastos<br>Reales</th>
-									<th width="5%">Comprometido</th>
-									<th width="5%">Saldo<br>Presupuesto</th>
-									<th width="5%">Saldo<br>Financiero</th>
-									<th width="5%">Ppto<br>Overhead</th>
-									<th width="5%">Gasto<br>Real<br>Overhead</th>
+									<th>ID</th>
+									<th>Vigente</th>
+									<th>Sigla</th>
+									<th>Grupo Proyecto</th>
+									<th>Pais</th>
+									<th>Tipo<br>Moneda</th>
+									<th>Fecha<br>Inicio</th>
+									<th>Fecha<br>Termino</th>
+									<th>% Overhead</th>
+									<th>Monto Total<br>Proyecto</th>
+									<th>Presupuesto<br>Ingresos</th>
+									<th>Presupuesto<br>Gastos</th>
+									<th>Ingresos<br>Reales</th>
+									<th>Gastos<br>Reales</th>
+									<th>Comprometido</th>
+									<th>Saldo<br>Presupuesto</th>
+									<th>Saldo<br>Financiero</th>
+									<th>Ppto<br>Overhead</th>
+									<th>Gasto<br>Real<br>Overhead</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -41,13 +42,16 @@
 										<td>
 											<?php echo link_to($dettotproy['numcontable'], url_for('@ingreso_proyecto'),array('id' => 'linkDetalleInformes','query_string' => 'id_proyecto='.$dettotproy['id_proyecto'].'&ib=3&editable=0',)); ?>
 										</td>
+										<td>
+											<?php echo ($dettotproy['vigente']) ? 'SI' : 'NO'; ?>
+										</td>
 										<?php if ( $accionUsuario==6 ): ?>
 											<td>
-												<?php echo $dettotproy['sigla_contable']; ?>
+												<?php echo ($dettotproy['sigla_contable']) ? : "--"; ?>
 											</td>
 										<?php else: ?>
 											<td>
-												<?php echo link_to($dettotproy['sigla_contable'], url_for('@reporte_informe_detalle'), array('id' => 'linkDetalleInformes', 'query_string' => 'id='.$dettotproy['id_proyecto'].'&sigla='.$dettotproy['sigla_contable'].'&numcont='.$dettotproy['numcontable'])); ?>
+												<?php echo ($dettotproy['sigla_contable']) ? link_to($dettotproy['sigla_contable'], url_for('@reporte_informe_detalle'), array('id' => 'linkDetalleInformes', 'query_string' => 'id='.$dettotproy['id_proyecto'].'&sigla='.$dettotproy['sigla_contable'].'&numcont='.$dettotproy['numcontable'])) : link_to('--', url_for('@reporte_informe_detalle'), array('id' => 'linkDetalleInformes', 'query_string' => 'id='.$dettotproy['id_proyecto'].'&sigla='.$dettotproy['sigla_contable'].'&numcont='.$dettotproy['numcontable'])); ?>
 											</td>
 										<?php endif;?>
 										<td><?php echo $dettotproy['grupo_proyecto']; ?></td>
@@ -79,6 +83,26 @@
 									</tr>
 								<?php endforeach; ?>
 							</tbody>
+							<tfoot>
+								<th>ID</th>
+								<th>Sigla</th>
+								<th>Grupo Proyecto</th>
+								<th>Pais</th>
+								<th>Tipo<br>Moneda</th>
+								<th>Fecha<br>Inicio</th>
+								<th>Fecha<br>Termino</th>
+								<th>% Overhead</th>
+								<th>Monto Total<br>Proyecto</th>
+								<th>Presupuesto<br>Ingresos</th>
+								<th>Presupuesto<br>Gastos</th>
+								<th>Ingresos<br>Reales</th>
+								<th>Gastos<br>Reales</th>
+								<th>Comprometido</th>
+								<th>Saldo<br>Presupuesto</th>
+								<th>Saldo<br>Financiero</th>
+								<th>Ppto<br>Overhead</th>
+								<th>Gasto<br>Real<br>Overhead</th>
+							</tfoot>
 						</table>
 					</div>
 					<!-- /.table-responsive -->
@@ -93,18 +117,33 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#tablaReporte1').DataTable({
+		var table = $('#tablaReporte1').DataTable({
 			language : spanish,
-			searching: true,
+			processing: false,
 			paging: false,
 			order: [[ 0, 'desc' ]],
 			scrollX : true,
             scrollY:     640,
 			fixedColumns: true,
-			fixedHeader: {
-				header: true
-			},
-			deferRender: true
+			columnDefs: [{targets: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17], visible: true, searchable: true}]
 		});
+		$('.dataTables_scroll .dataTables_scrollFootInner tfoot th').each( function () {
+			var title = $('#tablaReporte1 thead th').eq( $(this).index() ).text();
+			$(this).html( '<input class="form-control input-sm" type="text" placeholder="Buscar '+title+'" />' );
+		} );
+
+		// Apply the search
+		table.columns().every( function () {
+			var that = this;
+
+			$( 'input', this.footer() ).on( 'keyup change', function () {
+				if ( that.search() !== this.value ) {
+					that
+						.search( this.value )
+						.draw();
+				}
+			} );
+		} );
+		table.draw();
 	});
 </script>

@@ -26,15 +26,17 @@
                 </div>
             <?php endif; ?>
             <div class="container" style="margin-left: 0px;margin-right: 0px;">
-                <form id="ingresoProyectosForm"   method="post" class="form-horizontal">
+                <form id="ingresoProyectosForm"  enctype="multipart/form-data" method="post" class="form-horizontal">
                     <fieldset>
                         <?php echo $form->renderHiddenFields(); ?>
-                        <!--                            <input type="hidden" id="id_proyecto" name="id_proyecto" value="--><?php //echo (isset($proyecto) ? $proyecto->idProyecto : ''); ?><!--" />-->
-                        <!--                            <input type="hidden" id="folio" name="folio" value="--><?php //echo (isset($folio) ? $folio : ''); ?><!--" />-->
-                        <!--                            <input type="hidden" id="accion_usuario" name="accion_usuario" value="--><?php //echo (isset($accionUsuario) ? $accionUsuario : ''); ?><!--" />-->
-                        <!--                            <input type="hidden" id="id_creador" name="id_creador" value="--><?php //echo (isset($proyecto) ? $proyecto->idCreador : ''); ?><!--" />-->
-                        <!--                            <input type="hidden" id="id_proyecto" name="id_inbox" value="--><?php // echo (isset($idInbox) ? $idInbox : ''); ?><!--" />-->
-                        <!--                            <input type="hidden" id="duracion_proyecto" name="duracion_proyecto" value="--><?php //echo (isset($proyecto) ? $proyecto->duracionProyecto : ''); ?><!--"/>-->
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <?php
+                                echo $form['vigente']->renderLabel();
+                                echo $form['vigente']->render(array('class' => 'form-control input-sm select2','required' => 'true'));
+                                ?>
+                            </div>
+                        </div>
                         <legend>TITULOS</legend>
                         <div class="form-group">
                             <div class="col-sm-12">
@@ -178,6 +180,23 @@
                             </div>
                         </div>
                         <br><br>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Contrato o Convenio</legend>
+                        <div class='form-group'>
+                            <div class='col-sm-4'>
+                                <?php echo $form['archivo_contrato']['archivo']->render(); ?>
+                            </div>
+                        </div>
+                        </br>
+                        <div id="archivosContratoContainer">
+                            <?php
+                            if($archivosContrato)
+                            {
+                                echo include_partial('proyecto/tablaArchivosContrato',array('archivosContrato' => $archivosContrato));
+                            }
+                            ?>
+                        </div>
                     </fieldset>
                     <fieldset>
                         <legend>PRESUPUESTO</legend>

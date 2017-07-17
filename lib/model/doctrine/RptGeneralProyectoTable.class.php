@@ -33,7 +33,7 @@ class RptGeneralProyectoTable extends Doctrine_Table
     public static function getListadoProyectosValores()
     {
         set_time_limit(0);
-        $query = "select id_proyecto, sigla_contable, monto_total, monto_ing sum_monto_ing, monto_egre sum_monto_egre, ing_reales ingresos_reales, gas_reales gastos_reales, compromisos, 
+        $query = "select id_proyecto,(SELECT pro.vigente from proyecto pro WHERE pro.id_proyecto = rpt_general_proyecto.id_proyecto ) vigente, sigla_contable, monto_total, monto_ing sum_monto_ing, monto_egre sum_monto_egre, ing_reales ingresos_reales, gas_reales gastos_reales, compromisos, 
 			         ing_reales_us ingresos_reales_us, gas_reales_us gastos_reales_us, compromisos_us, numcontable, id_moneda, porc_overhead, grupo_proyecto, 
 					 DATE_FORMAT(fec_inicio_proy, '%d-%m-%Y') fec_inicio_proy, DATE_FORMAT(fec_termino_proy, '%d-%m-%Y') fec_termino_proy, moneda, pais, ppto_ovh, gasto_ovhpesos, gasto_ovhus,
                      fec_inicio_proy fec_inicio_proy_ord, fec_termino_proy fec_termino_proy_ord					 
