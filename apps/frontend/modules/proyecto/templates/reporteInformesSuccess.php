@@ -85,6 +85,7 @@
 							</tbody>
 							<tfoot>
 								<th>ID</th>
+								<th>Vigente</th>
 								<th>Sigla</th>
 								<th>Grupo Proyecto</th>
 								<th>Pais</th>
@@ -125,11 +126,18 @@
 			scrollX : true,
             scrollY:     640,
 			fixedColumns: true,
-			columnDefs: [{targets: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17], visible: true, searchable: true}]
+			columnDefs: [
+				{targets: [1], visible: false, searchable: true},
+				{targets: [0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17], visible: true, searchable: true}
+			]
 		});
 		$('.dataTables_scroll .dataTables_scrollFootInner tfoot th').each( function () {
 			var title = $('#tablaReporte1 thead th').eq( $(this).index() ).text();
-			$(this).html( '<input class="form-control input-sm" type="text" placeholder="Buscar '+title+'" />' );
+			if(title == 'ID' ){
+				$(this).html( '<input class="form-control input-sm"style="width: 80px" type="text" placeholder="Buscar '+title+'" />' );
+			}else{
+				$(this).html( '<input class="form-control input-sm" type="text" placeholder="Buscar '+title+'" />' );
+			}
 		} );
 
 		// Apply the search
@@ -144,6 +152,7 @@
 				}
 			} );
 		} );
+		table.column( 1 ).search('si');
 		table.draw();
 	});
 </script>
