@@ -1,7 +1,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-12">
-			<h1 class="page-header">Reportes de los proyectos - <?echo $pais; ?></h1>
+			<h1 class="page-header">Reportes de los proyectos <?php echo ($pais) ? '- '.$pais : ''; ?></h1>
 		</div>
 	</div>
 	<!-- /.row -->
@@ -119,12 +119,13 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		var table = $('#tablaReporte1').DataTable({
+			dom: '<"toolbar">frtip',
 			language : spanish,
 			processing: false,
 			paging: false,
 			order: [[ 0, 'desc' ]],
 			scrollX : true,
-            scrollY:     640,
+            scrollY: 500,
 			fixedColumns: true,
 			columnDefs: [
 				{targets: [1], visible: false, searchable: true},
@@ -153,6 +154,22 @@
 			} );
 		} );
 		table.column( 1 ).search('si');
+		$("div.toolbar").html('<select id="estado_proyecto" class="select2"><option value="1" selected>Vigente</option><option value="2">No Vigente</option><option value="3">Todos</option></select>');
 		table.draw();
+		$('#estado_proyecto').select2();
+		$('#estado_proyecto').on('change', function () {
+			if($(this).val() == 1)
+			{
+				table.column( 1 ).search('si').draw();
+			}
+			if($(this).val() == 2)
+			{
+				table.column( 1 ).search('no').draw();
+			}
+			if($(this).val() == 3)
+			{
+				table.search('').columns().search('').draw();
+			}
+		})
 	});
 </script>

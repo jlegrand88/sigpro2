@@ -20,7 +20,7 @@ class ProveedorTable extends Doctrine_Table
     public function getListaProveedores()
     {
         $q = Doctrine_Query::create()
-            ->select('SUBSTRING(rut_proveedor,1,8)  rut_proveedor, upper(razon_social) descripcion')
+            ->select('rut_proveedor, upper(razon_social) descripcion')
             ->from('Proveedor')
             ->orderBy('razon_social ASC')
             ->fetchArray();
