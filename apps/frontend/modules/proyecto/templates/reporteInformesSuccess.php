@@ -1,3 +1,4 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css" rel="stylesheet" />
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-12">

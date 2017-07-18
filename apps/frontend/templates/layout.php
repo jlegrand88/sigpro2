@@ -11,7 +11,7 @@
     <body>
         <div id="wrapper">
             <!-- Navigation -->
-            <nav class="navbar navbar-default navbar-static-top " role="navigation" style="margin-bottom: 0">
+            <div class="navbar navbar-default navbar-static-top " role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header navbar-collapse collapse">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="sr-only">Toggle navigation</span>
@@ -67,7 +67,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-user">
                             <li>
-                                <a href="<?php echo url_for('usuario/cambioClave'); ?>"
+                                <a href="<?php echo url_for('usuario/cambioClave'); ?>">
                                     <i class="fa fa-gear fa-fw"></i> Cambio Contraseña
                                 </a>
                             </li>
@@ -147,7 +147,7 @@
                     <!-- /.sidebar-collapse -->
                 </div>
                 <!-- /.navbar-static-side -->
-            </nav>
+            </div>
             <div id="page-wrapper">
                 <?php echo $sf_content ?>
             </div>
