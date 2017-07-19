@@ -26,7 +26,7 @@
             ],
             columnDefs:[{targets: [0,4], searchable: true}]
         });
-        new $.fn.dataTable.FixedHeader(table);
+//        new $.fn.dataTable.FixedHeader(table);
         
         $('.eliminarArchivo').click(function (){
             var action = confirm('¿Está seguro de eliminar el archivo?');
