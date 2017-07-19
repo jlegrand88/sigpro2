@@ -135,11 +135,12 @@
 		});
 		$('.dataTables_scroll .dataTables_scrollFootInner tfoot th').each( function () {
 			var title = $('#tablaReporte1 thead th').eq( $(this).index() ).text();
-			if(title == 'ID' ){
-				$(this).html( '<input class="form-control input-sm"style="width: 80px" type="text" placeholder="Buscar '+title+'" />' );
-			}else{
-				$(this).html( '<input class="form-control input-sm" type="text" placeholder="Buscar '+title+'" />' );
-			}
+//			if(title == 'ID' ){
+//				$(this).html( '<input class="form-control input-sm"style="width: 80px" type="text" placeholder="Buscar '+title+'" />' );
+//			}else{
+//				$(this).html( '<input class="form-control input-sm" type="text" placeholder="Buscar '+title+'" />' );
+//			}
+			$(this).html( '<div class="right-inner-addon "><input class="glyphicon form-control input-sm" type="search" style="width: 100%;padding: 1px;font-weight: bold !important;" placeholder="&#xe003"/></div>' );
 		} );
 
 		// Apply the search
