@@ -79,7 +79,7 @@ class OrdenPagoForm extends BaseOrdenPagoForm
                     $detalleSaldosCuenta = DetalleOrdenPagoTable::getInstance()->getDetalleSaldosCuenta($cuenta);
                     $form = new DetalleOrdenPagoForm($detallesOrdenPago[$i]);
                     $form->setDefault('presupuesto',$detalleSaldosCuenta['presupuesto']);
-                    if($detalleSaldosCuenta['id_moneda'] == Moneda::CLP)
+                    if($detalleSaldosCuenta['id_moneda'] != Moneda::CLP)
                     {
                         $varEjecucion = ($detalleSaldosCuenta['ejecucion']) ? : 0;
                         $varCompromiso = ($detalleSaldosCuenta['compromiso']) ? : 0;

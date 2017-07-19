@@ -64,7 +64,7 @@
 										<td><?php echo number_format($dettotproy['monto_total']); ?></td>
 										<td><?php echo number_format($dettotproy['sum_monto_ing']); ?></td>
 										<td><?php echo number_format($dettotproy['sum_monto_egre']); ?></td>
-										<?php if ( $dettotproy['id_moneda'] == Moneda::CLP ): ?>
+										<?php if ( $dettotproy['id_moneda'] != Moneda::USD ): ?>
 											<td><?php echo number_format($dettotproy['ingresos_reales']); ?></td>
 											<td><?php echo number_format($dettotproy['gastos_reales']); ?></td>
 											<td><?php echo number_format($dettotproy['compromisos']); ?></td>

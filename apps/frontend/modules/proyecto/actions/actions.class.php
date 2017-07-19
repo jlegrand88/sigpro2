@@ -700,7 +700,7 @@ class proyectoActions extends sfActions
         return $this->renderPartial("grillaArchivosGastoPais",array('archivos' => $archivosGastoPais,'idProyecto' => $idProyecto));
     }
 
-    public function executeEliminarArchivogastoPais(sfWebRequest $request)
+    public function executeEliminarArchivoGastoPais(sfWebRequest $request)
     {
         $idArchivo = $request->getParameter('id');
         $archivo = ArchivoGastoPaisTable::getInstance()->find($idArchivo);

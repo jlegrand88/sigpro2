@@ -36,7 +36,7 @@
                 var idProyecto = <?php echo $idProyecto; ?>;
                 $.ajax({
                     type : 'POST',
-                    url : "<?php echo url_for('proyecto/eliminarArchivogastoPais'); ?>",
+                    url : "<?php echo url_for('proyecto/eliminarArchivoGastoPais'); ?>",
                     data  : { "id" : id },
                     datatype : 'html',
                     beforeSend: function(){
