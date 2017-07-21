@@ -12,5 +12,15 @@
  */
 class ArchivoContrato extends BaseArchivoContrato
 {
+    public function save(Doctrine_Connection $conn = null)
+    {
+        $this->setArchivo(trim($this->getArchivo()));
+        if($this->getArchivo())
+        {
+            return parent::save();
+        }else {
+            return null;
 
+        }
+    }
 }
