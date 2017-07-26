@@ -50,7 +50,7 @@ class GastoPais extends BaseGastoPais
                 {
                     if(PresupuestoTable::getInstance()->countCuentaPorProyecto($idProyecto, $cuenta) == 0)
                     {
-                        $errores[$row]['numero_cuenta'] = "Cuenta no valida, esta no se encuentra entre los registros de prosupuestos.";
+                        $errores[$row]['numero_cuenta'] = "Cuenta no valida, esta no se encuentra entre los registros de presupuestos.";
                     }
                     if(MovimientosContablesTable::getInstance()->countCuentaPorProyecto($idProyecto, $cuenta) > 0)
                     {

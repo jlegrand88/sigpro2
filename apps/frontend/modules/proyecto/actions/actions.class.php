@@ -43,7 +43,7 @@ class proyectoActions extends sfActions
         {
             $idProyecto = $request->getParameter('id_proyecto');
             $proyecto = ProyectoTable::getInstance()->find($idProyecto);
-            $this->movimientos = $proyecto->getPresupuesto();
+            $this->movimientos = ($proyecto->getPresupuesto()) ? : 0;
             $this->archivosContrato = $proyecto->getArchivoContrato();
         }
         else
