@@ -25,6 +25,18 @@
                     <b><span><?php echo $alertaSuccess; ?></span></b>
                 </div>
             <?php endif; ?>
+            <?php if($form->hasErrors()): ?>
+                <div class="alert alert-danger">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <ul>
+                        <?php foreach($form->getWidgetSchema()->getPositions() as $widgetName): ?>
+                            <?php if($form[$widgetName]->hasError()): ?>
+                                <li><?php echo $form[$widgetName]->renderLabelName().' '.$form[$widgetName]->getError(); ?></li>
+                            <?php endif; ?>
+                        <?php endforeach;?>
+                    </ul>
+                </div>
+            <?php endif; ?>
             <div class="container" style="margin-left: 0px;margin-right: 0px;">
                 <form id="ingresoProyectosForm"  enctype="multipart/form-data" method="post" class="form-horizontal">
                     <fieldset>
@@ -89,7 +101,7 @@
                             <div class='col-sm-4'>
                                 <?php
                                 echo $form['numero_contable'] ->renderLabel();
-                                echo $form['numero_contable']->render(array('class' => 'form-control input-sm','readonly' => $blockAdministrativo));
+                                echo $form['numero_contable']->render(array('class' => 'form-control input-sm', 'type' => "number", 'readonly' => $blockAdministrativo));
                                 ?>
                             </div>
                             <div class='col-sm-4'>

@@ -143,8 +143,8 @@ class proyectoActions extends sfActions
                 {
                     $showAlert = 2;
                 }
+                $this->redirect($this->generateUrl('ingreso_proyecto',array('id_proyecto' => $idProyecto,'id_inbox' => $idInbox,'a'=>$showAlert)));
             }
-            $this->redirect($this->generateUrl('ingreso_proyecto',array('id_proyecto' => $idProyecto,'id_inbox' => $idInbox,'a'=>$showAlert)));
         }
         if($request->hasParameter('a'))
         {
