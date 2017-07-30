@@ -65,13 +65,13 @@
 										<td><?php echo number_format($dettotproy['sum_monto_ing']); ?></td>
 										<td><?php echo number_format($dettotproy['sum_monto_egre']); ?></td>
 										<?php if ( $dettotproy['id_moneda'] != Moneda::USD ): ?>
-											<td><?php echo number_format($dettotproy['ingresos_reales']); ?></td>
-											<td><?php echo number_format($dettotproy['gastos_reales']); ?></td>
-											<td><?php echo number_format($dettotproy['compromisos']); ?></td>
-											<td><?php echo number_format($dettotproy['monto_total']-$dettotproy['gastos_reales']); ?></td>
-											<td><?php echo number_format($dettotproy['ingresos_reales']-$dettotproy['gastos_reales']); ?></td>
-                                            <td><?php echo number_format($dettotproy['ppto_ovh']); ?></td>
-                                            <td><?php echo number_format($dettotproy['gasto_ovhpesos']); ?></td>
+											<td><?php echo number_format($dettotproy['ingresos_reales'],2); ?></td>
+											<td><?php echo number_format($dettotproy['gastos_reales'],2); ?></td>
+											<td><?php echo number_format($dettotproy['compromisos'],2); ?></td>
+											<td><?php echo number_format($dettotproy['monto_total']-$dettotproy['gastos_reales'],2); ?></td>
+											<td><?php echo number_format($dettotproy['ingresos_reales']-$dettotproy['gastos_reales'],2); ?></td>
+                                            <td><?php echo number_format($dettotproy['ppto_ovh'],2); ?></td>
+                                            <td><?php echo number_format($dettotproy['gasto_ovhpesos'],2); ?></td>
 										<?php else: ?>
 											<td><?php echo number_format($dettotproy['ingresos_reales_us'],'2','.',','); ?></td>
 											<td><?php echo number_format($dettotproy['gastos_reales_us'],'2','.',','); ?></td>

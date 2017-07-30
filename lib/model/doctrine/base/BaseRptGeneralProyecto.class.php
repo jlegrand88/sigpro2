@@ -13,12 +13,12 @@ Doctrine_Manager::getInstance()->bindComponent('RptGeneralProyecto', 'doctrine')
  * @property integer $monto_total
  * @property integer $monto_ing
  * @property integer $monto_egre
- * @property integer $ing_reales
- * @property integer $gas_reales
- * @property integer $compromisos
- * @property integer $ing_reales_us
- * @property integer $gas_reales_us
- * @property integer $compromisos_us
+ * @property decimal $ing_reales
+ * @property decimal $gas_reales
+ * @property decimal $compromisos
+ * @property decimal $ing_reales_us
+ * @property decimal $gas_reales_us
+ * @property decimal $compromisos_us
  * @property integer $numcontable
  * @property integer $id_moneda
  * @property decimal $porc_overhead
@@ -37,12 +37,12 @@ Doctrine_Manager::getInstance()->bindComponent('RptGeneralProyecto', 'doctrine')
  * @method integer            getMontoTotal()       Returns the current record's "monto_total" value
  * @method integer            getMontoIng()         Returns the current record's "monto_ing" value
  * @method integer            getMontoEgre()        Returns the current record's "monto_egre" value
- * @method integer            getIngReales()        Returns the current record's "ing_reales" value
- * @method integer            getGasReales()        Returns the current record's "gas_reales" value
- * @method integer            getCompromisos()      Returns the current record's "compromisos" value
- * @method integer            getIngRealesUs()      Returns the current record's "ing_reales_us" value
- * @method integer            getGasRealesUs()      Returns the current record's "gas_reales_us" value
- * @method integer            getCompromisosUs()    Returns the current record's "compromisos_us" value
+ * @method decimal            getIngReales()        Returns the current record's "ing_reales" value
+ * @method decimal            getGasReales()        Returns the current record's "gas_reales" value
+ * @method decimal            getCompromisos()      Returns the current record's "compromisos" value
+ * @method decimal            getIngRealesUs()      Returns the current record's "ing_reales_us" value
+ * @method decimal            getGasRealesUs()      Returns the current record's "gas_reales_us" value
+ * @method decimal            getCompromisosUs()    Returns the current record's "compromisos_us" value
  * @method integer            getNumcontable()      Returns the current record's "numcontable" value
  * @method integer            getIdMoneda()         Returns the current record's "id_moneda" value
  * @method decimal            getPorcOverhead()     Returns the current record's "porc_overhead" value
@@ -140,59 +140,65 @@ abstract class BaseRptGeneralProyecto extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 4,
              ));
-        $this->hasColumn('ing_reales', 'integer', 4, array(
-             'type' => 'integer',
+        $this->hasColumn('ing_reales', 'decimal', 12, array(
+             'type' => 'decimal',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'notnull' => false,
              'autoincrement' => false,
-             'length' => 4,
+             'length' => 12,
+             'scale' => '4',
              ));
-        $this->hasColumn('gas_reales', 'integer', 4, array(
-             'type' => 'integer',
+        $this->hasColumn('gas_reales', 'decimal', 12, array(
+             'type' => 'decimal',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'notnull' => false,
              'autoincrement' => false,
-             'length' => 4,
+             'length' => 12,
+             'scale' => '4',
              ));
-        $this->hasColumn('compromisos', 'integer', 4, array(
-             'type' => 'integer',
+        $this->hasColumn('compromisos', 'decimal', 12, array(
+             'type' => 'decimal',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'notnull' => false,
              'autoincrement' => false,
-             'length' => 4,
+             'length' => 12,
+             'scale' => '4',
              ));
-        $this->hasColumn('ing_reales_us', 'integer', 4, array(
-             'type' => 'integer',
+        $this->hasColumn('ing_reales_us', 'decimal', 12, array(
+             'type' => 'decimal',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'notnull' => false,
              'autoincrement' => false,
-             'length' => 4,
+             'length' => 12,
+             'scale' => '4',
              ));
-        $this->hasColumn('gas_reales_us', 'integer', 4, array(
-             'type' => 'integer',
+        $this->hasColumn('gas_reales_us', 'decimal', 12, array(
+             'type' => 'decimal',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'notnull' => false,
              'autoincrement' => false,
-             'length' => 4,
+             'length' => 12,
+             'scale' => '4',
              ));
-        $this->hasColumn('compromisos_us', 'integer', 4, array(
-             'type' => 'integer',
+        $this->hasColumn('compromisos_us', 'decimal', 12, array(
+             'type' => 'decimal',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'notnull' => false,
              'autoincrement' => false,
-             'length' => 4,
+             'length' => 12,
+             'scale' => '4',
              ));
         $this->hasColumn('numcontable', 'integer', 4, array(
              'type' => 'integer',
@@ -212,15 +218,15 @@ abstract class BaseRptGeneralProyecto extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 4,
              ));
-        $this->hasColumn('porc_overhead', 'decimal', 11, array(
+        $this->hasColumn('porc_overhead', 'decimal', 12, array(
              'type' => 'decimal',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'notnull' => false,
              'autoincrement' => false,
-             'length' => 11,
-             'scale' => '2',
+             'length' => 12,
+             'scale' => '4',
              ));
         $this->hasColumn('grupo_proyecto', 'string', 100, array(
              'type' => 'string',
@@ -267,35 +273,35 @@ abstract class BaseRptGeneralProyecto extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 100,
              ));
-        $this->hasColumn('ppto_ovh', 'decimal', 11, array(
+        $this->hasColumn('ppto_ovh', 'decimal', 12, array(
              'type' => 'decimal',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'notnull' => false,
              'autoincrement' => false,
-             'length' => 11,
-             'scale' => '2',
+             'length' => 12,
+             'scale' => '4',
              ));
-        $this->hasColumn('gasto_ovhpesos', 'decimal', 11, array(
+        $this->hasColumn('gasto_ovhpesos', 'decimal', 12, array(
              'type' => 'decimal',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'notnull' => false,
              'autoincrement' => false,
-             'length' => 11,
-             'scale' => '2',
+             'length' => 12,
+             'scale' => '4',
              ));
-        $this->hasColumn('gasto_ovhus', 'decimal', 11, array(
+        $this->hasColumn('gasto_ovhus', 'decimal', 12, array(
              'type' => 'decimal',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'notnull' => false,
              'autoincrement' => false,
-             'length' => 11,
-             'scale' => '2',
+             'length' => 12,
+             'scale' => '4',
              ));
     }
 
