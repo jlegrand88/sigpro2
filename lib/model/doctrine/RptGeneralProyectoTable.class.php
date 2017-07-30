@@ -98,9 +98,18 @@ class RptGeneralProyectoTable extends Doctrine_Table
                     where pre_egre.id_proyecto=proy.id_proyecto AND pre_egre.id_tipo_movimiento=2
                   ) sum_monto_egre,
                   (
-                    IFNULL(( SELECT SUM((pesos)) FROM movimientos_contables where proyecto=proy.numero_contable AND id_tipo_cuenta=1 ),0) +
-                    IFNULL(( SELECT SUM((gp.enero + gp.febrero + gp.marzo + gp.abril + gp.mayo + gp.junio + gp.julio + gp.agosto + gp.septiembre + gp.octubre + gp.noviembre + gp.diciembre)) FROM gasto_pais gp WHERE gp.id_proyecto = proy.id_proyecto AND gp.id_tipo_movimiento = 1 ),0)
-                  )*-1 ingresos_reales,
+                    IF(
+                      (IFNULL((SELECT SUM((pesos))FROM movimientos_contables WHERE proyecto = proy.numero_contable AND id_tipo_cuenta = 1), 0) +
+                       IFNULL((SELECT SUM((gp.enero + gp.febrero + gp.marzo + gp.abril + gp.mayo + gp.junio + gp.julio + gp.agosto + gp.septiembre + gp.octubre + gp.noviembre + gp.diciembre)) FROM gasto_pais gp WHERE gp.id_proyecto = proy.id_proyecto AND gp.id_tipo_movimiento = 1), 0)
+                      ) < 0 ,
+                      (IFNULL((SELECT SUM((pesos)) FROM movimientos_contables WHERE proyecto = proy.numero_contable AND id_tipo_cuenta = 1), 0) +
+                       IFNULL((SELECT SUM((gp.enero + gp.febrero + gp.marzo + gp.abril + gp.mayo + gp.junio + gp.julio + gp.agosto + gp.septiembre + gp.octubre + gp.noviembre + gp.diciembre)) FROM gasto_pais gp WHERE gp.id_proyecto = proy.id_proyecto AND gp.id_tipo_movimiento = 1), 0)
+                      ) *-1,
+                      (IFNULL((SELECT SUM((pesos))FROM movimientos_contables WHERE proyecto = proy.numero_contable AND id_tipo_cuenta = 1), 0) +
+                       IFNULL((SELECT SUM((gp.enero + gp.febrero + gp.marzo + gp.abril + gp.mayo + gp.junio + gp.julio + gp.agosto + gp.septiembre + gp.octubre + gp.noviembre + gp.diciembre)) FROM gasto_pais gp WHERE gp.id_proyecto = proy.id_proyecto AND gp.id_tipo_movimiento = 1), 0)
+                      )
+                    ) 
+                  )ingresos_reales,
                   (
                     IFNULL((SELECT SUM((pesos)) FROM movimientos_contables WHERE proyecto = proy.numero_contable AND id_tipo_cuenta = 2),0) +
                     IFNULL(( SELECT SUM((gp.enero + gp.febrero + gp.marzo + gp.abril + gp.mayo + gp.junio + gp.julio + gp.agosto + gp.septiembre + gp.octubre + gp.noviembre + gp.diciembre)) FROM gasto_pais gp WHERE gp.id_proyecto = proy.id_proyecto AND gp.id_tipo_movimiento = 2 ),0)
@@ -109,7 +118,10 @@ class RptGeneralProyectoTable extends Doctrine_Table
                     IFNULL((SELECT SUM((pesos)) FROM movimientos_contables where proyecto=proy.numero_contable AND id_tipo_cuenta = 3  ),0) +
                     IFNULL(( SELECT SUM((gp.enero + gp.febrero + gp.marzo + gp.abril + gp.mayo + gp.junio + gp.julio + gp.agosto + gp.septiembre + gp.octubre + gp.noviembre + gp.diciembre)) FROM gasto_pais gp WHERE gp.id_proyecto = proy.id_proyecto AND gp.id_tipo_movimiento = 3 ),0)
                   )compromisos,
-                  ( SELECT SUM((dolares)) FROM movimientos_contables where proyecto=proy.numero_contable AND id_tipo_cuenta=1 ) ingresos_reales_us,
+                  IF((SELECT SUM((dolares)) FROM movimientos_contables where proyecto=proy.numero_contable AND id_tipo_cuenta=1) < 0,
+                    (SELECT SUM((dolares)) FROM movimientos_contables where proyecto=proy.numero_contable AND id_tipo_cuenta=1) *-1,
+                    (SELECT SUM((dolares)) FROM movimientos_contables where proyecto=proy.numero_contable AND id_tipo_cuenta=1)
+                  ) ingresos_reales_us,
                   ( SELECT SUM((dolares)) FROM movimientos_contables where proyecto=proy.numero_contable AND id_tipo_cuenta=2 ) gastos_reales_us,
                   ( SELECT SUM((dolares)) FROM movimientos_contables where proyecto=proy.numero_contable AND id_tipo_cuenta = 3  ) compromisos_us,
                   proy.numero_contable numcontable, proy.id_moneda, proy.overhead_autorizado,
