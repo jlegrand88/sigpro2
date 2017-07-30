@@ -47,9 +47,9 @@
                                             <td align=right><?php echo number_format($dettotproycuenta['compromiso']); ?></td>
                                             <td align=right><?php echo number_format($dettotproycuenta['presupuesto']-$dettotproycuenta['ejecucion']); ?></td>
                                         <?php else: ?>
-                                            <td align=right><?php echo number_format($dettotproycuenta['ejecucion_us']); ?></td>
-                                            <td align=right><?php echo number_format($dettotproycuenta['compromiso_us']); ?></td>
-                                            <td align=right><?php echo number_format($dettotproycuenta['presupuesto']-$dettotproycuenta['ejecucion_us']); ?></td>
+                                            <td align=right><?php echo number_format($dettotproycuenta['ejecucion_us'],2); ?></td>
+                                            <td align=right><?php echo number_format($dettotproycuenta['compromiso_us'],2); ?></td>
+                                            <td align=right><?php echo number_format($dettotproycuenta['presupuesto']-$dettotproycuenta['ejecucion_us'],2); ?></td>
                                         <?php endif; ?>
                                     </tr>
                                 <?php
@@ -57,11 +57,11 @@
                                     {
                                         $sumppto     = $sumppto + $dettotproycuenta['presupuesto'];
                                         if ( $dettotproycuenta['id_moneda'] != Moneda::USD ){
-                                            $sumejec = $sumejec + $dettotproycuenta['ejecucion'];
-                                            $sumcompr = $sumcompr + $dettotproycuenta['compromiso'];
+                                            $sumejec = number_format($sumejec + $dettotproycuenta['ejecucion']);
+                                            $sumcompr = number_format($sumcompr + $dettotproycuenta['compromiso']);
                                         }else{
-                                            $sumejec  = $sumejec + $dettotproycuenta['ejecucion_us'];
-                                            $sumcompr = $sumcompr + $dettotproycuenta['compromiso_us'];
+                                            $sumejec  = number_format($sumejec + $dettotproycuenta['ejecucion_us'],2);
+                                            $sumcompr = number_format($sumcompr + $dettotproycuenta['compromiso_us'],2);
                                         }
                                     }
                                 endforeach;
@@ -69,9 +69,9 @@
                                 <tr>
                                     <td width="159"></td>
                                     <td>TOTAL GASTOS</td>
-                                    <td align=right><?php echo number_format($sumppto)?></td>
-                                    <td align=right><?php echo number_format($sumejec)?></td>
-                                    <td align=right><?php echo number_format($sumcompr)?></td>
+                                    <td align=right><?php echo number_format($sumppto); ?></td>
+                                    <td align=right><?php echo $sumejec; ?></td>
+                                    <td align=right><?php echo $sumcompr; ?></td>
                                     <td align=right></td>
                                 </tr>
                             </tbody>

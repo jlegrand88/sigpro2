@@ -44,7 +44,7 @@
                                     <td align=right><?php echo ($dettotproycuenta['mes']); ?></td>
                                     <td align=right><?php echo ($dettotproycuenta['anho']); ?></td>
                                     <td align=right><?php echo ($dettotproycuenta['glosa']); ?></td>
-                                    <td align=right><?php echo number_format($dettotproycuenta['Dolares']); ?></td>
+                                    <td align=right><?php echo number_format($dettotproycuenta['Dolares'],2); ?></td>
                                     <td align=right><?php echo number_format($dettotproycuenta['Pesos']); ?></td>
                                 </tr>
                             <?php endforeach; ?>
