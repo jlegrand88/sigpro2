@@ -17,10 +17,11 @@ class ArchivoContratoForm extends BaseArchivoContratoForm
         $this->setWidgets(array(
             'archivo' => new sfWidgetFormInputFile(array(),array('accept' => 'application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document'))
         ));
-
+        $maxSize = 1024 * 1024 * 20;
         $this->setValidators(array(
-            'archivo' => new sfValidatorFile(array('required' => false,'path' => $rutaDestino, 'mime_types' => array('application/pdf','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document')))
+            'archivo' => new sfValidatorFile(array('required' => false,'max_size' => $maxSize, 'path' => $rutaDestino, 'mime_types' => array('application/pdf','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document')))
         ));
+        $this->validatorSchema['archivo']->setMessage('max_size', 'El archivo debe poseer un tamaño máximo de 20 mb.');
         $this->getValidator('archivo')->setOption('mime_type_guessers', array(array($this->validatorSchema['archivo'], 'guessFromFileBinary')));
 
         $this->widgetSchema->setNameFormat('archivo_contrato[%s]');
