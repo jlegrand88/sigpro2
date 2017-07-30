@@ -2276,42 +2276,42 @@ RptGeneralProyecto:
       notnull: false
       autoincrement: false
     ing_reales:
-      type: integer(4)
+      type: decimal(12, 4)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
     gas_reales:
-      type: integer(4)
+      type: decimal(12, 4)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
     compromisos:
-      type: integer(4)
+      type: decimal(12, 4)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
     ing_reales_us:
-      type: integer(4)
+      type: decimal(12, 4)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
     gas_reales_us:
-      type: integer(4)
+      type: decimal(12, 4)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
     compromisos_us:
-      type: integer(4)
+      type: decimal(12, 4)
       fixed: false
       unsigned: false
       primary: false
@@ -2332,7 +2332,7 @@ RptGeneralProyecto:
       notnull: false
       autoincrement: false
     porc_overhead:
-      type: 'decimal(11, 2)'
+      type: 'decimal(12, 4)'
       fixed: false
       unsigned: false
       primary: false
@@ -2374,21 +2374,21 @@ RptGeneralProyecto:
       notnull: false
       autoincrement: false
     ppto_ovh:
-      type: 'decimal(11, 2)'
+      type: 'decimal(12, 4)'
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
     gasto_ovhpesos:
-      type: 'decimal(11, 2)'
+      type: 'decimal(12, 4)'
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
     gasto_ovhus:
-      type: 'decimal(11, 2)'
+      type: 'decimal(12, 4)'
       fixed: false
       unsigned: false
       primary: false
