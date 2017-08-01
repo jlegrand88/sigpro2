@@ -64,22 +64,47 @@ class ProyectoTable extends Doctrine_Table
     {
         set_time_limit(0);
         $query = "select proy.numero_contable, pre_ing.cuenta, proy.sigla_contable, upper(pre_ing.nombre_cuenta) nombre_cuenta,
-                       SUM(pre_ing.enero + pre_ing.febrero + pre_ing.marzo + pre_ing.abril + pre_ing.mayo + pre_ing.junio + pre_ing.julio + pre_ing.agosto + 
-                       pre_ing.septiembre + pre_ing.octubre + pre_ing.noviembre + pre_ing.diciembre) presupuesto,  
-                       ( 
-                           select SUM(DISTINCT(ing_real.pesos)) + IFNULL(( SELECT SUM((gp.enero + gp.febrero + gp.marzo + gp.abril + gp.mayo + gp.junio + gp.julio + gp.agosto + gp.septiembre + gp.octubre 
-                          + gp.noviembre + gp.diciembre)) FROM gasto_pais gp WHERE gp.id_proyecto = proy.id_proyecto AND cuenta = ing_real.codigo_cuenta),0)   
-                           from  movimientos_contables ing_real 
-                           where ing_real.proyecto=proy.numero_contable 
-                           and pre_ing.cuenta = ing_real.codigo_cuenta
-                       )*-1 ejecucion,
-                       ( 
-                         select ABS(SUM(DISTINCT(ing_real.dolares))) 
-                         from  movimientos_contables ing_real 
-                         where ing_real.proyecto=proy.numero_contable  
-                         and pre_ing.cuenta = ing_real.codigo_cuenta   
-                       ) ejecucion_us,
-                       0 compromiso, id_moneda, 0 compromiso_us
+                    SUM(pre_ing.enero + pre_ing.febrero + pre_ing.marzo + pre_ing.abril + pre_ing.mayo + pre_ing.junio + pre_ing.julio + pre_ing.agosto + 
+                    pre_ing.septiembre + pre_ing.octubre + pre_ing.noviembre + pre_ing.diciembre) presupuesto,  
+                    IF(
+                        ( 
+                            select SUM(DISTINCT(ing_real.pesos)) + IFNULL(( SELECT SUM((gp.enero + gp.febrero + gp.marzo + gp.abril + gp.mayo + gp.junio + gp.julio + gp.agosto + gp.septiembre + gp.octubre 
+                            + gp.noviembre + gp.diciembre)) FROM gasto_pais gp WHERE gp.id_proyecto = proy.id_proyecto AND cuenta = pre_ing.cuenta),0)   
+                            from  movimientos_contables ing_real 
+                            where ing_real.proyecto=proy.numero_contable 
+                            and pre_ing.cuenta = ing_real.codigo_cuenta
+                        ) < 0,
+                        ( 
+                            select SUM(DISTINCT(ing_real.pesos)) + IFNULL(( SELECT SUM((gp.enero + gp.febrero + gp.marzo + gp.abril + gp.mayo + gp.junio + gp.julio + gp.agosto + gp.septiembre + gp.octubre 
+                            + gp.noviembre + gp.diciembre)) FROM gasto_pais gp WHERE gp.id_proyecto = proy.id_proyecto AND cuenta = pre_ing.cuenta),0)   
+                            from  movimientos_contables ing_real 
+                            where ing_real.proyecto=proy.numero_contable 
+                            and pre_ing.cuenta = ing_real.codigo_cuenta
+                        )*-1,
+                        ( 
+                            select SUM(DISTINCT(ing_real.pesos)) + IFNULL(( SELECT SUM((gp.enero + gp.febrero + gp.marzo + gp.abril + gp.mayo + gp.junio + gp.julio + gp.agosto + gp.septiembre + gp.octubre 
+                            + gp.noviembre + gp.diciembre)) FROM gasto_pais gp WHERE gp.id_proyecto = proy.id_proyecto AND cuenta = pre_ing.cuenta),0)   
+                            from  movimientos_contables ing_real 
+                            where ing_real.proyecto=proy.numero_contable 
+                            and pre_ing.cuenta = ing_real.codigo_cuenta
+                        )
+                    )ejecucion,
+                    IF( 
+                        (select ABS(SUM(DISTINCT(ing_real.dolares))) 
+                        from  movimientos_contables ing_real 
+                        where ing_real.proyecto=proy.numero_contable  
+                        and pre_ing.cuenta = ing_real.codigo_cuenta) < 0,
+                        (select ABS(SUM(DISTINCT(ing_real.dolares))) 
+                        from  movimientos_contables ing_real 
+                        where ing_real.proyecto=proy.numero_contable  
+                        and pre_ing.cuenta = ing_real.codigo_cuenta) *-1,
+                        (select ABS(SUM(DISTINCT(ing_real.dolares))) 
+                        from  movimientos_contables ing_real 
+                        where ing_real.proyecto=proy.numero_contable  
+                        and pre_ing.cuenta = ing_real.codigo_cuenta)
+                        
+                    ) ejecucion_us,
+                    0 compromiso, id_moneda, 0 compromiso_us
                 from  proyecto proy
                 left join presupuesto pre_ing on pre_ing.id_proyecto=proy.id_proyecto and pre_ing.id_tipo_movimiento=1 
                 where proy.numero_contable =$numContable
