@@ -35,39 +35,39 @@
                                 $sumejec_us=0;
                                 $sumcompr_us=0;
                                 foreach ($listaTotalProyectosCuenta as $dettotproycuenta):
-                                ?>
-                                    <tr class="odd gradeX">
-                                        <td>
-                                        <?php echo $dettotproycuenta['cuenta']; ?>
-                                        </td>
-                                        <td><?php echo $dettotproycuenta['nombre_cuenta']; ?></td>
-                                        <td align=right><?php echo number_format($dettotproycuenta['presupuesto']); ?></td>
-                                        <?php if ( $dettotproycuenta['id_moneda'] != Moneda::USD ): ?>
-                                            <td align=right><?php echo number_format($dettotproycuenta['ejecucion']); ?></td>
-                                            <td align=right><?php echo number_format($dettotproycuenta['compromiso']); ?></td>
-                                            <td align=right><?php echo number_format($dettotproycuenta['presupuesto']-$dettotproycuenta['ejecucion']); ?></td>
-                                        <?php else: ?>
-                                            <td align=right><?php echo number_format($dettotproycuenta['ejecucion_us'],2); ?></td>
-                                            <td align=right><?php echo number_format($dettotproycuenta['compromiso_us'],2); ?></td>
-                                            <td align=right><?php echo number_format($dettotproycuenta['presupuesto']-$dettotproycuenta['ejecucion_us'],2); ?></td>
-                                        <?php endif; ?>
-                                    </tr>
-                                <?php
-                                    if ( substr($dettotproycuenta['cuenta'], -2) != '01' )
-                                    {
-                                        $sumppto     = $sumppto + $dettotproycuenta['presupuesto'];
-                                        if ( $dettotproycuenta['id_moneda'] != Moneda::USD ){
-                                            $sumejec = $sumejec + $dettotproycuenta['ejecucion'];
-                                            $sumcompr = $sumcompr + $dettotproycuenta['compromiso'];
-                                            $decimales = 0;
-                                        }else{
-                                            $sumejec  = $sumejec + $dettotproycuenta['ejecucion_us'];
-                                            $sumcompr = $sumcompr + $dettotproycuenta['compromiso_us'];
-                                            $decimales = 2;
+                                    if($dettotproycuenta['cuenta']): ?>
+                                        <tr class="odd gradeX">
+                                            <td>
+                                            <?php echo $dettotproycuenta['cuenta']; ?>
+                                            </td>
+                                            <td><?php echo $dettotproycuenta['nombre_cuenta']; ?></td>
+                                            <td align=right><?php echo number_format($dettotproycuenta['presupuesto']); ?></td>
+                                            <?php if ( $dettotproycuenta['id_moneda'] != Moneda::USD ): ?>
+                                                <td align=right><?php echo number_format($dettotproycuenta['ejecucion']); ?></td>
+                                                <td align=right><?php echo number_format($dettotproycuenta['compromiso']); ?></td>
+                                                <td align=right><?php echo number_format($dettotproycuenta['presupuesto']-$dettotproycuenta['ejecucion']); ?></td>
+                                            <?php else: ?>
+                                                <td align=right><?php echo number_format($dettotproycuenta['ejecucion_us'],2); ?></td>
+                                                <td align=right><?php echo number_format($dettotproycuenta['compromiso_us'],2); ?></td>
+                                                <td align=right><?php echo number_format($dettotproycuenta['presupuesto']-$dettotproycuenta['ejecucion_us'],2); ?></td>
+                                            <?php endif; ?>
+                                        </tr>
+                                        <?php
+                                        if ( substr($dettotproycuenta['cuenta'], -2) != '01' )
+                                        {
+                                            $sumppto     = $sumppto + $dettotproycuenta['presupuesto'];
+                                            if ( $dettotproycuenta['id_moneda'] != Moneda::USD ){
+                                                $sumejec = $sumejec + $dettotproycuenta['ejecucion'];
+                                                $sumcompr = $sumcompr + $dettotproycuenta['compromiso'];
+                                                $decimales = 0;
+                                            }else{
+                                                $sumejec  = $sumejec + $dettotproycuenta['ejecucion_us'];
+                                                $sumcompr = $sumcompr + $dettotproycuenta['compromiso_us'];
+                                                $decimales = 2;
+                                            }
                                         }
-                                    }
-                                endforeach;
-                                ?>
+                                    endif;
+                                endforeach; ?>
                                 <tr>
                                     <td width="159"></td>
                                     <td>TOTAL GASTOS</td>
