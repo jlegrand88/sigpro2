@@ -117,7 +117,7 @@ class ProyectoTable extends Doctrine_Table
                        pre_ing.septiembre + pre_ing.octubre + pre_ing.noviembre + pre_ing.diciembre) presupuesto,  
                        ( 
                            select SUM((ing_real.pesos)) + IFNULL(( SELECT SUM((gp.enero + gp.febrero + gp.marzo + gp.abril + gp.mayo + gp.junio + gp.julio + gp.agosto + gp.septiembre + gp.octubre 
-                          + gp.noviembre + gp.diciembre)) FROM gasto_pais gp WHERE gp.id_proyecto = proy.id_proyecto AND cuenta = ing_real.codigo_cuenta),0)  
+                          + gp.noviembre + gp.diciembre)) FROM gasto_pais gp WHERE gp.id_proyecto = proy.id_proyecto AND cuenta = pre_ing.cuenta),0)  
                            from  movimientos_contables ing_real 
                            where ing_real.proyecto=proy.numero_contable 
                            and pre_ing.cuenta = ing_real.codigo_cuenta
