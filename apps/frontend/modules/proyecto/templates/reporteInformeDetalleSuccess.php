@@ -57,11 +57,13 @@
                                     {
                                         $sumppto     = $sumppto + $dettotproycuenta['presupuesto'];
                                         if ( $dettotproycuenta['id_moneda'] != Moneda::USD ){
-                                            $sumejec = number_format($sumejec + $dettotproycuenta['ejecucion']);
-                                            $sumcompr = number_format($sumcompr + $dettotproycuenta['compromiso']);
+                                            $sumejec = $sumejec + $dettotproycuenta['ejecucion'];
+                                            $sumcompr = $sumcompr + $dettotproycuenta['compromiso'];
+                                            $decimales = 0;
                                         }else{
-                                            $sumejec  = number_format($sumejec + $dettotproycuenta['ejecucion_us'],2);
-                                            $sumcompr = number_format($sumcompr + $dettotproycuenta['compromiso_us'],2);
+                                            $sumejec  = $sumejec + $dettotproycuenta['ejecucion_us'];
+                                            $sumcompr = $sumcompr + $dettotproycuenta['compromiso_us'];
+                                            $decimales = 2;
                                         }
                                     }
                                 endforeach;
@@ -70,8 +72,8 @@
                                     <td width="159"></td>
                                     <td>TOTAL GASTOS</td>
                                     <td align=right><?php echo number_format($sumppto); ?></td>
-                                    <td align=right><?php echo $sumejec; ?></td>
-                                    <td align=right><?php echo $sumcompr; ?></td>
+                                    <td align=right><?php echo number_format($sumejec,$decimales); ?></td>
+                                    <td align=right><?php echo number_format($sumcompr,$decimales); ?></td>
                                     <td align=right></td>
                                 </tr>
                             </tbody>
