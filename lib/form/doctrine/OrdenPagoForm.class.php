@@ -126,12 +126,11 @@ class OrdenPagoForm extends BaseOrdenPagoForm
                     $varCompromiso = ($reporteDetalle[$i]['compromiso_us']) ? : 0;
                     $varSaldoefectivo = ($reporteDetalle[$i]['saldo_efectivo_us']) ? : 0;
                 }
-
+                
                 if($varSaldoefectivo == 0 AND $varEjecucion != $reporteDetalle[$i]['presupuesto'])
                 {
                     $varSaldoefectivo = $reporteDetalle[$i]['presupuesto'];
                 }
-
                 $form = new DetalleOrdenPagoForm($detalleOrdenPago);
                 $form->setDefault('presupuesto',$reporteDetalle[$i]['presupuesto']);
                 $form->setDefault('ejecucion',$varEjecucion);
@@ -141,28 +140,10 @@ class OrdenPagoForm extends BaseOrdenPagoForm
             }
         }
         $this->embedForm('detalle_orden_pago', $subForm);
-
-        //EMBED FORM ARCHIVO ORDEN PAGO
-//        $subFormArchivo = new sfForm();
-//        $archivosOrdenPago = $this->getObject()->getArchivoOrdenPago();
-//        if(count($archivosOrdenPago) > 0)
-//        {
-//            for ($i = 0; $i < count($archivosOrdenPago); $i++)
-//            {
-//                $formArchivo = new ArchivoOrdenPagoForm($archivosOrdenPago[$i]);
-//                $subFormArchivo->embedForm($i, $formArchivo);
-//            }
-//        }
-//        else
-//        {
-            $archivoOrdenPago = new ArchivoOrdenPago();
-            $archivoOrdenPago->OrdenPago = $this->getObject();
-            $formArchivo = new ArchivoOrdenPagoForm($archivoOrdenPago);
-//            $subFormArchivo->embedForm($i, $formArchivo);
-//        }
-//        $this->embedForm('archivo_orden_pago', $subFormArchivo);
+        $archivoOrdenPago = new ArchivoOrdenPago();
+        $archivoOrdenPago->OrdenPago = $this->getObject();
+        $formArchivo = new ArchivoOrdenPagoForm($archivoOrdenPago);
         $this->embedForm('archivo_orden_pago', $formArchivo);
-
         if (!$editable){
             $this->setDisabled();
         }
