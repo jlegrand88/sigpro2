@@ -66,7 +66,6 @@ Doctrine_Manager::getInstance()->bindComponent('Proyecto', 'doctrine');
  * @property Pais $PaisEjecuta
  * @property Doctrine_Collection $ArchivoContrato
  * @property Doctrine_Collection $UsuariosProyectoGrupo
- * @property Proveedor $Proveedor
  * 
  * @method integer             getIdProyecto()            Returns the current record's "id_proyecto" value
  * @method integer             getIdPais()                Returns the current record's "id_pais" value
@@ -127,7 +126,6 @@ Doctrine_Manager::getInstance()->bindComponent('Proyecto', 'doctrine');
  * @method Pais                getPaisEjecuta()           Returns the current record's "PaisEjecuta" value
  * @method Doctrine_Collection getArchivoContrato()       Returns the current record's "ArchivoContrato" collection
  * @method Doctrine_Collection getUsuariosProyectoGrupo() Returns the current record's "UsuariosProyectoGrupo" collection
- * @method Proveedor           getProveedor()             Returns the current record's "Proveedor" value
  * @method Proyecto            setIdProyecto()            Sets the current record's "id_proyecto" value
  * @method Proyecto            setIdPais()                Sets the current record's "id_pais" value
  * @method Proyecto            setFechaCreacion()         Sets the current record's "fecha_creacion" value
@@ -187,7 +185,6 @@ Doctrine_Manager::getInstance()->bindComponent('Proyecto', 'doctrine');
  * @method Proyecto            setPaisEjecuta()           Sets the current record's "PaisEjecuta" value
  * @method Proyecto            setArchivoContrato()       Sets the current record's "ArchivoContrato" collection
  * @method Proyecto            setUsuariosProyectoGrupo() Sets the current record's "UsuariosProyectoGrupo" collection
- * @method Proyecto            setProveedor()             Sets the current record's "Proveedor" value
  * 
  * @package    sigpro
  * @subpackage model
@@ -637,9 +634,5 @@ abstract class BaseProyecto extends sfDoctrineRecord
              'refClass' => 'ProyectoGrupo',
              'local' => 'id_proyecto',
              'foreign' => 'id_usuario'));
-
-        $this->hasOne('Proveedor', array(
-             'local' => 'rut_proveedor',
-             'foreign' => 'rut_proveedor'));
     }
 }

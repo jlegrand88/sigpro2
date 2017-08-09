@@ -906,7 +906,7 @@ OrdenPago:
       notnull: false
       autoincrement: false
     rut_proveedor:
-      type: integer(4)
+      type: string(45)
       fixed: false
       unsigned: false
       primary: false
@@ -1554,7 +1554,7 @@ Proveedor:
       notnull: false
       autoincrement: false
   relations:
-    Proyecto:
+    OrdenPago:
       local: rut_proveedor
       foreign: rut_proveedor
       type: many

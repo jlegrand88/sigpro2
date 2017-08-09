@@ -12,7 +12,7 @@ Doctrine_Manager::getInstance()->bindComponent('OrdenPago', 'doctrine');
  * @property integer $id_moneda
  * @property integer $id_proyecto
  * @property integer $id_usuario
- * @property integer $rut_proveedor
+ * @property string $rut_proveedor
  * @property timestamp $fecha_ingreso
  * @property timestamp $fecha_contabilizado
  * @property string $observacion
@@ -27,7 +27,7 @@ Doctrine_Manager::getInstance()->bindComponent('OrdenPago', 'doctrine');
  * @method integer             getIdMoneda()            Returns the current record's "id_moneda" value
  * @method integer             getIdProyecto()          Returns the current record's "id_proyecto" value
  * @method integer             getIdUsuario()           Returns the current record's "id_usuario" value
- * @method integer             getRutProveedor()        Returns the current record's "rut_proveedor" value
+ * @method string              getRutProveedor()        Returns the current record's "rut_proveedor" value
  * @method timestamp           getFechaIngreso()        Returns the current record's "fecha_ingreso" value
  * @method timestamp           getFechaContabilizado()  Returns the current record's "fecha_contabilizado" value
  * @method string              getObservacion()         Returns the current record's "observacion" value
@@ -105,14 +105,14 @@ abstract class BaseOrdenPago extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 4,
              ));
-        $this->hasColumn('rut_proveedor', 'integer', 4, array(
-             'type' => 'integer',
+        $this->hasColumn('rut_proveedor', 'string', 45, array(
+             'type' => 'string',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'notnull' => false,
              'autoincrement' => false,
-             'length' => 4,
+             'length' => 45,
              ));
         $this->hasColumn('fecha_ingreso', 'timestamp', 25, array(
              'type' => 'timestamp',

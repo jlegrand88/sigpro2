@@ -126,7 +126,7 @@
                         <?php
                             if($ordenPago)
                             {
-                                echo include_partial('proyecto/tablaArchivosOrdenPago',array('ordenPago' => $ordenPago,'idDeleteArchivo' => $idDeleteArchivo));
+                                echo include_partial('proyecto/tablaArchivosOrdenPago',array('ordenPago' => $ordenPago,'idDeleteArchivo' => $idDeleteArchivo, 'idUsuario' => $idUsuario));
                             }
                         ?>
                     </div>

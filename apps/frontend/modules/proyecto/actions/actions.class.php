@@ -17,7 +17,7 @@ class proyectoActions extends sfActions
     */
     public function executeIndex(sfWebRequest $request)
     {
-    $this->forward('default', 'module');
+        $this->forward('default', 'module');
     }
 
     public function executeIngresoProyecto(sfWebRequest $request)
@@ -36,7 +36,7 @@ class proyectoActions extends sfActions
             $this->editable = 1;
         }
 
-        $idUsuario = $this->getUser()->getAttribute('id');
+        $this->idUsuario = $idUsuario = $this->getUser()->getAttribute('id');
         $this->permisosUsuario = $permisosUsuario = Usuario::getPermisos($idUsuario);
 
         if($request->getParameter('id_proyecto'))
@@ -418,7 +418,7 @@ class proyectoActions extends sfActions
     public function executeOrdenPago(sfWebRequest $request)
     {
         $this->listaUsuarios = UsuarioTable::getInstance()->getAllUsers();
-        $idUsuario = $this->getUser()->getAttribute('id');
+        $this->idUsuario = $idUsuario = $this->getUser()->getAttribute('id');
         $listaProyectos = UsuarioTable::getInstance()->getListaProyectosResponsable($idUsuario);
         $this->listaProyectos = isset($listaProyectos) ? $listaProyectos : null;
         $this->editable = true;

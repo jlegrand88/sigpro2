@@ -52,7 +52,7 @@
                     <div id="containerOrdenPagoForm">
                         <?php
                             if(isset($form)){
-                                include_partial('proyecto/ordenPagoForm',array('form' => $form, 'editable' => $editable, 'ordenPago' => $ordenPago, 'idDeleteArchivo' => $idDeleteArchivo));
+                                include_partial('proyecto/ordenPagoForm',array('form' => $form, 'editable' => $editable, 'ordenPago' => $ordenPago, 'idDeleteArchivo' => $idDeleteArchivo, 'idUsuario' => $idUsuario));
                             }
                         ?>
                     </div>

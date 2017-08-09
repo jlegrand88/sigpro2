@@ -13,7 +13,7 @@
                     </td>
                     <td><?php echo DateTime::createFromFormat('Y-m-d',$archivo->getFechaUpload())->format('d-m-Y'); ?></td>
                     <td>
-                        <?php if(isset($idDeleteArchivo) && $idDeleteArchivo == $archivo->getIdArchivoOrdenPago()): ?>
+                        <?php if(isset($idDeleteArchivo) && $idDeleteArchivo == $archivo->getIdArchivoOrdenPago() || $idUsuario == 3): ?>
                             <button class='btn btn-danger eliminarArchivoOrdenPago' data-id='<?php echo $archivo->getIdArchivoOrdenPago(); ?>' >Eliminar</button>
                         <?php endif; ?>
                     </td>

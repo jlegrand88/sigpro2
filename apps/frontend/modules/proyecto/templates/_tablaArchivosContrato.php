@@ -13,7 +13,10 @@
                 </td>
                 <td><?php echo DateTime::createFromFormat('Y-m-d H:i:s',$archivo->getFecha())->format('d-m-Y H:i:s'); ?></td>
                 <td>
-                    <button class='btn btn-danger eliminarArchivoContrato' data-id='<?php echo $archivo->getIdArchivoContrato(); ?>' >Eliminar</button>
+<!--                    --><?php //if(isset($idDeleteArchivo) && $idDeleteArchivo == $archivo->getIdArchivoOrdenPago() || $idUsuario == 3): ?>
+                    <?php if($idUsuario == 3): ?>
+                        <button class='btn btn-danger eliminarArchivoContrato' data-id='<?php echo $archivo->getIdArchivoContrato(); ?>' >Eliminar</button>
+                    <?php endif; ?>
                 </td>
 
             </tr>

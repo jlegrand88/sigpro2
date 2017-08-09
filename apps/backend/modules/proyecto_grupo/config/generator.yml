@@ -17,6 +17,7 @@ generator:
       list:
         batch_actions: {}
       filter:  ~
-      form:    ~
+      form:
+        class: ProyectoGrupoBackendForm
       edit:    ~
       new:     ~

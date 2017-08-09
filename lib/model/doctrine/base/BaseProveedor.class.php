@@ -12,7 +12,6 @@ Doctrine_Manager::getInstance()->bindComponent('Proveedor', 'doctrine');
  * @property string $razon_social
  * @property string $telefono
  * @property string $email
- * @property Doctrine_Collection $Proyecto
  * @property Doctrine_Collection $OrdenPago
  * 
  * @method integer             getIdProveedor()   Returns the current record's "id_proveedor" value
@@ -20,14 +19,12 @@ Doctrine_Manager::getInstance()->bindComponent('Proveedor', 'doctrine');
  * @method string              getRazonSocial()   Returns the current record's "razon_social" value
  * @method string              getTelefono()      Returns the current record's "telefono" value
  * @method string              getEmail()         Returns the current record's "email" value
- * @method Doctrine_Collection getProyecto()      Returns the current record's "Proyecto" collection
  * @method Doctrine_Collection getOrdenPago()     Returns the current record's "OrdenPago" collection
  * @method Proveedor           setIdProveedor()   Sets the current record's "id_proveedor" value
  * @method Proveedor           setRutProveedor()  Sets the current record's "rut_proveedor" value
  * @method Proveedor           setRazonSocial()   Sets the current record's "razon_social" value
  * @method Proveedor           setTelefono()      Sets the current record's "telefono" value
  * @method Proveedor           setEmail()         Sets the current record's "email" value
- * @method Proveedor           setProyecto()      Sets the current record's "Proyecto" collection
  * @method Proveedor           setOrdenPago()     Sets the current record's "OrdenPago" collection
  * 
  * @package    sigpro
@@ -89,10 +86,6 @@ abstract class BaseProveedor extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('Proyecto', array(
-             'local' => 'rut_proveedor',
-             'foreign' => 'rut_proveedor'));
-
         $this->hasMany('OrdenPago', array(
              'local' => 'rut_proveedor',
              'foreign' => 'rut_proveedor'));
