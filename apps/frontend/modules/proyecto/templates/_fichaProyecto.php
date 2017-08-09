@@ -205,7 +205,7 @@
                             <?php
                             if($archivosContrato)
                             {
-                                echo include_partial('proyecto/tablaArchivosContrato',array('archivosContrato' => $archivosContrato));
+                                echo include_partial('proyecto/tablaArchivosContrato',array('archivosContrato' => $archivosContrato, 'idUsuario' => $idUsuario));
                             }
                             ?>
                         </div>
