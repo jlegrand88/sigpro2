@@ -27,5 +27,6 @@ class ProveedorForm extends BaseProveedorForm
           'telefono'      => new sfValidatorString(array('max_length' => 45, 'required' => false)),
           'email'         => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       ));
+      $this->widgetSchema->setNameFormat('proveedor[%s]');
   }
 }
