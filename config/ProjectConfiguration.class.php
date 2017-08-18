@@ -10,5 +10,6 @@ class ProjectConfiguration extends sfProjectConfiguration
       $this->enablePlugins(array('sfDoctrinePlugin','izarusBootstrapPlugin','sfFormExtraPlugin'));
 //    $this->enablePlugins('sfDoctrinePlugin');
     $this->enablePlugins('sfTCPDFPlugin');
+    $this->enablePlugins('sfAdminThemejRollerPlugin');
   }
 }
