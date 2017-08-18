@@ -35,8 +35,8 @@
         <br /><br />
         <table class="row_oc" style="width: 100%;">
             <tr>
-                <td style="padding-right: 50px;"><b>Fecha :  <?php echo DateTime::createFromFormat('Y-m-d H:m:i',$ODP->getFechaIngreso())->format('d-m-Y'); ?></b></td>
-                <td><b>Folio: <?php echo DateTime::createFromFormat('Y-m-d H:m:i',$ODP->getFechaIngreso())->format('Y').'-'.$ODP->getIdOrdenPago(); ?></b></td>
+                <td style="padding-right: 50px;"><b>Fecha :  <?php echo DateTime::createFromFormat('Y-m-d H:i:s',$ODP->getFechaIngreso())->format('d-m-Y'); ?></b></td>
+                <td><b>Folio: <?php echo DateTime::createFromFormat('Y-m-d H:i:s',$ODP->getFechaIngreso())->format('Y').'-'.$ODP->getIdOrdenPago(); ?></b></td>
             </tr>
         </table>
         <table style="width:100%;border: 2px black solid; border-collapse: collapse; margin-top: 10px;">
