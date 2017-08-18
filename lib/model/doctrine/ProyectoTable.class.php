@@ -69,21 +69,21 @@ class ProyectoTable extends Doctrine_Table
                     pre_ing.septiembre + pre_ing.octubre + pre_ing.noviembre + pre_ing.diciembre) presupuesto,  
                     IF(
                         ( 
-                            select IFNULL(SUM(DISTINCT(ing_real.pesos)),0) + IFNULL(( SELECT SUM((gp.enero + gp.febrero + gp.marzo + gp.abril + gp.mayo + gp.junio + gp.julio + gp.agosto + gp.septiembre + gp.octubre 
+                            select IFNULL(SUM(ing_real.pesos),0) + IFNULL(( SELECT SUM((gp.enero + gp.febrero + gp.marzo + gp.abril + gp.mayo + gp.junio + gp.julio + gp.agosto + gp.septiembre + gp.octubre 
                             + gp.noviembre + gp.diciembre)) FROM gasto_pais gp WHERE gp.id_tipo_movimiento = 1 AND gp.id_proyecto = proy.id_proyecto AND cuenta = pre_ing.cuenta),0)   
                             from  movimientos_contables ing_real 
                             where ing_real.proyecto=proy.numero_contable 
                             and pre_ing.cuenta = ing_real.codigo_cuenta
                         ) < 0,
                         ( 
-                            select IFNULL(SUM(DISTINCT(ing_real.pesos)),0) + IFNULL(( SELECT SUM((gp.enero + gp.febrero + gp.marzo + gp.abril + gp.mayo + gp.junio + gp.julio + gp.agosto + gp.septiembre + gp.octubre 
+                            select IFNULL(SUM(ing_real.pesos),0) + IFNULL(( SELECT SUM((gp.enero + gp.febrero + gp.marzo + gp.abril + gp.mayo + gp.junio + gp.julio + gp.agosto + gp.septiembre + gp.octubre 
                             + gp.noviembre + gp.diciembre)) FROM gasto_pais gp WHERE gp.id_tipo_movimiento = 1 AND gp.id_proyecto = proy.id_proyecto AND cuenta = pre_ing.cuenta),0)   
                             from  movimientos_contables ing_real 
                             where ing_real.proyecto=proy.numero_contable 
                             and pre_ing.cuenta = ing_real.codigo_cuenta
                         )*-1,
                         ( 
-                            select IFNULL(SUM(DISTINCT(ing_real.pesos)),0) + IFNULL(( SELECT SUM((gp.enero + gp.febrero + gp.marzo + gp.abril + gp.mayo + gp.junio + gp.julio + gp.agosto + gp.septiembre + gp.octubre 
+                            select IFNULL(SUM(ing_real.pesos),0) + IFNULL(( SELECT SUM((gp.enero + gp.febrero + gp.marzo + gp.abril + gp.mayo + gp.junio + gp.julio + gp.agosto + gp.septiembre + gp.octubre 
                             + gp.noviembre + gp.diciembre)) FROM gasto_pais gp WHERE gp.id_tipo_movimiento = 1 AND gp.id_proyecto = proy.id_proyecto AND cuenta = pre_ing.cuenta),0)   
                             from  movimientos_contables ing_real 
                             where ing_real.proyecto=proy.numero_contable 
@@ -91,15 +91,15 @@ class ProyectoTable extends Doctrine_Table
                         )
                     )ejecucion,
                     IF( 
-                        (select ABS(SUM(DISTINCT(ing_real.dolares))) 
+                        (select ABS(SUM(ing_real.dolares)) 
                         from  movimientos_contables ing_real 
                         where ing_real.proyecto=proy.numero_contable  
                         and pre_ing.cuenta = ing_real.codigo_cuenta) < 0,
-                        (select ABS(SUM(DISTINCT(ing_real.dolares))) 
+                        (select ABS(SUM(ing_real.dolares)) 
                         from  movimientos_contables ing_real 
                         where ing_real.proyecto=proy.numero_contable  
                         and pre_ing.cuenta = ing_real.codigo_cuenta) *-1,
-                        (select ABS(SUM(DISTINCT(ing_real.dolares))) 
+                        (select ABS(SUM(ing_real.dolares)) 
                         from  movimientos_contables ing_real 
                         where ing_real.proyecto=proy.numero_contable  
                         and pre_ing.cuenta = ing_real.codigo_cuenta)
