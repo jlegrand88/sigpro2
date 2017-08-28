@@ -58,6 +58,7 @@ class PresupuestoForm extends BasePresupuestoForm
         //validadores
         $this->validatorSchema['periodo'] = new sfValidatorString(array('max_length' => 10, 'required' => false));
         $this->validatorSchema['cuenta_overhead'] = new sfValidatorBoolean(array('required' => false));
+        $this->validatorSchema['tiene_overhead'] = new sfValidatorBoolean(array('required' => false));
 
         $this->validatorSchema->setPostValidator(new sfValidatorCallback(array('callback' => array($this, 'validacionesExtras'))));
     }
