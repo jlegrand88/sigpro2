@@ -23,8 +23,7 @@ class RptGeneralProyectoTable extends Doctrine_Table
         $query = "select id_proyecto, sigla_contable, monto_total, monto_ing sum_monto_ing, monto_egre sum_monto_egre, ing_reales ingresos_reales, gas_reales gastos_reales, compromisos, 
                         ing_reales_us ingresos_reales_us, gas_reales_us gastos_reales_us, compromisos_us, numcontable, id_moneda, porc_overhead, grupo_proyecto, 
                 DATE_FORMAT(fec_inicio_proy, '%d-%m-%Y') fec_inicio_proy, DATE_FORMAT(fec_termino_proy, '%d-%m-%Y') fec_termino_proy, moneda, pais, ppto_ovh, gasto_ovhpesos, gasto_ovhus 
-             from rpt_general_proyecto where grupo_proyecto = '$grupo' 
-             order by numcontable DESC ";
+             from rpt_general_proyecto order by numcontable DESC ";
         $con = Doctrine_Manager::getInstance()->getConnection('doctrine');
         $response = $con->fetchAssoc($query);
         return $response;
